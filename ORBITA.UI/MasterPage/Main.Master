@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="ORBITA.UI.MasterPage.Main" %>
+<%@ Register src="../Controls/foot.ascx" tagname="foot" tagprefix="uc2" %>
+<%@ Register src="../Controls/top.ascx" tagname="top" tagprefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+     <link href="../Css/Master.css" rel="stylesheet" type="text/css" />
+     <link href="../Css/Main.css" rel="Stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="mypage">
+    <div class="webtop">  
+        <uc1:top ID="top1" runat="server" /> 
+    </div>
+
+    <div class="leftinfo">
+            <asp:ObjectDataSource ID="ObjectDataSourceProductClass" runat="server" 
+                OldValuesParameterFormatString="original_{0}" SelectMethod="GetTree" 
+                TypeName="ORBITA.BLL.ProductClassManage">
+            </asp:ObjectDataSource>
+            <asp:Repeater ID="RepeaterProductClass" runat="server" 
+                DataSourceID="ObjectDataSourceProductClass" 
+                onitemdatabound="RepeaterProductClass_ItemDataBound">
+                <HeaderTemplate>
+                    <table ><thead><th colspan="2" class="categoryTitle">Product Category</th></thead>
+                 </HeaderTemplate>
+                 <ItemTemplate>
+                 <tr onmouseover="this.style.backgroundColor='#f3f9ff'" onmouseout="this.style.backgroundColor='#fff'">
+                    <td class="category">
+                    <span class="spantitle"><asp:Label ID="lblBlank" runat="server" Text="" /></span>
+                    <span class="spantitle"><asp:Image ID="imgBar" runat="server" ImageUrl="~/Images/borrow.jpg" AlternateText="" /></span>
+
+                    <span class="spantitle mypadding"><asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# "../ProductList.aspx?id=" + Eval("pc_id") %>' 
+                     Text='<%# Eval("pc_name") %>' CssClass="NodeName"></asp:HyperLink></span>
+                    </td>
+                 </tr>
+                 </ItemTemplate>   
+                <FooterTemplate>
+                   </table>
+                </FooterTemplate>
+                
+            </asp:Repeater>
+        </div>
+
+
+    <div class="info">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <div class="webfoot"> 
+     
+        <uc2:foot ID="foot1" runat="server" />
+     
+    </div>
+    </div>
+    </form>
+</body>
+</html>

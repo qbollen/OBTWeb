@@ -1,0 +1,190 @@
+﻿/****************
+  Global Setting
+****************/
+
+table{
+	background:none;
+	margin: 5px;
+	border-collapse: collapse;
+	table-layout: auto;
+	width:98%;
+}
+
+td,th{
+	padding: 5px;
+}
+
+/****************
+	web content
+****************/
+.webcontent{
+
+}
+
+
+/*********************
+	content
+*********************/
+
+.titleContent{
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px;
+    padding-left: 16px;
+    color: #666;
+	margin-top:18px;
+}
+
+.leftinfo
+{
+    height:500px;
+	width:250px;
+    float:left;
+	margin-top:10px;
+}
+
+.navtitle{
+	float:left;
+}
+
+.categoryTitle{
+	background-image:url("../images/fl.jpg");
+	color:#FDFAFB;
+
+}
+
+.info{
+	float:left;
+    width: 717px;
+    padding: 5px 10px 20px 10px;
+	margin-left:5px;
+    background: #fbfbfb;
+	font-size:11px;
+}
+.info a{
+    text-decoration: underline;
+}
+.info a.boldLink{
+    color: #000;
+    font-weight: bold;
+}
+.info a.boldLink:hover{
+    color:#c00;
+}
+.NodeName{
+    line-height: 18px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.MiniImage{
+	border:0px;
+	width:50%;
+}
+
+.category{
+    padding:5px 0 2px 5px;
+	margin:0;
+	border-color:#EFEFEF;
+	border-width:0 0 1px 0;
+	background-color:#EFEFEF;
+}
+
+.spantitle{
+	float:left;
+}
+
+.mypadding{
+	padding-left:2px;
+}
+
+.noborder{
+    border:0px;
+} 
+.btmDashed{
+    border-bottom:1px dashed #ccc; 
+}
+tr.altrow{
+    background: #f8f8f8;
+}
+
+.txtblue{
+    color: #375b91;
+}
+.artContent{
+    color: #000;
+    line-height: 25px;
+}
+.imgProduct
+{
+    width: 200px;
+    height: 200px;
+}
+.artTitle{
+    font-size: 18px;
+    font-weight:bold;
+    text-align: center;
+}
+.artTitle2{
+	font-size:13px;
+}
+.center{
+    text-align: center;
+}
+
+
+/*********************
+	Common Control
+*********************/
+.LabelStyle{
+    line-height: 20px;
+}
+.ButtonStyle{
+    padding:2px;
+	cursor:pointer;
+    color:#375b91; 
+}
+.TextBoxStyle{
+	padding:2px;
+	width: 200px;
+}
+.AlternatingRowStyle{
+    background: #f6f6f6; 
+}
+.RowStyle{
+}
+.DataWebControlStyle{
+    border:0px solid #d9e6f0;
+}
+.HeaderStyle{
+	background:#e0e0e0;
+	color:#000;
+	padding: 5px;
+	height: 20px;
+}
+
+
+/**************************
+	AspNetPager Control
+************************/
+.anpager { 
+	margin: 0 0 0 5px;
+}
+.anpager .cpb {font-weight:bold; margin:5px 5px 0 0; padding:2px 5px;}
+.anpager a{padding:2px;}
+
+/**************************
+   Product Show 
+**************************/
+.ProductInnerContent{
+	width:980px;
+	padding:10px;
+}
+
+.ProductInfo{
+
+}
+
+
+

@@ -1,0 +1,126 @@
+﻿/**************************
+    CSS style
+ *************************/
+.navimg{
+	width:25px;
+	height:25px;
+}
+
+.navtd{
+	width:5px;
+}
+
+.mapimg{
+	width:553px;
+	height:311px;
+}
+
+.cerimg{
+	width:150px;
+	height:184px;
+	border:0px;
+}
+
+.cerstyle{
+	margin-left:8px;
+	font-size:12px;
+}
+
+.largetitle{
+	font-size:15px;
+	font-weight:bold;
+	margin-top:4px;
+}
+
+.smalltitle{
+    font-size:13px;
+	font-weight:bold;
+	margin-top:4px;
+}
+
+.countryintroduce{
+	font-size:13px;
+}
+
+.mycontent{
+	font-size:13px;
+
+}
+
+.mycontent img{
+	border:0;
+}
+
+.mycontent .mytable{
+	background:none;
+	border-collapse: collapse;
+	table-layout: auto;
+}
+
+.mytable td{
+	border:1px solid #ccc;
+	padding: 5px;
+	
+}
+
+.mytable2 td{
+	padding: 5px;
+}
+
+
+.spantitle{
+	float:left;	
+}
+
+ .leftinfo
+{
+    height:500px;
+	width:250px;
+    float:left;
+	margin-top:10px;
+}
+
+.categoryTitle{
+	background-image:url("../images/fl.jpg");
+	color:#FDFAFB;
+}
+
+.category{
+    padding:5px 0 2px 5px;
+	margin:0;
+	border-color:#EFEFEF;
+	border-width:0 0 1px 0;
+	background-color:#EFEFEF;
+}
+
+.mypadding{
+	padding-left:2px;
+}
+
+.NodeName{
+    line-height: 18px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.info{
+	float:left;
+    width: 717px;
+    padding: 20px 10px 20px 10px;
+	margin-left:5px;
+    background: #fbfbfb;
+	font-size:11px;
+}
+
+.leftinfo table{
+	background:none;
+	margin: 5px;
+	border-collapse: collapse;
+	table-layout: auto;
+	width:98%;
+}
+
+.leftinfo th{
+	padding: 5px;
+}
+

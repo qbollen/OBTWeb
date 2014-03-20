@@ -1,0 +1,106 @@
+﻿*{
+	margin:0 auto;
+	padding: 0;
+}
+
+html{
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+.mypage{
+	width:1002px;
+	margin:0 auto;
+}
+
+a{
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #c00;
+    text-decoration: none;
+}
+
+a:link{
+	text-decoration:none;
+}
+
+/****************
+    web top  
+****************/
+.webtop{
+
+}
+
+.main .top{
+	width:1002px;
+	height:80px;
+	background-image:url("../images/nav.jpg");
+}
+
+.main .top div{
+	float:left;
+	display:inline;
+}
+
+.main .logo{
+	margin-top:30px;
+    margin-left:10px;
+}
+
+.main .flag{
+	margin-top:40px;
+	margin-left:100px;
+	font-size:16px;
+}
+
+.main .language{
+	width:100px;
+	margin-top:55px;
+	margin-left:830px;
+	/*margin-left:400px*html;*/
+}
+
+/*********************
+   web foot
+*********************/
+.webfoot{
+
+	font-size:14px;
+}
+
+.footer{
+	clear:both;
+	padding:5px 0;
+	height:50px;
+	TEXT-ALIGN: center; 
+	MARGIN-TOP: 10px; 
+	BACKGROUND: #838383; 
+	BORDER-TOP: #cc0000 5px solid;
+}
+
+.footerlink {
+	COLOR: #fff; 
+	FONT-SIZE: 12px
+}
+.footerlink A:link {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+.footerlink A:hover {
+	COLOR: #fff; TEXT-DECORATION: underline
+}
+
+.copyright{
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	COLOR: #fff; 
+	FONT-SIZE: 12px;
+}
+
+.addr{
+	
+}
+
+.contact{
+	
+}

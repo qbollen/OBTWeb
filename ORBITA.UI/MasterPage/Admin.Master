@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="ORBITA.UI.MasterPage.Admin" %>
+
+<%@ Register Src="../Controls/navigation.ascx" TagName="navigation" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Orbita Web Background Manage</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="../Css/Admin.css" rel="Stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="TopBack">
+        <img src="../Images/AdminLog.gif" />
+         <span class="mngbtn">
+                Welcome : &lt; <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>  &gt; | <asp:HyperLink ID="LogoutLink" runat="server" NavigateUrl="~/Admin/Login.aspx">Logout</asp:HyperLink> 
+         </span>   
+    </div>
+    <form id="form1" runat="server">
+    <div id="container">
+        <div id="navigation">
+            <uc1:navigation ID="navigation1" runat="server" />
+        </div>
+        <div id="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

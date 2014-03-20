@@ -1,0 +1,349 @@
+﻿/*******************
+       login
+*******************/
+.div1{
+	border:1px solid #55b4f6;
+    width:520px;
+	height:270px;
+	margin:100px auto;
+}
+
+.div2{
+	height:50px;
+    background:url("../Images/Topbg.gif") repeat-x;
+	
+}
+
+.div2 img{
+	height:50px;
+	margin-left:113px;
+}
+
+.div3{
+	border-bottom:1px solid #E4E4E5;
+	width:520px;
+	height:179px;
+}
+
+.div4{
+	width:60px;
+	height:178px;
+	float:left;
+}
+
+.div5{
+	width:350px;
+	height:178px;
+	float:left;
+}
+
+.div6{
+	height:178px;
+	width:90px;
+	float:left;
+}
+
+.image1{
+	margin-top:50px;
+	margin-left:25px;
+}
+
+.image2{
+	margin-top:98px;
+	margin-left:10px;
+}
+
+.div7{
+	width:520px;
+	height:20px;
+	text-align:center;
+	font-size:12px;
+	margin-top:15px;
+}
+
+.faceul2{
+	list-style-type:none;
+	height:130px;
+	margin-top:32px;
+	margin-left:0px;
+	padding:0px;
+}
+
+.faceul2 li{
+	width:170px;
+	height:35px;
+	float:left;
+	padding-top:5px;
+	padding-left:0px;
+	text-align:right;
+}
+
+.validatecode{
+	float:left;
+	margin-left:25px;
+}
+
+/************************
+	MasterPage
+************************/
+* {
+	margin: 0;
+	padding: 0;
+}
+body
+{
+    font-size: 13px;
+}
+
+a {
+	color: #375b91;
+}
+
+#container {
+	width: 98%;
+	margin-left:auto;
+	margin-right:auto;
+}
+/*********************
+	header
+*********************/
+.mngbtn {
+	color: #fff;
+	float: right;
+	margin: 30px 300px 0px 0px;
+	font-weight:bold;
+	/*font-size: 13px;*/
+}
+
+.mngbtn a{
+	color: #fff;
+	text-decoration: none;
+}
+
+.TopBack{
+	background:url("../Images/Topbg.gif") repeat-x;
+	width:100%;
+	height:50px;
+	padding-right:20px;
+}
+
+.TopBack img{
+	float:left;
+	margin-left:100px;
+}
+
+
+/*********************
+	navigation
+*********************/
+#navigation {
+	float: left;
+	width: 200px;
+	margin: 10px;
+	padding:10px;
+	background:#FFF;
+}
+#navigation .navmenu{
+	line-height:22px;
+	overflow: hidden;
+}
+#navigation .navmenu div a, #navigation .navmenu div a:visited {
+	padding-left: 19px;
+	text-decoration: none;
+	margin: 0 3px;
+	display: block;
+	color:  #375b91;
+}
+#navigation .navmenu div a.current {
+	color: #a43708;
+}
+#navigation .navmenu div a:hover{
+	text-decoration:underline;
+}
+#navigation .navmenu div ul{
+	list-style:none;
+	margin-left:10px;
+}
+#navigation .navmenu div.collapsed {
+    height:26px;
+    border-bottom: 1px solid #d9e6f0;
+    overflow: hidden;
+}
+#navigation .navmenu div{
+    display: block;
+	font-weight: normal;
+}
+#navigation h3{
+	padding: 2px;
+	font-size: 13px;
+	background: #f3f9ff;
+	border-bottom: 1px solid #d9e6f0;
+}  
+#navigation span{
+	background: #f3f9ff;
+	border: 1px solid #d9e6f0;
+	padding-left: 10px;
+	display: block;
+	font-weight: normal;
+	margin-top: 10px;
+}
+.subnav { 
+    background: transparent url(../Images/bullet_blue.png) no-repeat left;
+}
+#navigation .navmenu div .parentnav  { 
+    background: #f3f9ff url(../Images/control_up_blue.png) no-repeat left;
+}  
+#navigation .navmenu div.collapsed .parentnav { 
+    background: #f3f9ff url(../Images/control_down_blue.png) no-repeat left;
+} 
+/*********************
+	content
+*********************/
+#content {
+	float: left;
+	margin: 10px 10px 10px 0;
+	padding: 10px;
+	background: #FFF;
+}
+#box{
+	border:1px solid #d9e6f0;
+	padding-bottom: 5px;
+	width:98%;
+}
+#box h3{
+	background:#f3f9ff;
+	border-bottom:1px solid #d9e6f0;
+	color:#375b91;
+	padding:5px;
+	font-size:14px;
+}
+table{
+	background:none;
+	margin: 5px;
+	border-collapse: collapse;
+	table-layout: auto;
+	width:98%;
+}
+
+td, th{
+	border:1px solid #d9e6f0;
+	padding: 5px;
+	
+}
+.noborder{
+    border:0px solid #d9e6f0;
+} 
+tr.altrow{
+    background: #f8f8f8;
+}
+thead{
+	background:#f3f9ff;
+	color:#000;
+	padding: 10px;
+	height: 20px;
+}
+.txtblue{
+    color: #375b91;
+}
+.tablenone{
+    width: 120px;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tablenone td, th{
+	border:1px solid #d9e6f0;
+	padding: 5px;
+	margin: 5px;
+	
+}
+
+/*********************
+	Common Control
+*********************/
+
+    
+.AlternatingRowStyle{
+    background: #f8f8f8; 
+}
+.RowStyle{
+    
+}
+.DataWebControlStyle{
+    border:0px solid #d9e6f0;
+}
+.LabelStyle{
+    line-height: 20px;
+       
+}
+.TextBoxStyle{
+    border:1px solid #d9e6f0;
+	background:#fff url(../Images/form_blue.gif) repeat-x top left;
+	padding:2px;
+	width: 200px;
+       
+}
+.ButtonStyle{
+    padding:2px;
+	cursor:pointer;
+    color:#375b91; 
+}
+.LinkButtonStyle{
+
+}
+
+.PagerRowStyle table
+{
+    text-align:center;
+    margin:auto;
+    width:auto;
+}
+.PagerRowStyle table td
+{
+    border:0px;
+    padding:5px;/*padding around pager numbers */
+}
+.PagerRowStyle td
+{
+    border-top: #1d1d1d 1px solid;/*top border of pager*/
+    height:40px;
+}
+.PagerRowStyle a
+{
+    color:#3861A3;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+/*border around pager numbers*/
+    border-top:solid 1px #EFF7FC;
+    border-right:solid 1px #cccccc;
+    border-bottom:solid 1px #cccccc;
+    border-left:solid 1px #EFF7FC;
+} 
+.PagerRowStyle a:hover { 
+    color: #2B974B; 
+    border-top:solid 1px #FFFFF4;
+    border-right:solid 1px #333333;
+    border-bottom:solid 1px #333333;
+    border-left:solid 1px #FFFFFF; 
+}
+.PagerRowStyle span
+{
+    font-weight:bold;
+    color:#c00;
+    text-decoration:none;
+    padding:2px 10px 2px 10px;
+} 
+
+
+
+
+
+
+/**************************
+	AspNetPager Control
+************************/
+.anpager { margin: 10px 0 0 5px; }
+.anpager .cpb {background:#1F3A87 none repeat scroll 0 0;border:1px solid #CCCCCC;color:#FFFFFF;font-weight:bold;margin:5px 4px 0 0;padding:4px 5px 0;}
+.anpager a {background:#FFFFFF none repeat scroll 0 0;border:1px solid #CCCCCC;color:#1F3A87;margin:5px 4px 0 0;padding:4px 5px 0;text-decoration:none}
+.anpager a:hover{background:#1F3A87 none repeat scroll 0 0;border:1px solid #1F3A87;color:#FFFFFF;}
