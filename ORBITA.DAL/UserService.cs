@@ -225,7 +225,7 @@ namespace ORBITA.DAL
 
             myUser.UID = myDataRecord.GetInt32(myDataRecord.GetOrdinal("UID"));
             myUser.UserName = myDataRecord.GetString(myDataRecord.GetOrdinal("UserName"));
-            myUser.Pwd = myDataRecord.GetString(myDataRecord.GetOrdinal("Pwd"));
+            myUser.Pwd = myDataRecord.GetString(myDataRecord.GetOrdinal("password"));
             myUser.JoinDate = myDataRecord.GetDateTime(myDataRecord.GetOrdinal("JoinDate"));
 
             if(!myDataRecord.IsDBNull(myDataRecord.GetOrdinal("Login_IP")))
