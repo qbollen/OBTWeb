@@ -26,7 +26,7 @@ namespace ORBITA.DAL
         public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows, string orderBy)
         {
             ArticleCollection tempList = new ArticleCollection();
-            using(SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using(SqlCommand myCommand = new SqlCommand("sprocArticleSelectList", myConnection))
                 {
@@ -74,7 +74,7 @@ namespace ORBITA.DAL
         public static ArticleCollection GetList(bool istop, bool iscommand)
         {
             ArticleCollection tempList = new ArticleCollection();
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleSearchList", myConnection))
                 {
@@ -114,7 +114,7 @@ namespace ORBITA.DAL
         public static Article GetItem(int art_id)
         {
             Article myArticle = new Article();
-            using(SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using(SqlCommand myCommand = new SqlCommand("sprocArticleSelectItem", myConnection))
                 {
@@ -141,7 +141,7 @@ namespace ORBITA.DAL
         public static bool Delete(int art_id)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using(SqlCommand myCommand = new SqlCommand("sprocArticleDeleteSingleItem", myConnection))
                 {
@@ -158,7 +158,7 @@ namespace ORBITA.DAL
         public static bool Update(int art_id)
         {
             int result = 0;
-            using(SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using(SqlCommand myCommand = new SqlCommand("aprocArticleUpdateSingleClick", myConnection))
                 {
@@ -177,7 +177,7 @@ namespace ORBITA.DAL
         public static bool Update(Article myArticle)
         {
             int result = 0;
-            using(SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using(SqlCommand myCommand = new SqlCommand("sprocArticleUpdateSingleItem", myConnection))
                 {
@@ -208,7 +208,7 @@ namespace ORBITA.DAL
         {
             int result = 0;
 
-            using(SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using(SqlCommand myCommand = new SqlCommand("sprocArticleInsert", myConnection))
                 {
@@ -234,6 +234,8 @@ namespace ORBITA.DAL
 
             return result > 0;
         }
+
+        #endregion
 
         #region private methods
 

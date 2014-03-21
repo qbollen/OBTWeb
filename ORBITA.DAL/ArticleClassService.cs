@@ -17,7 +17,7 @@ namespace ORBITA.DAL
         public static ArticleClassCollection GetList()
         {
             ArticleClassCollection tempList = new ArticleClassCollection();
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleClassSelectList", myConnection))
                 {
@@ -47,7 +47,7 @@ namespace ORBITA.DAL
         public static ArticleClassCollection GetListByParentID(int parent_id)
         {
             ArticleClassCollection tempList = new ArticleClassCollection();
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleClassSelectListByParentID", myConnection))
                 {
@@ -82,7 +82,7 @@ namespace ORBITA.DAL
         public static ArticleClass GetItem(int ac_id)
         {
             ArticleClass myArticleClass = new ArticleClass();
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleClassSelectItem", myConnection))
                 {
@@ -111,7 +111,7 @@ namespace ORBITA.DAL
         public static DataSet GetTree()
         {
             DataSet ds = new DataSet();
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlDataAdapter myAdapter = new SqlDataAdapter())
                 {
@@ -136,7 +136,7 @@ namespace ORBITA.DAL
         public static bool Delete(int ac_id)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleClassDeleteSingleItem", myConnection))
                 {
@@ -156,7 +156,7 @@ namespace ORBITA.DAL
         public static bool Update(ArticleClass myArticleClass)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleClassUpdateSingleItem", myConnection))
                 {
@@ -178,7 +178,7 @@ namespace ORBITA.DAL
         public static bool Insert(ArticleClass myArticleClass)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(AppConfiguration.ConnectionString))
+            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
             {
                 using (SqlCommand myCommand = new SqlCommand("sprocArticleClassInsert", myConnection))
                 {

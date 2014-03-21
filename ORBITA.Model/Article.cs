@@ -28,7 +28,7 @@ namespace ORBITA.Model
 
         public string art_image { get; set; }
 
-        public string art_date { get; set; }
+        public DateTime art_date { get; set; }
 
         public int art_click { get; set; }
 
