@@ -10,7 +10,16 @@ namespace ORBITA.DAL
 {
     public sealed class DbHelper
     {
-        private static string strConnection = PubConstant.GetConnection();
+        private static string _connection;
+
+        public static string Connection
+        {
+            get
+            {
+                return PubConstant.GetConnection();
+            }
+        }
+
         private DbHelper()
         {
 
@@ -24,7 +33,7 @@ namespace ORBITA.DAL
         /// <returns>受影响的行数.</returns>
         public static int ExecuteNonQuery(string sql, params OleDbParameter[] parameters)
         {
-            using (OleDbConnection conn = new OleDbConnection(strConnection))
+            using (OleDbConnection conn = new OleDbConnection(Connection))
             {
                 conn.Open();
                 OleDbCommand cmd = conn.CreateCommand();
@@ -49,7 +58,7 @@ namespace ORBITA.DAL
         /// <returns>返回DataSet</returns>
         public static DataSet ExecuteDataSet(string sql, string tablename, params OleDbParameter[] parameters)
         {
-            using (OleDbConnection conn = new OleDbConnection(strConnection))
+            using (OleDbConnection conn = new OleDbConnection(Connection))
             {
                 OleDbCommand cmd = new OleDbCommand(sql, conn);
                 conn.Open();
@@ -82,7 +91,7 @@ namespace ORBITA.DAL
         /// <returns>返回OleDbDataReader</returns>
         public static OleDbDataReader ExecuteDataReader(string sql, params OleDbParameter[] parameters)
         {
-            OleDbConnection conn = new OleDbConnection(strConnection);
+            OleDbConnection conn = new OleDbConnection(Connection);
             OleDbCommand cmd = new OleDbCommand(sql, conn);
             conn.Open();
             if ((parameters != null) && (parameters.Length > 0))
@@ -102,7 +111,7 @@ namespace ORBITA.DAL
         /// <returns>返回object类型单值</returns>
         public static object ExecuteScalar(string sql, params OleDbParameter[] parameters)
         {
-            using (OleDbConnection conn = new OleDbConnection(strConnection))
+            using (OleDbConnection conn = new OleDbConnection(Connection))
             {
                 OleDbCommand cmd = new OleDbCommand(sql, conn);
                 conn.Open();

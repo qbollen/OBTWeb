@@ -19,6 +19,11 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -926,6 +931,7 @@
     <Content Include="Images\tick.png" />
     <Content Include="Images\user.png" />
     <Content Include="Lib\FredCK.FCKeditorV2.dll" />
+    <Content Include="Lib\MySql.Data.dll" />
     <Content Include="ProductList.aspx" />
     <Content Include="ProductShow.aspx" />
     <Content Include="Scripts\Admin.js" />

@@ -11,7 +11,7 @@ namespace ORBITA.DAL
     {
         public static string GetConnection()
         {
-            return ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["mysqlconn"].ConnectionString;
         }
     }
 }
