@@ -5,6 +5,7 @@ using System.Text;
 using ORBITA.Model;
 using System.Data.OleDb;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace ORBITA.DAL
 {
@@ -15,301 +16,218 @@ namespace ORBITA.DAL
     {
         #region Public Methods
 
-        /// <summary>
-        /// 查询产品 所有数据
-        /// </summary>
-        /// <param name="pc_id"></param>
-        /// <param name="startRowIndex"></param>
-        /// <param name="maximumRows"></param>
-        /// <returns>ProductCollection 包含所有记录</returns>
+        /// <summary>查询产品 所有数据</summary>
+        /// <returns>ProductCollection 包含所有记录.</returns>
         public static ProductCollection GetList(int pc_id, int startRowIndex, int maximumRows)
         {
-
-            int iStartRowIndex = -1;
-            int iMaximumRows = -1;
-
-            if (startRowIndex > 0 && maximumRows > 0)
+            ProductCollection tempList = new ProductCollection();
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                iStartRowIndex = startRowIndex;
-                iMaximumRows = maximumRows;
-            }
-
-            ProductCollection list = new ProductCollection();
-
-            string sql = @"SELECT
-		                        prod_id, 
-		                        prod_name, 
-		                        prod_number, 
-		                        prod_price, 
-		                        prod_image, 
-		                        prod_content, 
-		                        prod_date, 
-		                        prod_click, 
-		                        istop, 
-		                        iscommend, 
-		                        pc_id
-	                        FROM 
-                            (
-                                select 
-                                   *, (select iif(isnull(sum(1)), 1, sum(1) + 1) 
-                                        from T_Product 
-                                        where (@pc_id=0 or pc_id=@pc_id) and prod_id > a.prod_id) as RowRank
-                                from T_Product a 
-                                where 
-                                @pc_id=0
-                                or
-                                pc_id in (select pc_id from (select pc_id from T_ProductClass where PC_Id=@pc_id
-                                                         union all
-                                                         select p.pc_id 
-                                                         from T_ProductClass p 
-                                                         inner join
-                                                         (select pc_id
-                                                         from T_ProductClass
-                                                         where PC_Id=@pc_id) t on p.Parent_Id = t.pc_id) as temp) 
-                                order by prod_id desc
-                            ) 
-                            as ProductWithRowNumbers
-                            where 
-                            ((RowRank between @startRowIndex AND @startRowIndex + @maximumRows - 1)
-			                            OR @startRowIndex = -1 OR @maximumRows = -1)";
-
-            OleDbParameter[] parms = {
-                                         new OleDbParameter("@pc_id",OleDbType.Integer),
-                                         new OleDbParameter("@startRowIndex",OleDbType.Integer),
-                                         new OleDbParameter("@maximumRows",OleDbType.Integer)
-                                     };
-            parms[0].Value = pc_id;
-            parms[1].Value = iStartRowIndex;
-            parms[2].Value = iMaximumRows;
-
-            OleDbDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
-            if (reader.HasRows)
-            {
-                list = new ProductCollection();
-                while (reader.Read())
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_select_list", myConnection))
                 {
-                    list.Add(FillDataRecord(reader));
+                    myCommand.CommandType = CommandType.StoredProcedure;
+
+                    myCommand.Parameters.AddWithValue("_pc_id", pc_id);
+
+                    if (startRowIndex > 0 && maximumRows > 0)
+                    {
+                        myCommand.Parameters.AddWithValue("_start_row_index", startRowIndex);
+                        myCommand.Parameters.AddWithValue("_maximum_rows", maximumRows);
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("_start_row_index", -1);
+                        myCommand.Parameters.AddWithValue("_maximum_rows", -1);
+                    }
+                    myConnection.Open();
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            tempList = new ProductCollection();
+                            while (myReader.Read())
+                            {
+                                tempList.Add(FillDataRecord(myReader));
+                            }
+                        }
+                        myReader.Close();
+                    }
                 }
             }
-            reader.Close();
-
-            return list;
+            return tempList;
         }
 
-        /// <summary>
-        /// 条件查询产品
-        /// </summary>
+
+
+        /// <summary>条件查询产品 </summary>
         /// <param name="istop">置顶</param>
         /// <param name="iscommend">推荐</param>
-        /// <returns>ProductCollection 包含条件查询的记录</returns>
+        /// <returns>ProductCollection 包含条件查询的记录.</returns>
         public static ProductCollection GetList(bool istop, bool iscommend)
         {
-            bool bIsTop = false;
-            bool bIsCommend = false;
-
-            if (istop)
+            ProductCollection tempList = new ProductCollection();
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                bIsTop = istop;
-            }
-            if (iscommend)
-            {
-                bIsCommend = iscommend;
-            }
-
-            ProductCollection list = null;
-
-            string sql = "select * from T_Product where IsTop=@IsTop and IsCommend=@IsCommend";
-            OleDbParameter[] parms = { 
-                                        new OleDbParameter("@IsTop",OleDbType.Boolean),
-                                        new OleDbParameter("@IsCommend",OleDbType.Boolean)
-                                     };
-            parms[0].Value = bIsTop;
-            parms[1].Value = bIsCommend;
-
-            OleDbDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
-            if (reader.HasRows)
-            {
-                list = new ProductCollection();
-                while (reader.Read())
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_select_list_by_istop_iscommend", myConnection))
                 {
-                    list.Add(FillDataRecord(reader));
+                    myCommand.CommandType = CommandType.StoredProcedure;
+
+                    myCommand.Parameters.AddWithValue("_istop", istop);
+
+                    myCommand.Parameters.AddWithValue("_iscommend", iscommend);
+
+
+                    myConnection.Open();
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            tempList = new ProductCollection();
+                            while (myReader.Read())
+                            {
+                                tempList.Add(FillDataRecord(myReader));
+                            }
+                        }
+                        myReader.Close();
+                    }
                 }
             }
-            reader.Close();
-
-            return list;
+            return tempList;
         }
 
-        /// <summary>
-        /// 条件查询产品
-        /// </summary>
-        /// <param name="prod_id">产品id</param>
-        /// <returns>Product模型 包含一条产品记录</returns>
+
+        /// <summary>条件查询产品 </summary>
+        /// <param name="prod_id">产品ID</param>
+        /// <returns>Product模型 包含一条产品记录.</returns>
         public static Product GetItem(int prod_id)
         {
             Product myProduct = new Product();
-            string sql = "select * from T_Product where prod_id=@prod_id";
-            OleDbParameter[] parms = { new OleDbParameter("@prod_id", OleDbType.Integer) };
-            parms[0].Value = prod_id;
-            OleDbDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
-            if (reader.HasRows)
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                if (reader.Read())
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_select_item", myConnection))
                 {
-                    myProduct = FillDataRecord(reader);
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.Parameters.AddWithValue("_prod_id", prod_id);
+                    myConnection.Open();
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                    {
+                        if (myReader.HasRows)
+                        {
+                            if (myReader.Read())
+                            {
+                                myProduct = FillDataRecord(myReader);
+                            }
+                        }
+
+                        myReader.Close();
+                    }
                 }
             }
-
-            reader.Close();
-
             return myProduct;
         }
 
-        /// <summary>
-        /// 删除一条产品记录
-        /// </summary>
-        /// <param name="prod_id">产品id</param>
-        /// <returns>返回<c>true</c>删除成功，或,<c>false</c>删除失败.</returns>
+
+        /// <summary>删除一条产品记录</summary>
+        /// <param name="prod_id">产品ID</param>
+        /// <returns>返回 <c>true</c> 删除成功, 或 <c>false</c> 删除失败.</returns>
         public static bool Delete(int prod_id)
         {
             int result = 0;
-            string sql = "delete from T_Product where prod_id=@prod_id";
-            OleDbParameter[] parms = { new OleDbParameter("@prod_id", OleDbType.Integer) };
-            parms[0].Value = prod_id;
-            result = DbHelper.ExecuteNonQuery(sql, parms);
-
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_delete_single_item", myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.Parameters.AddWithValue("_prod_id", prod_id);
+                    myConnection.Open();
+                    result = myCommand.ExecuteNonQuery();
+                }
+            }
             return result > 0;
         }
 
-        /// <summary>
-        /// 修改产品点击数
-        /// </summary>
-        /// <param name="prod_id">产品id</param>
-        /// <returns>返回<c>true</c>修改成功，或<c>false</c>修改失败.</returns>
+
+        /// <summary>修改产品点击数</summary>
+        /// <param name="prod_id">产品ID</param>
+        /// <returns>返回 <c>true</c> 修改成功, 或 <c>false</c> 修改失败.</returns>
         public static bool Update(int prod_id)
         {
             int result = 0;
-            string sql = "update T_Product set prod_click=prod_click+1 where prod_id=@prod_id";
-            OleDbParameter[] parms = { new OleDbParameter("@prod_id", OleDbType.Integer) };
-            parms[0].Value = prod_id;
-            result = DbHelper.ExecuteNonQuery(sql, parms);
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_update_single_click", myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.Parameters.AddWithValue("_prod_id", prod_id);
 
+                    myConnection.Open();
+                    result = myCommand.ExecuteNonQuery();
+                }
+            }
             return result > 0;
         }
 
-        /// <summary>
-        /// 修改产品
-        /// </summary>
+
+        /// <summary>修改产品</summary>
         /// <param name="myProduct">产品模型</param>
-        /// <returns>返回<c>true</c>修改成功，或<c>false</c>修改失败.</returns>
+        /// <returns>返回 <c>true</c> 修改成功, 或 <c>false</c> 修改失败.</returns>
         public static bool Update(Product myProduct)
         {
             int result = 0;
-            string sql = @"update T_Product 
-                          set 
-                                prod_name = @prod_name, 
-		                        prod_number = @prod_number, 
-		                        prod_price = @prod_price, 
-		                        prod_image = @Prod_image, 
-		                        prod_content = @prod_content, 
-		                        prod_date = @prod_date, 
-		                        prod_click = @prod_click, 
-		                        istop = @istop, 
-		                        iscommend = @iscommend, 
-		                        pc_id = @pc_id
-	                        WHERE
-		                        prod_id = @prod_id";
-            OleDbParameter[] parms = { 
-                                        new OleDbParameter("@prod_name",OleDbType.VarWChar),
-                                        new OleDbParameter("@prod_number",OleDbType.VarWChar),
-                                        new OleDbParameter("@prod_price",OleDbType.Numeric),
-                                        new OleDbParameter("@prod_image",OleDbType.VarWChar),
-                                        new OleDbParameter("@prod_content",OleDbType.LongVarWChar),
-                                        new OleDbParameter("@prod_date",OleDbType.Date),
-                                        new OleDbParameter("@prod_click",OleDbType.Integer),
-                                        new OleDbParameter("@istop",OleDbType.Boolean),
-                                        new OleDbParameter("@iscommend",OleDbType.Boolean),
-                                        new OleDbParameter("@pc_id",OleDbType.Integer),
-                                        new OleDbParameter("@prod_id",OleDbType.Integer)
-                                     };
-            
-            parms[0].Value = myProduct.Prod_Name;
-            parms[1].Value = myProduct.Prod_Number;
-            parms[2].Value = myProduct.Prod_Price;
-            parms[3].Value = myProduct.Prod_Image;
-            parms[4].Value = myProduct.Prod_Content;
-            parms[5].Value = myProduct.Prod_Date;
-            parms[6].Value = myProduct.Prod_Click;
-            parms[7].Value = myProduct.IsTop;
-            parms[8].Value = myProduct.IsCommend;
-            parms[9].Value = myProduct.Pc_Id;
-            parms[10].Value = myProduct.Prod_Id;
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_update_single_item", myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
 
-            result = DbHelper.ExecuteNonQuery(sql, parms);
+                    myCommand.Parameters.AddWithValue("_prod_id", myProduct.Prod_Id);
+                    myCommand.Parameters.AddWithValue("_prod_name", myProduct.Prod_Name);
+                    myCommand.Parameters.AddWithValue("_prod_number", myProduct.Prod_Number);
+                    myCommand.Parameters.AddWithValue("_prod_price", myProduct.Prod_Price);
+                    myCommand.Parameters.AddWithValue("_prod_image", myProduct.Prod_Image);
+                    myCommand.Parameters.AddWithValue("_prod_content", myProduct.Prod_Content);
+                    myCommand.Parameters.AddWithValue("_prod_date", myProduct.Prod_Date);
+                    myCommand.Parameters.AddWithValue("_prod_click", myProduct.Prod_Click);
+                    myCommand.Parameters.AddWithValue("_istop", myProduct.IsTop);
+                    myCommand.Parameters.AddWithValue("_iscommend", myProduct.IsCommend);
+                    myCommand.Parameters.AddWithValue("_pc_id", myProduct.Pc_Id);
 
+                    myConnection.Open();
+                    result = myCommand.ExecuteNonQuery();
+                }
+            }
             return result > 0;
         }
 
-        /// <summary>
-        /// 插入产品记录
-        /// </summary>
+
+        /// <summary>插入产品记录</summary>
         /// <param name="myProduct">myProduct 模型</param>
-        /// <returns>返回<c>true</c>插入成功，或<c>false</c>插入失败.</returns>
+        /// <returns>返回 <c>true</c> 插入成功, 或 <c>false</c> 插入失败.</returns>
         public static bool Insert(Product myProduct)
         {
             int result = 0;
-            string sql = @"insert into T_Product(         
-            			                            prod_name, 
-			                                        prod_number, 
-			                                        prod_price, 
-			                                        prod_image, 
-			                                        prod_content, 
-			                                        prod_date, 
-			                                        prod_click, 
-			                                        istop, 
-			                                        iscommend, 
-			                                        pc_id 
-                                                ) 
-                                                values 
-                                                (
-                                                    @prod_name, 
-			                                        @prod_number, 
-			                                        @prod_price, 
-			                                        @prod_image, 
-			                                        @prod_content, 
-			                                        @prod_date, 
-			                                        @prod_click, 
-			                                        @istop, 
-			                                        @iscommend, 
-			                                        @pc_id
-                                                )";
-            OleDbParameter[] parms = { 
-                                        new OleDbParameter("@prod_name",OleDbType.VarWChar),
-                                        new OleDbParameter("@prod_number",OleDbType.VarWChar),
-                                        new OleDbParameter("@prod_price",OleDbType.Numeric),
-                                        new OleDbParameter("@prod_image",OleDbType.VarWChar),
-                                        new OleDbParameter("@prod_content",OleDbType.LongVarWChar),
-                                        new OleDbParameter("@prod_date",OleDbType.Date),
-                                        new OleDbParameter("@prod_click",OleDbType.Integer),
-                                        new OleDbParameter("@istop",OleDbType.Boolean),
-                                        new OleDbParameter("@iscommend",OleDbType.Boolean),
-                                        new OleDbParameter("@pc_id",OleDbType.Integer),
-                                     };
-            parms[0].Value = myProduct.Prod_Name;
-            parms[1].Value = myProduct.Prod_Number;
-            parms[2].Value = myProduct.Prod_Price;
-            parms[3].Value = myProduct.Prod_Image;
-            parms[4].Value = myProduct.Prod_Content;
-            parms[5].Value = myProduct.Prod_Date;
-            parms[6].Value = myProduct.Prod_Click;
-            parms[7].Value = myProduct.IsTop;
-            parms[8].Value = myProduct.IsCommend;
-            parms[9].Value = myProduct.Pc_Id;
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_insert", myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
 
-            result = DbHelper.ExecuteNonQuery(sql, parms);
+                    myCommand.Parameters.AddWithValue("_prod_name", myProduct.Prod_Name);
+                    myCommand.Parameters.AddWithValue("_prod_number", myProduct.Prod_Number);
+                    myCommand.Parameters.AddWithValue("_prod_price", myProduct.Prod_Price);
+                    myCommand.Parameters.AddWithValue("_prod_image", myProduct.Prod_Image);
+                    myCommand.Parameters.AddWithValue("_prod_content", myProduct.Prod_Content);
+                    myCommand.Parameters.AddWithValue("_prod_date", myProduct.Prod_Date);
+                    myCommand.Parameters.AddWithValue("_prod_click", myProduct.Prod_Click);
+                    myCommand.Parameters.AddWithValue("_istop", myProduct.IsTop);
+                    myCommand.Parameters.AddWithValue("_iscommend", myProduct.IsCommend);
+                    myCommand.Parameters.AddWithValue("_pc_id", myProduct.Pc_Id);
 
+                    myConnection.Open();
+                    result = myCommand.ExecuteNonQuery();
+                }
+            }
             return result > 0;
-
         }
 
         #endregion
