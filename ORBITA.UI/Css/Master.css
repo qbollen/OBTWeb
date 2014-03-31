@@ -1,18 +1,15 @@
-﻿*{
+﻿/**{
 	margin:0 auto;
 	padding: 0;
-}
+}*/
 
-html{
+/*html{
 	font-family: Arial, Verdana, Helvetica, sans-serif;
-}
+}*/
 
-.mypage{
-	width:1002px;
-	margin:0 auto;
-}
 
-a{
+
+/*a{
     color: #666;
     text-decoration: none;
 }
@@ -24,12 +21,12 @@ a:hover{
 
 a:link{
 	text-decoration:none;
-}
+}*/
 
 /****************
     web top  
 ****************/
-.webtop{
+/*.webtop{
 
 }
 
@@ -59,13 +56,13 @@ a:link{
 	width:100px;
 	margin-top:55px;
 	margin-left:830px;
-	/*margin-left:400px*html;*/
-}
+	/*margin-left:400px*html;
+}*/
 
 /*********************
    web foot
 *********************/
-.webfoot{
+/*.webfoot{
 
 	font-size:14px;
 }
@@ -103,4 +100,4 @@ a:link{
 
 .contact{
 	
-}
+}*/

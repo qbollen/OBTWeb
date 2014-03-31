@@ -892,11 +892,48 @@
     <Content Include="contact.aspx" />
     <Content Include="Controls\foot.ascx" />
     <Content Include="Controls\top.ascx" />
+    <Content Include="Css\forms.css" />
+    <Content Include="Css\layout.css" />
     <Content Include="Css\Main.css" />
     <Content Include="Css\Master.css" />
+    <Content Include="Css\tables.css" />
     <Content Include="Css\Web.css" />
+    <Content Include="Images\arrow-left.gif" />
+    <Content Include="Images\arrow-right.gif" />
+    <Content Include="Images\black_file.gif" />
+    <Content Include="Images\blue_file.gif" />
+    <Content Include="Images\box-03-bottom.gif" />
+    <Content Include="Images\box-03-top.gif" />
+    <Content Include="Images\box-03.gif" />
+    <Content Include="Images\company.jpg" />
+    <Content Include="Images\demo\240x90.gif" />
+    <Content Include="Images\demo\290x100.gif" />
+    <Content Include="Images\demo\400x230.gif" />
+    <Content Include="Images\demo\60x60.gif" />
+    <Content Include="Images\demo\64x64.gif" />
+    <Content Include="Images\demo\80x80.gif" />
+    <Content Include="Images\demo\avatar.gif" />
+    <Content Include="Images\demo\imgl.gif" />
+    <Content Include="Images\demo\imgr.gif" />
     <Content Include="Images\index_1.gif" />
     <Content Include="Images\index_7.jpg" />
+    <Content Include="Images\pagination.gif" />
+    <Content Include="Images\slider-1.jpg" />
+    <Content Include="Images\slider-10.jpg" />
+    <Content Include="Images\slider-11.jpg" />
+    <Content Include="Images\slider-12.jpg" />
+    <Content Include="Images\slider-13.jpg" />
+    <Content Include="Images\slider-14.jpg" />
+    <Content Include="Images\slider-15.jpg" />
+    <Content Include="Images\slider-2.jpg" />
+    <Content Include="Images\slider-3.jpg" />
+    <Content Include="Images\slider-4.jpg" />
+    <Content Include="Images\slider-5.jpg" />
+    <Content Include="Images\slider-6.jpg" />
+    <Content Include="Images\slider-7.jpg" />
+    <Content Include="Images\slider-8.jpg" />
+    <Content Include="Images\slider-9.jpg" />
+    <Content Include="index - Copy.aspx" />
     <Content Include="index.aspx" />
     <Content Include="Lib\AspNetPager.dll" />
     <Content Include="bin\ORBITA.BLL.dll" />
@@ -932,12 +969,34 @@
     <Content Include="Images\user.png" />
     <Content Include="Lib\FredCK.FCKeditorV2.dll" />
     <Content Include="Lib\MySql.Data.dll" />
+    <Content Include="newui\about.html" />
+    <Content Include="newui\demo.jpg" />
+    <Content Include="newui\full-width.html" />
+    <Content Include="newui\images\black_file.gif" />
+    <Content Include="newui\images\blue_file.gif" />
+    <Content Include="newui\images\company.jpg" />
+    <Content Include="newui\images\demo\240x90.gif" />
+    <Content Include="newui\images\demo\290x100.gif" />
+    <Content Include="newui\images\demo\400x230.gif" />
+    <Content Include="newui\images\demo\60x60.gif" />
+    <Content Include="newui\images\demo\64x64.gif" />
+    <Content Include="newui\images\demo\80x80.gif" />
+    <Content Include="newui\images\demo\avatar.gif" />
+    <Content Include="newui\images\demo\imgl.gif" />
+    <Content Include="newui\images\demo\imgr.gif" />
+    <Content Include="newui\index.html" />
+    <Content Include="newui\style-demo.html" />
+    <Content Include="newui\styles\forms.css" />
+    <Content Include="newui\styles\layout.css" />
+    <Content Include="newui\styles\tables.css" />
+    <Content Include="newui\test.css" />
     <Content Include="ProductList.aspx" />
     <Content Include="ProductShow.aspx" />
     <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\loopedslider.js" />
     <Content Include="Scripts\sdmenu.js" />
     <Content Include="service.aspx" />
     <Content Include="Web.config">
@@ -1074,6 +1133,13 @@
     <Compile Include="Controls\top.ascx.designer.cs">
       <DependentUpon>top.ascx</DependentUpon>
     </Compile>
+    <Compile Include="index - Copy.aspx.cs">
+      <DependentUpon>index - Copy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index - Copy.aspx.designer.cs">
+      <DependentUpon>index - Copy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1088,12 +1154,12 @@
     <Compile Include="MasterPage\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="MasterPage\Main.Master.cs">
-      <DependentUpon>Main.Master</DependentUpon>
+    <Compile Include="MasterPage\Main-copy.Master.cs">
+      <DependentUpon>Main-copy.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterPage\Main.Master.designer.cs">
-      <DependentUpon>Main.Master</DependentUpon>
+    <Compile Include="MasterPage\Main-copy.Master.designer.cs">
+      <DependentUpon>Main-copy.Master</DependentUpon>
     </Compile>
     <Compile Include="MasterPage\Web.Master.cs">
       <DependentUpon>Web.Master</DependentUpon>
@@ -1152,7 +1218,7 @@
     <None Include="ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <None Include="ckfinder\userfiles\.htaccess" />
     <Content Include="MasterPage\Web.Master" />
-    <Content Include="MasterPage\Main.Master" />
+    <Content Include="MasterPage\Main-copy.Master" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

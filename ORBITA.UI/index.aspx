@@ -1,127 +1,147 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Main.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ORBITA.UI.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Web.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ORBITA.UI.index" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="mycontent">
-        <table width="100%">
-        <tbody>
-            <tr>
-                <td colspan="4">
-                    <span class="spantitle"><img class="navimg" src="images/ico3.jpg" alt="" /></span>
-                    <span class="spantitle largetitle">&nbsp; ORBITA TECHNOLOGY CO.,LTD.</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" valign="top">
-                   <center>  <img class="mapimg" src="images/contact.gif" alt="" /> </center>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" class="countryintroduce">
 
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;orbita is one of the reputable card operated
-                        lock and hotel locking systems manufactuers for the hospitality industry in china,established
-                        to offer the best quality products with professional and effective service to our
-                        customers.</p>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;orbita series of product is a product of years
-                        of experience integrated with the advanced technology from siemens, dallas, atmel,
-                        philip etc. the cooperation with fidelio and other popular pms system has just enabled
-                        our locking system to a wide range of compatibility.</p>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;more than 3000 hotels, resorts and cruise ships
-                        in 50 countries in the world are using our card locks, digital safes and other satisfactory
-                        hotel intelligent accessories that have been becoming another attractive point for
-                        the hotel.</p>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;orbita believes that every customer is a customer
-                        for life. producing products of fine quality with our experience and knowledge is
-                        our source of pride and customer's satisfaction is our only criterion in service
-                        .</p>
-                </td>
+<script src="Scripts/loopedslider.js" type="text/javascript" charset="utf-8"></script>
 
-            </tr>
-
-            <tr>
-            <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="images/orbita_iso_1.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_iso.gif" alt="" /></a>
-                </td>
-
-                <td>
-                    <a href="images/orbita_logo_1.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_logo.gif" alt="" /></a>
-                </td>
-
-                <td>
-                    <a href="images/orbita_product_patent_1.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_product_patent.gif" alt="" /></a>
-                </td>
-
-                <td>
-                    <a href="images/orbita_soft_certificate_1.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_soft_certificate.gif" alt="" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="cerstyle">certificate: iso 9001:2008</span>
-                </td>
-                <td>
-                    <span class="cerstyle">certificate: orbita logo</span>
-                </td>
-                <td>
-                    <span class="cerstyle">certificate:product patent</span>
-                </td>
-                <td>
-                    <span class="cerstyle">certificate: lock system </span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <a href="images/orbita_ce_1.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_ce.gif" alt="" /></a>
-                </td>
-
-                <td>
-                    <a href="images/orbita_fc_1.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_fc.gif" alt="" /></a>
-                </td>
-
-                <td>
-                    <a href="images/orbita_fidelio.gif" target="_blank">
-                        <img class="cerimg" src="images/orbita_fidelio_0.gif" alt="" /></a>
-                </td>
-
-                <td>
-                
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <span class="cerstyle">certificate: ce</span>
-                </td>
-                <td>
-                    <span class="cerstyle">certificate: fc</span>
-                </td>
-                <td>
-                    <span class="cerstyle">certificate: fidelio interface</span>
-                </td>
-                <td>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="wrapper col3">
+  <div id="intro">
+    <div class="fl_left"><a href="#"><img src="images/company.jpg" alt="" /></a></div>
+    <div class="fl_right">
+      <h2>About ORBITA</h2>
+	  <p>orbita is one of the reputable card operated lock and hotel locking systems manufactuers for the hospitality industry in china,established to offer the best quality products with professional and effective service to our customers.</p>
+      <p>orbita series of product is a product of years of experience integrated with the advanced technology from siemens, dallas, atmel, philip etc. the cooperation with fidelio and other popular pms system has just enabled our locking system to a wide range of compatibility...</p>
+      <p class="more"><a href="#">Read More &raquo;</a></p>
+	  <!--<ul>
+        <li><a href="#">Link Text</a></li>
+        <li><a href="#">Link Text</a></li>
+        <li class="last"><a href="#">Link Text</a></li>
+      </ul>-->
     </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="homecontent">
+    <div id="column1">
+      <h2>News</h2>
+      <ul>
+        <li>
+          <p><a href="#"><img src="images/demo/80x80.gif" alt="" /></a> Feugiatrutrum rhoncus semper enim massa eu intesque ipsum velit orci dolorem. Atnatis dolor tincidunt nulla elit auctortis laculisi elit fauctortor natis loreet.</p>
+          <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+        </li>
+        <li>
+          <p><a href="#"><img src="images/demo/80x80.gif" alt="" /></a> Feugiatrutrum rhoncus semper enim massa eu intesque ipsum velit orci dolorem. Atnatis dolor tincidunt nulla elit auctortis laculisi elit fauctortor natis loreet.</p>
+          <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+        </li>
+        <li>
+          <p><a href="#"><img src="images/demo/80x80.gif" alt="" /></a> Feugiatrutrum rhoncus semper enim massa eu intesque ipsum velit orci dolorem. Atnatis dolor tincidunt nulla elit auctortis laculisi elit fauctortor natis loreet.</p>
+          <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+        </li>
+        <li class="last">
+          <p><a href="#"><img src="images/demo/80x80.gif" alt="" /></a> Feugiatrutrum rhoncus semper enim massa eu intesque ipsum velit orci dolorem. Atnatis dolor tincidunt nulla elit auctortis laculisi elit fauctortor natis loreet.</p>
+          <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+        </li>
+      </ul>
+    </div>
+    <div id="colwrap">
+      <div class="column2">
+        <h2>Adipisciniapellentum Consequam</h2>
+        <ul>
+          <li>
+            <h2 class="title"><img src="images/demo/64x64.gif" alt="" />Nullamlacus dui ipsum conseque</h2>
+            <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat. Adipisciniapellentum leo ut consequam ris felit elit id nibh sociis malesuada.</p>
+            <p class="readmore"><a href="#">Read More &raquo;</a></p>
+          </li>
+          <li class="last">
+            <h2 class="title"><img src="images/demo/64x64.gif" alt="" />Nullamlacus dui ipsum conseque</h2>
+            <p>Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat. Adipisciniapellentum leo ut consequam ris felit elit id nibh sociis malesuada.</p>
+            <p class="readmore"><a href="#">Read More &raquo;</a></p>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="column2">
+        <h2>Laoremhabitur et phasellent wisis</h2>
+        <p>Tincidunta sit eros dictum ac sollis ut convallis justo condiment justo. Phasellentumtellent ipsum congue sed et proin ut id lacus orci tor. Netuersemper velit platea diam tincidunt massa pede intesque nibh augue vel.</p>
+        <p>Sitet monterdum senean faucibulus temper diam in iacus commodo amet ut. Pretralor loborttis id ristie pellenterdum masse quis justo interdum mollis egest. Urnaid at a malestibulum metus ac nunc vel eget et sagittis.</p>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+
+<!-- ####################################################################################################### -->
+<div class="wrapper col7"  >
+  <div id="productSlider" >
+    <div class="prodbox box">
+
+        <!-- Slider -->
+        <div id="loopedSlider" class="box">
+            <div class="container">
+                <div class="slides">
+                
+                    <!-- first 5 items -->
+                    <div>
+                        <ul class="list box">
+                            <li><a href="#"><img src="images/slider-1.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-2.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-3.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-4.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-5.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-5.jpg" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- next 5 items -->
+                    <div>
+                        <ul class="list box">
+                            <li><a href="#"><img src="images/slider-6.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-7.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-8.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-9.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-10.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-5.jpg" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- and next 5 items -->
+                    <div>
+                        <ul class="list box">
+                            <li><a href="#"><img src="images/slider-11.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-12.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-13.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-14.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-15.jpg" alt="" /></a></li>
+                            <li><a href="#"><img src="images/slider-5.jpg" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    
+                </div> <!-- /slides -->
+            </div> <!-- /container -->
+
+            <!-- Arrows (left, right) -->
+            <a href="#" class="previous"><img src="images/arrow-left.gif" alt="&laquo;" /></a>
+            <a href="#" class="next"><img src="images/arrow-right.gif" alt="&laquo;" /></a>
+
+            <!-- Pagination -->
+            <ul class="pagination">
+                <li><a href="#"><span>1</span></a></li>
+                <li><a href="#"><span>2</span></a></li>
+                <li><a href="#"><span>3</span></a></li>
+            </ul>
+        </div> <!-- /looperslider -->
+        
+        <script type="text/javascript">
+            $(function () {
+                $('#loopedSlider').loopedSlider();
+            });
+        </script>
+
+    </div> <!-- /box-03 -->
+  </div>
+</div>
 </asp:Content>

@@ -8,27 +8,17 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <meta http-equiv="content-type" content="text/html; charset=uft-8" />
-    <link href="../Css/Master.css" rel="stylesheet" type="text/css" />
-    <link href="../Css/Web.css" rel="Stylesheet" type="text/css" />
+    <link href="../Css/Layout.css" rel="Stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="mypage">
-    <div class="webtop">  
-        <uc1:top ID="top1" runat="server" /> 
-    </div>
+    <uc1:top ID="top1" runat="server" /> 
 
-    <div class="webcontent">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
-
-    <div class="webfoot"> 
+     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+     </asp:ContentPlaceHolder>
+       
+    <uc2:foot ID="foot1" runat="server" />
      
-        <uc2:foot ID="foot1" runat="server" />
-     
-    </div>
-    </div>
     </form>
 </body>
 </html>

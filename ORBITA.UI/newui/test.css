@@ -1,0 +1,9 @@
+@charset "utf-8";
+#layout {
+	background-color: #0F3;
+	height: 300px;
+	margin: auto;
+}
+body {
+	margin: 0px;
+}
