@@ -1,8 +1,80 @@
-﻿/****************
-  Global Setting
-****************/
+﻿/* ---------------------------------------Contact---------------------------------*/
+.mycontact_right ul{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
 
-table{
+.mycontact_right ul li{
+	margin:10px 3px 20px 15px;
+}
+
+.mycontact_right ul li h1{
+	margin: 0;
+}
+
+.mycontact_right ul li ul li{
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+/* -------------------------------------Service-----------------------------------*/
+.myservice ul li img{
+	width: 650px;
+	height: 358px;
+}
+
+.myservice ul{
+	list-style: none;
+}
+
+.myservice ul li h1{
+	margin:0;
+}
+
+
+.myservice ul li ul{
+	margin-top:10px;
+	padding:0;
+}
+
+.myservice ul li ul li{
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+/*----------------------------------Download--------------------------------------*/
+.mydownload  .title{
+	margin:0px;
+}
+
+.mydownload ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+.mydownload ul li{
+	padding:10px 20px;
+	font-size: 14px;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.mydownload ul li a{
+	color: #000000;
+}
+
+.mydownload ul li a:hover {
+	color:#FF0000;
+	text-decoration:underline;
+}
+
+/*--------------------------------References----------------------------------------*/
+
+
+/*--------------------------------ProductList---------------------------------------*/
+
+/*table{
 	background:none;
 	margin: 5px;
 	border-collapse: collapse;
@@ -12,179 +84,153 @@ table{
 
 td,th{
 	padding: 5px;
+}*/
+#productList h1{
+  font-size: 14px;
+  padding: 10px 0 5px 0;
+  margin: 0 10px;
+  border-bottom: 1px solid #dbdbdb;
 }
 
-/****************
-	web content
-****************/
-.webcontent{
-
+#productList .list ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
-
-/*********************
-	content
-*********************/
-
-.titleContent{
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 4px;
-    padding-left: 16px;
-    color: #666;
-	margin-top:18px;
+#productList .list ul.container{
+	padding-left:38px;
 }
 
-.leftinfo
-{
-    height:500px;
-	width:250px;
-    float:left;
-	margin-top:10px;
+#productList .list ul li.paging{
+	margin: 20px 0px;
+	float: left;
 }
 
-.navtitle{
+#productList .list ul li.items{
 	float:left;
+	margin: 15px 20px 0 0;
 }
 
-.categoryTitle{
-	background-image:url("../images/fl.jpg");
-	color:#FDFAFB;
-
+#productList .list ul li ul li.model{
+	text-align: center;
+	margin: 8px 0 0 0;
 }
 
-.info{
+#productList .info{
 	float:left;
-    width: 717px;
-    padding: 5px 10px 20px 10px;
-	margin-left:5px;
+    width: 100%;
+    padding:0;
+	margin:0;
     background: #fbfbfb;
 	font-size:11px;
 }
-.info a{
+#productList .info a{
     text-decoration: underline;
 }
-.info a.boldLink{
+
+#productList .info a.boldLink{
     color: #000;
     font-weight: bold;
 }
-.info a.boldLink:hover{
+#productList .info a.boldLink:hover{
     color:#c00;
 }
-.NodeName{
+#productList .NodeName{
     line-height: 18px;
     font-size:12px;
     font-weight:bold;
 }
 
-.MiniImage{
-	border:0px;
-	width:50%;
-}
 
-.category{
-    padding:5px 0 2px 5px;
-	margin:0;
-	border-color:#EFEFEF;
-	border-width:0 0 1px 0;
-	background-color:#EFEFEF;
-}
-
-.spantitle{
-	float:left;
-}
-
-.mypadding{
-	padding-left:2px;
-}
-
-.noborder{
-    border:0px;
-} 
-.btmDashed{
-    border-bottom:1px dashed #ccc; 
-}
-tr.altrow{
-    background: #f8f8f8;
-}
-
-.txtblue{
-    color: #375b91;
-}
-.artContent{
-    color: #000;
-    line-height: 25px;
-}
-.imgProduct
+#productList .imgProduct
 {
     width: 200px;
     height: 200px;
 }
-.artTitle{
-    font-size: 18px;
-    font-weight:bold;
-    text-align: center;
-}
-.artTitle2{
-	font-size:13px;
-}
-.center{
-    text-align: center;
-}
 
-
-/*********************
-	Common Control
-*********************/
-.LabelStyle{
+#productList .LabelStyle{
     line-height: 20px;
 }
-.ButtonStyle{
-    padding:2px;
-	cursor:pointer;
-    color:#375b91; 
+
+/*----------------------------------------ProductInfo----------------------------------------*/
+#ProductInfo h1{
+  font-size: 14px;
+  padding: 10px 0 5px 0;
+  margin: 0 10px;
+  border-bottom: 1px solid #dbdbdb;
 }
-.TextBoxStyle{
-	padding:2px;
+
+#ProductInfo .title{
+	margin: 20px 0 20px 0;
+}
+
+#ProductInfo .title div{
+	float: left;
+}
+
+#ProductInfo .title .prod_image{
+	margin-left:30px;
+}
+
+#ProductInfo .title .prod_image .p_image{
 	width: 200px;
+	height: 200px;
 }
-.AlternatingRowStyle{
-    background: #f6f6f6; 
+
+#ProductInfo .title .prod_info{
+    margin-left: 30px;
+	width: 300px;
+	height: 200px;
 }
-.RowStyle{
+
+#ProductInfo .title .prod_info ul{
+	list-style: none;
 }
-.DataWebControlStyle{
-    border:0px solid #d9e6f0;
+
+#ProductInfo .title .prod_info ul li{
+	margin-bottom: 10px;
 }
-.HeaderStyle{
-	background:#e0e0e0;
-	color:#000;
-	padding: 5px;
-	height: 20px;
+
+#ProductInfo .title .prod_info ul li.tl{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#ProductInfo .content{
+	padding: 10px 10px 20px 10px;
+	line-height: 20px;
 }
 
 
-/**************************
-	AspNetPager Control
-************************/
-.anpager { 
-	margin: 0 0 0 5px;
-}
-.anpager .cpb {font-weight:bold; margin:5px 5px 0 0; padding:2px 5px;}
-.anpager a{padding:2px;}
-
-/**************************
-   Product Show 
-**************************/
-.ProductInnerContent{
-	width:980px;
+/*---------------------------------------MyCompany-----------------------------------------*/
+#mycompany{
 	padding:10px;
 }
-
-.ProductInfo{
-
+#mycompany h1{
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #dbdbdb;
 }
 
+#mycompany .introduce .content{
+	padding: 10px 10px 10px 10px;
+	line-height: 20px;
+}
+#mycompany ul{
+	list-style:none;
+	height:100%;
+}
 
+#mycompany .cer .cerlist{
+	padding:10px 10px;
+}
+#mycompany .cer .cerlist > li{
+	float: left;
+	margin:0 5px 20px 0;
+}
+
+#mycompany .cer. ul li ul li{
+	margin-top: 30px;
+}
 

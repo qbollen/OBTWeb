@@ -13,6 +13,33 @@ namespace ORBITA.UI {
     public partial class ProductShow {
         
         /// <summary>
+        /// ObjectDataSourceProductClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductClass;
+        
+        /// <summary>
+        /// ListViewProductClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewProductClass;
+        
+        /// <summary>
+        /// imgProd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgProd;
+        
+        /// <summary>
         /// lblTitle control.
         /// </summary>
         /// <remarks>
@@ -20,6 +47,15 @@ namespace ORBITA.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitle;
+        
+        /// <summary>
+        /// lblNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumber;
         
         /// <summary>
         /// lblDate control.
@@ -38,24 +74,6 @@ namespace ORBITA.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblClick;
-        
-        /// <summary>
-        /// lblNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumber;
-        
-        /// <summary>
-        /// lblPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
         
         /// <summary>
         /// lblContent control.

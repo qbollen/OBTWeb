@@ -39,8 +39,6 @@ namespace ORBITA.BLL
             return ArticleService.GetList(ac_id, startRowIndex, maximumRows, orderBy);
         }
 
-
-
         /// <summary>查询分类文章 无分页 所有数据.</summary>
         /// <param name="ac_id">文章分类ID</param>
         /// <returns>文章 list</returns>

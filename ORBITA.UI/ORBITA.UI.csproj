@@ -68,7 +68,12 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="about.aspx" />
+    <Content Include="About.aspx" />
+    <Content Include="Admin\ArticleAdd.aspx" />
+    <Content Include="Admin\ArticleClassAdd.aspx" />
+    <Content Include="Admin\ArticleClassMgmt.aspx" />
+    <Content Include="Admin\ArticleEdit.aspx" />
+    <Content Include="Admin\ArticleMgmt.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\ProductAdd.aspx" />
@@ -81,6 +86,8 @@
     <Content Include="Admin\UserMgmt.aspx" />
     <Content Include="Admin\ValidateCode.aspx" />
     <Content Include="App_Data\OrbitaDB.mdb" />
+    <Content Include="ArticleList.aspx" />
+    <Content Include="ArticleShow.aspx" />
     <Content Include="case.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\CHANGES.html" />
@@ -890,22 +897,39 @@
     <Content Include="ckfinder\skins\v1\uipanel.css" />
     <Content Include="ckfinder\translations.txt" />
     <Content Include="contact.aspx" />
+    <Content Include="Controls\ArticleClassDDL.ascx" />
     <Content Include="Controls\foot.ascx" />
     <Content Include="Controls\top.ascx" />
+    <Content Include="Css\nav.css" />
+    <Content Include="Css\web.css" />
     <Content Include="Css\forms.css" />
     <Content Include="Css\layout.css" />
     <Content Include="Css\Main.css" />
     <Content Include="Css\Master.css" />
     <Content Include="Css\tables.css" />
-    <Content Include="Css\Web.css" />
+    <Content Include="download.aspx" />
+    <Content Include="Images\aliwangwang.gif" />
     <Content Include="Images\arrow-left.gif" />
     <Content Include="Images\arrow-right.gif" />
+    <Content Include="Images\bb.gif" />
+    <Content Include="Images\bg_line.gif" />
     <Content Include="Images\black_file.gif" />
     <Content Include="Images\blue_file.gif" />
+    <Content Include="Images\borrow.jpg" />
+    <Content Include="Images\borrow01.jpg" />
+    <Content Include="Images\bot1.gif" />
+    <Content Include="Images\bot2.gif" />
     <Content Include="Images\box-03-bottom.gif" />
     <Content Include="Images\box-03-top.gif" />
     <Content Include="Images\box-03.gif" />
+    <Content Include="Images\CE-OF-MA-MB-OBT1.gif" />
+    <Content Include="Images\CE-OF-MA-MB-OBT2.gif" />
+    <Content Include="Images\CE.gif" />
     <Content Include="Images\company.jpg" />
+    <Content Include="Images\contactus.gif" />
+    <Content Include="Images\css.css" />
+    <Content Include="Images\D3020-1.gif" />
+    <Content Include="Images\D3020.gif" />
     <Content Include="Images\demo\240x90.gif" />
     <Content Include="Images\demo\290x100.gif" />
     <Content Include="Images\demo\400x230.gif" />
@@ -915,9 +939,80 @@
     <Content Include="Images\demo\avatar.gif" />
     <Content Include="Images\demo\imgl.gif" />
     <Content Include="Images\demo\imgr.gif" />
+    <Content Include="Images\download.gif" />
+    <Content Include="Images\download_0.gif" />
+    <Content Include="Images\E3031-3061.gif" />
+    <Content Include="Images\E3330.gif" />
+    <Content Include="Images\E3360.gif" />
+    <Content Include="Images\email.gif" />
+    <Content Include="Images\Enableweb.gif" />
+    <Content Include="Images\fl.jpg" />
+    <Content Include="Images\fl2.jpg" />
+    <Content Include="Images\footer_bj.jpg" />
+    <Content Include="Images\guest1.gif" />
+    <Content Include="Images\ico2.jpg" />
+    <Content Include="Images\ico3.jpg" />
     <Content Include="Images\index_1.gif" />
+    <Content Include="Images\index_11.jpg" />
+    <Content Include="Images\index_13.jpg" />
+    <Content Include="Images\index_14.jpg" />
+    <Content Include="Images\index_15.jpg" />
+    <Content Include="Images\index_16.jpg" />
+    <Content Include="Images\index_17.jpg" />
+    <Content Include="Images\index_18.jpg" />
+    <Content Include="Images\index_19.jpg" />
+    <Content Include="Images\index_21.gif" />
+    <Content Include="Images\index_22.gif" />
+    <Content Include="Images\index_23.gif" />
+    <Content Include="Images\index_24.gif" />
+    <Content Include="Images\index_25.gif" />
+    <Content Include="Images\index_26.gif" />
+    <Content Include="Images\index_27.gif" />
+    <Content Include="Images\index_28.gif" />
+    <Content Include="Images\index_29.gif" />
+    <Content Include="Images\index_4.jpg" />
     <Content Include="Images\index_7.jpg" />
+    <Content Include="Images\index_7_0.jpg" />
+    <Content Include="Images\index_8.jpg" />
+    <Content Include="Images\line2.jpg" />
+    <Content Include="Images\line3.jpg" />
+    <Content Include="Images\log.jpg" />
+    <Content Include="Images\log.png" />
+    <Content Include="Images\logo.gif" />
+    <Content Include="Images\Logo.jpg" />
+    <Content Include="Images\msn.gif" />
+    <Content Include="Images\nav.gif" />
+    <Content Include="Images\nav.jpg" />
+    <Content Include="Images\nav_bj.jpg" />
+    <Content Include="Images\obtstaff.gif" />
+    <Content Include="Images\online-msn1.gif" />
+    <Content Include="Images\online-skype1.gif" />
+    <Content Include="Images\Orbita_CE.gif" />
+    <Content Include="Images\Orbita_CE_1.gif" />
+    <Content Include="Images\Orbita_FC.gif" />
+    <Content Include="Images\Orbita_FC_1.gif" />
+    <Content Include="Images\Orbita_Fidelio.gif" />
+    <Content Include="Images\Orbita_Fidelio_0.gif" />
+    <Content Include="Images\Orbita_IAF.gif" />
+    <Content Include="Images\Orbita_ISO.gif" />
+    <Content Include="Images\Orbita_ISO_1.gif" />
+    <Content Include="Images\Orbita_logo.gif" />
+    <Content Include="Images\Orbita_logo_1.gif" />
+    <Content Include="Images\Orbita_product_patent.gif" />
+    <Content Include="Images\Orbita_product_patent_1.gif" />
+    <Content Include="Images\Orbita_soft_certificate.gif" />
+    <Content Include="Images\Orbita_soft_certificate_1.gif" />
     <Content Include="Images\pagination.gif" />
+    <Content Include="Images\QQ_img1.gif" />
+    <Content Include="Images\QQ_img2.gif" />
+    <Content Include="Images\ref1.gif" />
+    <Content Include="Images\ref2.gif" />
+    <Content Include="Images\ref3.gif" />
+    <Content Include="Images\ref4.gif" />
+    <Content Include="Images\service.gif" />
+    <Content Include="Images\shengdan.jpg" />
+    <Content Include="Images\side_bg.jpg" />
+    <Content Include="Images\skype.gif" />
     <Content Include="Images\slider-1.jpg" />
     <Content Include="Images\slider-10.jpg" />
     <Content Include="Images\slider-11.jpg" />
@@ -933,7 +1028,17 @@
     <Content Include="Images\slider-7.jpg" />
     <Content Include="Images\slider-8.jpg" />
     <Content Include="Images\slider-9.jpg" />
-    <Content Include="index - Copy.aspx" />
+    <Content Include="Images\srh_bg.gif" />
+    <Content Include="Images\staff1.gif" />
+    <Content Include="Images\success.gif" />
+    <Content Include="Images\title1_01.gif" />
+    <Content Include="Images\title1_02.gif" />
+    <Content Include="Images\title1_03.gif" />
+    <Content Include="Images\title1_05.gif" />
+    <Content Include="Images\title1_06.gif" />
+    <Content Include="Images\topbg.gif" />
+    <Content Include="Images\top_03.gif" />
+    <Content Include="Images\yahoo.gif" />
     <Content Include="index.aspx" />
     <Content Include="Lib\AspNetPager.dll" />
     <Content Include="bin\ORBITA.BLL.dll" />
@@ -992,13 +1097,62 @@
     <Content Include="newui\test.css" />
     <Content Include="ProductList.aspx" />
     <Content Include="ProductShow.aspx" />
+    <Content Include="References\01.jpg" />
+    <Content Include="References\02.jpg" />
+    <Content Include="References\03.jpg" />
+    <Content Include="References\04.jpg" />
+    <Content Include="References\05.jpg" />
+    <Content Include="References\06.jpg" />
+    <Content Include="References\07.jpg" />
+    <Content Include="References\08.jpg" />
+    <Content Include="References\09.jpg" />
+    <Content Include="References\10.jpg" />
+    <Content Include="References\11.jpg" />
+    <Content Include="References\12.jpg" />
+    <Content Include="References\13.jpg" />
+    <Content Include="References\14.jpg" />
+    <Content Include="References\15.jpg" />
+    <Content Include="References\16.jpg" />
+    <Content Include="References\17.jpg" />
+    <Content Include="References\18.jpg" />
+    <Content Include="References\19.jpg" />
+    <Content Include="References\20.jpg" />
+    <Content Include="References\21.jpg" />
+    <Content Include="References\22.jpg" />
+    <Content Include="References\23.jpg" />
+    <Content Include="References\24.jpg" />
+    <Content Include="References\25.jpg" />
+    <Content Include="References\26.jpg" />
+    <Content Include="References\27.jpg" />
+    <Content Include="References\28.jpg" />
+    <Content Include="References\29.jpg" />
+    <Content Include="References\30.jpg" />
+    <Content Include="References\31.jpg" />
+    <Content Include="References\32.jpg" />
+    <Content Include="References\33.jpg" />
+    <Content Include="References\34.jpg" />
+    <Content Include="References\35.jpg" />
+    <Content Include="References\36.jpg" />
+    <Content Include="References\37.jpg" />
+    <Content Include="References\38.jpg" />
+    <Content Include="References\39.jpg" />
+    <Content Include="References\40.jpg" />
+    <Content Include="References\41.jpg" />
+    <Content Include="References\42.jpg" />
+    <Content Include="References\43.jpg" />
+    <Content Include="References\44.jpg" />
+    <Content Include="References\45.jpg" />
     <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.montage.min.js" />
+    <Content Include="Scripts\jquery.VMiddleImg.js" />
     <Content Include="Scripts\loopedslider.js" />
     <Content Include="Scripts\sdmenu.js" />
     <Content Include="service.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1010,12 +1164,47 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="about.aspx.cs">
-      <DependentUpon>about.aspx</DependentUpon>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="about.aspx.designer.cs">
-      <DependentUpon>about.aspx</DependentUpon>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArticleAdd.aspx.cs">
+      <DependentUpon>ArticleAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArticleAdd.aspx.designer.cs">
+      <DependentUpon>ArticleAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArticleClassAdd.aspx.cs">
+      <DependentUpon>ArticleClassAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArticleClassAdd.aspx.designer.cs">
+      <DependentUpon>ArticleClassAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArticleClassMgmt.aspx.cs">
+      <DependentUpon>ArticleClassMgmt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArticleClassMgmt.aspx.designer.cs">
+      <DependentUpon>ArticleClassMgmt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArticleEdit.aspx.cs">
+      <DependentUpon>ArticleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArticleEdit.aspx.designer.cs">
+      <DependentUpon>ArticleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArticleMgmt.aspx.cs">
+      <DependentUpon>ArticleMgmt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArticleMgmt.aspx.designer.cs">
+      <DependentUpon>ArticleMgmt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1091,6 +1280,20 @@
       <DependentUpon>ValidateCode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ArticleList.aspx.cs">
+      <DependentUpon>ArticleList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleList.aspx.designer.cs">
+      <DependentUpon>ArticleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArticleShow.aspx.cs">
+      <DependentUpon>ArticleShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleShow.aspx.designer.cs">
+      <DependentUpon>ArticleShow.aspx</DependentUpon>
+    </Compile>
     <Compile Include="case.aspx.cs">
       <DependentUpon>case.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1104,6 +1307,13 @@
     </Compile>
     <Compile Include="contact.aspx.designer.cs">
       <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ArticleClassDDL.ascx.cs">
+      <DependentUpon>ArticleClassDDL.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ArticleClassDDL.ascx.designer.cs">
+      <DependentUpon>ArticleClassDDL.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\foot.ascx.cs">
       <DependentUpon>foot.ascx</DependentUpon>
@@ -1133,12 +1343,12 @@
     <Compile Include="Controls\top.ascx.designer.cs">
       <DependentUpon>top.ascx</DependentUpon>
     </Compile>
-    <Compile Include="index - Copy.aspx.cs">
-      <DependentUpon>index - Copy.aspx</DependentUpon>
+    <Compile Include="download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index - Copy.aspx.designer.cs">
-      <DependentUpon>index - Copy.aspx</DependentUpon>
+    <Compile Include="download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -1154,12 +1364,12 @@
     <Compile Include="MasterPage\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
-    <Compile Include="MasterPage\Main-copy.Master.cs">
-      <DependentUpon>Main-copy.Master</DependentUpon>
+    <Compile Include="MasterPage\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterPage\Main-copy.Master.designer.cs">
-      <DependentUpon>Main-copy.Master</DependentUpon>
+    <Compile Include="MasterPage\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="MasterPage\Web.Master.cs">
       <DependentUpon>Web.Master</DependentUpon>
@@ -1190,6 +1400,13 @@
     <Compile Include="service.aspx.designer.cs">
       <DependentUpon>service.aspx</DependentUpon>
     </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Admin\ValidateCode.aspx.resx">
@@ -1218,7 +1435,10 @@
     <None Include="ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <None Include="ckfinder\userfiles\.htaccess" />
     <Content Include="MasterPage\Web.Master" />
-    <Content Include="MasterPage\Main-copy.Master" />
+    <Content Include="MasterPage\Main.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Download\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

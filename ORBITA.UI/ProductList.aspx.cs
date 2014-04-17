@@ -29,7 +29,7 @@ namespace ORBITA.UI
                 pcnav = ProductClassManage.ProductClassNav(Convert.ToInt32(parentID), pcnav);
                 if (!IsPostBack)
                 {
-                   // this.ObjectDataSourceProductClass.SelectParameters["parent_id"].DefaultValue = parentID;
+                   this.ObjectDataSourceProductClass.SelectParameters["parent_id"].DefaultValue = parentID;
                    // this.RepeaterProductClass.DataBind();
 
                     this.ObjectDataSourceProduct.SelectParameters["pc_id"].DefaultValue = parentID;
@@ -44,19 +44,19 @@ namespace ORBITA.UI
 
         protected void RepeaterProductClass_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (RepeaterProductClass.Items.Count == 0)
+            if (ListViewProductClass.Items.Count == 0)
             {
-                this.RepeaterProductClass.Visible = false;
+                this.ListViewProductClass.Visible = false;
             }
             else
             {
-                this.RepeaterProductClass.Visible = true;
+                this.ListViewProductClass.Visible = true;
             }
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                Label lbl = (Label)e.Item.FindControl("lblBlank");
-                Image img = (Image)e.Item.FindControl("imgBar");
+                //Label lbl = (Label)e.Item.FindControl("lblBlank");
+                //Image img = (Image)e.Item.FindControl("imgBar");
 
                 DataRow row = (DataRow)((DataRowView)e.Item.DataItem).Row;
 
@@ -64,8 +64,8 @@ namespace ORBITA.UI
                 {
                     for (int i = 0; i < Convert.ToInt32(row["depth"]); i++)
                     {
-                        lbl.Text = lbl.Text + "&nbsp;";
-                        img.ImageUrl = "~/Images/bot2.gif";
+                        //lbl.Text = lbl.Text + "&nbsp;";
+                        //img.ImageUrl = "~/Images/bot2.gif";
                     }
                 }
 
@@ -80,6 +80,5 @@ namespace ORBITA.UI
                 e.Arguments.MaximumRows = this.AspNetPager1.PageSize;
             }
         }
-
     }
 }

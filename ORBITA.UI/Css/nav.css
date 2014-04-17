@@ -43,6 +43,11 @@
 	/*border-right:1px solid #DF7B61;
 	border-left:1px solid #C44D37;*/
 }
+
+#topnav ul.ldd_menu > li > span.nosubmenu a{
+	color:#fff;
+}
+
 #topnav ul.ldd_menu .ldd_submenu{
 	position:absolute;
 	top:40px;

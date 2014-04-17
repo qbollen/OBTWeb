@@ -10,10 +10,10 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 @import url(forms.css);
 @import url(tables.css);
 
-/**{
+ul,dl,dd,h1,h2,h3,h4,h5,h6,form,p { 
+	padding:0; 
 	margin:0;
-	padding:0;
-	}*/
+}
 
 body{
 	margin:0;
@@ -40,6 +40,58 @@ a{outline:none; text-decoration:none;}
 .imgl, .imgr{border:1px solid #CCCCCC; padding:5px;}
 .imgl{float:left; margin:0 8px 8px 0; clear:left;}
 .imgr{float:right; margin:0 0 8px 8px; clear:right;}
+
+/* ---------------------------------------------Page-----------------------------------------*/
+
+#web .w_left{
+	margin: 10px 0 20px 0;
+	float: left;
+	width: 228px;
+	/*padding:0 10px;*/
+}
+
+#web .w_left ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#web .w_left li{
+	padding:10px 0 5px 5px;
+	border-bottom: 1px dashed #dbdbdb;
+}
+
+#web .w_left li a:hover{
+	color: #FF0000;
+} 
+
+
+
+#web .w_left .side_box h2{
+    margin:0;
+	height:25px; 
+	padding:6px 10px 0 10px; 
+	background:url(../images/side_bg.jpg) 0 0 no-repeat; 
+	font-size:14px; 
+	color:#FFFFFF;
+	overflow:hidden;
+	border-bottom: 0px;
+	text-align: center;
+}
+
+#web .w_left .side_box .side_con{
+	padding:0 10px; 
+	background: url(../images/side_bg.jpg) 0 bottom no-repeat;
+}
+
+
+#web .w_right{
+	margin: 10px 0 20px 0;
+	float: right;
+	width: 715px;
+	text-align:left;
+	border: 1px solid #dbdbdb;
+}
 
 /* ----------------------------------------------Wrapper-------------------------------------*/
 
@@ -84,9 +136,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .col6{color:#CCCCCC; background-color:#555555;}
 /*.col6 a{color:#FFFFFF; background-color:#1A3151;}*/
 .col7{padding:0;}
+.col8{color:#000000; }
 /* ----------------------------------------------Generalise-------------------------------------*/
 
-#header, #topbar, #intro, #breadcrumb, #container, #homecontent, #productSlider, #footer, #copyright{
+#header, #topbar, #intro, #breadcrumb, #container, #homecontent, #productSlider, #footer, #copyright, #web{
 	position:relative;
 	margin:0 auto 0;
 	display:block;

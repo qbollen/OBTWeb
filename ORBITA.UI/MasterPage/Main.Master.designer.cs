@@ -31,31 +31,13 @@ namespace ORBITA.UI.MasterPage {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// top1 control.
+        /// top control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ORBITA.UI.Controls.top top1;
-        
-        /// <summary>
-        /// ObjectDataSourceProductClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductClass;
-        
-        /// <summary>
-        /// RepeaterProductClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterProductClass;
+        protected global::ORBITA.UI.Controls.top top;
         
         /// <summary>
         /// ContentPlaceHolder1 control.
@@ -67,12 +49,12 @@ namespace ORBITA.UI.MasterPage {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
         
         /// <summary>
-        /// foot1 control.
+        /// foot control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ORBITA.UI.Controls.foot foot1;
+        protected global::ORBITA.UI.Controls.foot foot;
     }
 }

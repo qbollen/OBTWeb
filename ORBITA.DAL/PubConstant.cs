@@ -11,7 +11,8 @@ namespace ORBITA.DAL
     {
         public static string GetConnection()
         {
-            return ConfigurationManager.ConnectionStrings["mysqlconn"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["mysqlconn"].ConnectionString;
+            return "server=127.0.0.1;uid=root;pwd=123456;database=obtdb;";
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Web.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ORBITA.UI.index" %>
+﻿<%@ Page Title="" Language="C#" Debug="true" Trace="true" MasterPageFile="~/MasterPage/Main.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ORBITA.UI.index" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -12,7 +12,7 @@
       <h2>About ORBITA</h2>
 	  <p>orbita is one of the reputable card operated lock and hotel locking systems manufactuers for the hospitality industry in china,established to offer the best quality products with professional and effective service to our customers.</p>
       <p>orbita series of product is a product of years of experience integrated with the advanced technology from siemens, dallas, atmel, philip etc. the cooperation with fidelio and other popular pms system has just enabled our locking system to a wide range of compatibility...</p>
-      <p class="more"><a href="#">Read More &raquo;</a></p>
+      <p class="more"><a href="About.aspx">Read More &raquo;</a></p>
 	  <!--<ul>
         <li><a href="#">Link Text</a></li>
         <li><a href="#">Link Text</a></li>

@@ -45,10 +45,10 @@ namespace ORBITA.UI
 
                     this.lblTitle.Text = myProduct.Prod_Name;
                     this.lblDate.Text = myProduct.Prod_Date.ToString();
-                    this.lblPrice.Text = myProduct.Prod_Price.ToString("C");
                     this.lblNumber.Text = myProduct.Prod_Number;
                     this.lblClick.Text = myProduct.Prod_Click.ToString();
                     this.lblContent.Text = myProduct.Prod_Content;
+                    this.imgProd.ImageUrl = myProduct.Prod_Image;
                 }
                 else
                 {

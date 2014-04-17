@@ -22,31 +22,22 @@ namespace ORBITA.UI {
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductClass;
         
         /// <summary>
-        /// RepeaterProductClass control.
+        /// ListViewProductClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterProductClass;
+        protected global::System.Web.UI.WebControls.ListView ListViewProductClass;
         
         /// <summary>
-        /// imgnav control.
+        /// ListViewProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgnav;
-        
-        /// <summary>
-        /// DataList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.ListView ListViewProduct;
         
         /// <summary>
         /// ObjectDataSourceProduct control.

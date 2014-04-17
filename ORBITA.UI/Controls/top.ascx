@@ -3,7 +3,7 @@
   <div id="header">
     <div id="logo">
       <!--<h1><a href="#">ORBITA</a></h1>-->
-	  <img src="images/log.png" alt="ORBITA" />
+	  <img src="../images/log.png" alt="ORBITA" />
       <!--<p></p>-->
     </div>
 	
@@ -59,36 +59,7 @@
     <div id="topnav">
 			<ul id="ldd_menu" class="ldd_menu">
 				<li>
-					<span>HOME</span><!-- Increases to 510px in width-->
-					<div class="ldd_submenu">
-						<ul>
-							<li class="ldd_heading">subject 1</li>
-							<li><a href="#">test1</a></li>
-							<li><a href="#">test2</a></li>
-							<li><a href="#">test3</a></li>
-							<li><a href="#">test4</a></li>
-							<li><a href="#">test5</a></li>
-						</ul>
-						<ul>
-							<li class="ldd_heading">By Category</li>
-							<li><a href="#">Sun &amp; Beach</a></li>
-							<li><a href="#">Adventure</a></li>
-							<li><a href="#">Science &amp; Education</a></li>
-							<li><a href="#">Extreme Sports</a></li>
-							<li><a href="#">Relaxing</a></li>
-							<li><a href="#">Spa and Wellness</a></li>
-						</ul>
-						<ul>
-							<li class="ldd_heading">By Theme</li>
-							<li><a href="#">Paradise Islands</a></li>
-							<li><a href="#">Cruises &amp; Boat Trips</a></li>
-							<li><a href="#">Wild Animals &amp; Safaris</a></li>
-							<li><a href="#">Nature Pure</a></li>
-							<li><a href="#">Helping others &amp; For Hope</a></li>
-							<li><a href="#">Diving</a></li>
-						</ul>
-						<a class="ldd_subfoot" href="#"> + New Deals</a>
-					</div>
+					<span class="nosubmenu"><a href="index.aspx">HOME</a></span><!-- Increases to 510px in width-->
 				</li>
 				<li>
 					<span>NEWS</span>
@@ -125,42 +96,38 @@
 				<li>
 					<span>PRODUCTS</span>
 					<div class="ldd_submenu">
-						<ul>
-							<li class="ldd_heading">By Location</li>
-							<li><a href="#">South America</a></li>
-							<li><a href="#">Antartica</a></li>
-							<li><a href="#">Africa</a></li>
-							<li><a href="#">Asia and Australia</a></li>
-							<li><a href="#">Europe</a></li>
-						</ul>
-						<ul>
-							<li class="ldd_heading">By Category</li>
-							<li><a href="#">Sun &amp; Beach</a></li>
-							<li><a href="#">Adventure</a></li>
-							<li><a href="#">Science &amp; Education</a></li>
-							<li><a href="#">Extreme Sports</a></li>
-							<li><a href="#">Relaxing</a></li>
-							<li><a href="#">Spa and Wellness</a></li>
-						</ul>
-						<ul>
-							<li class="ldd_heading">By Theme</li>
-							<li><a href="#">Paradise Islands</a></li>
-							<li><a href="#">Cruises &amp; Boat Trips</a></li>
-							<li><a href="#">Wild Animals &amp; Safaris</a></li>
-							<li><a href="#">Nature Pure</a></li>
-							<li><a href="#">Helping others &amp; For Hope</a></li>
-							<li><a href="#">Diving</a></li>
-						</ul>
-						<a class="ldd_subfoot" href="#"> + New Deals</a>
+                        <asp:ListView ID="ListViewProductClass" runat="server"
+                             DataSourceID="ObjectDataSourceProductClass"
+                              OnItemDataBound="ListViewProductClass_ItemDataBound">
+                        <LayoutTemplate>
+                            <ul runat="server">
+                                <li class="ldd_heading" runat="server">By Product</li>
+                                <li id="itemPlaceHolder" runat="server"></li>
+                            </ul>
+                        </LayoutTemplate>
+                             
+                        <ItemTemplate>
+                            <li runat="server">
+                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "~/ProductList.aspx?id="  + Eval("pc_id")%>' 
+                                     Text='<%#Eval("pc_name") %>' CssClass="NodeName"></asp:HyperLink>
+                            </li>
+                        </ItemTemplate>
+                        </asp:ListView>
+                              
+           <asp:ObjectDataSource ID="ObjectDataSourceProductClass" runat="server" 
+               OldValuesParameterFormatString="original_{0}" SelectMethod="GetListByParentID" 
+               TypeName="ORBITA.Bll.ProductClassManage">
+               <SelectParameters>
+                   <asp:Parameter DefaultValue="0" Name="parent_id" Type="Int32" />
+               </SelectParameters>
+           </asp:ObjectDataSource>
+
+
+						<a class="ldd_subfoot" href="#"> + Product Categories</a>
 					</div>
 				</li>
 				<li>
-					<span>REFERENCE</span>
-					<div class="ldd_submenu">
-					<ul>
-						<li class="ldd_heading">555</li>
-					</ul>
-					</div>
+					<span class="nosubmenu"><a href="case.aspx">REFERENCE</a></span>
 				</li>
 				<li>
 					<span>SERVICE</span>
@@ -171,12 +138,7 @@
 					</div>
 				</li>
 				<li>
-					<span>ABOUT US</span>
-					<div class="ldd_submenu">
-					<ul>
-						<li class="ldd_heading">555</li>
-					</ul>
-					</div>
+					<span class="nosubmenu"><a href="contact.aspx">CONTACT US</a></span>
 				</li>
 			</ul>
     </div>
@@ -184,4 +146,4 @@
     <br class="clear" />
   </div>
 </div>
-<div style="clear:both;"></div>
+<div class="clear"></div>

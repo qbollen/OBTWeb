@@ -32,7 +32,7 @@ namespace ORBITA.BLL
         /// <param name="parent_id">父亲id</param>
         /// <returns>ProductClassCollection 包含条件查询的记录</returns>
         [DataObjectMethod(DataObjectMethodType.Select,false)]
-        public static ProductClassCollection GetListbyParentID(int parent_id)
+        public static ProductClassCollection GetListByParentID(int parent_id)
         {
             return ProductClassService.GetListByParentId(parent_id);
         }
@@ -124,7 +124,7 @@ namespace ORBITA.BLL
         /// <returns>返回<c>true</c>叶子节点,或<c>false</c>非叶子节点.</returns>
         public static bool IsLeafNode(int pc_id)
         {
-            if (GetListbyParentID(pc_id).Count == 0)
+            if (GetListByParentID(pc_id).Count == 0)
             {
                 return true;
             }

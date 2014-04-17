@@ -1,0 +1,234 @@
+﻿/* ---------------------------------------Contact---------------------------------*/
+.mycontact_right ul{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+
+.mycontact_right ul li{
+	margin:10px 3px 20px 15px;
+}
+
+.mycontact_right ul li h1{
+	margin: 0;
+}
+
+.mycontact_right ul li ul li{
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+/* -------------------------------------Service-----------------------------------*/
+.myservice ul li img{
+	width: 650px;
+	height: 358px;
+}
+
+.myservice ul{
+	list-style: none;
+}
+
+.myservice ul li h1{
+	margin:0;
+}
+
+
+.myservice ul li ul{
+	margin-top:10px;
+	padding:0;
+}
+
+.myservice ul li ul li{
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+/*----------------------------------Download--------------------------------------*/
+.mydownload  .title{
+	margin:0px;
+}
+
+.mydownload ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+.mydownload ul li{
+	padding:10px 20px;
+	font-size: 14px;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.mydownload ul li a{
+	color: #000000;
+}
+
+.mydownload ul li a:hover {
+	color:#FF0000;
+	text-decoration:underline;
+}
+
+/*--------------------------------References----------------------------------------*/
+
+
+/*--------------------------------ProductList---------------------------------------*/
+
+/*table{
+	background:none;
+	margin: 5px;
+	border-collapse: collapse;
+	table-layout: auto;
+	width:98%;
+}
+
+td,th{
+	padding: 5px;
+}*/
+#productList h1{
+  font-size: 14px;
+  padding: 10px 0 5px 0;
+  margin: 0 10px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#productList .list ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#productList .list ul.container{
+	padding-left:38px;
+}
+
+#productList .list ul li.paging{
+	margin: 20px 0px;
+	float: left;
+}
+
+#productList .list ul li.items{
+	float:left;
+	margin: 15px 20px 0 0;
+}
+
+#productList .list ul li ul li.model{
+	text-align: center;
+	margin: 8px 0 0 0;
+}
+
+#productList .info{
+	float:left;
+    width: 100%;
+    padding:0;
+	margin:0;
+    background: #fbfbfb;
+	font-size:11px;
+}
+#productList .info a{
+    text-decoration: underline;
+}
+
+#productList .info a.boldLink{
+    color: #000;
+    font-weight: bold;
+}
+#productList .info a.boldLink:hover{
+    color:#c00;
+}
+#productList .NodeName{
+    line-height: 18px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+
+#productList .imgProduct
+{
+    width: 200px;
+    height: 200px;
+}
+
+#productList .LabelStyle{
+    line-height: 20px;
+}
+
+/*----------------------------------------ProductInfo----------------------------------------*/
+#ProductInfo h1{
+  font-size: 14px;
+  padding: 10px 0 5px 0;
+  margin: 0 10px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#ProductInfo .title{
+	margin: 20px 0 20px 0;
+}
+
+#ProductInfo .title div{
+	float: left;
+}
+
+#ProductInfo .title .prod_image{
+	margin-left:30px;
+}
+
+#ProductInfo .title .prod_image .p_image{
+	width: 200px;
+	height: 200px;
+}
+
+#ProductInfo .title .prod_info{
+    margin-left: 30px;
+	width: 300px;
+	height: 200px;
+}
+
+#ProductInfo .title .prod_info ul{
+	list-style: none;
+}
+
+#ProductInfo .title .prod_info ul li{
+	margin-bottom: 10px;
+}
+
+#ProductInfo .title .prod_info ul li.tl{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#ProductInfo .content{
+	padding: 10px 10px 20px 10px;
+	line-height: 20px;
+}
+
+
+/*---------------------------------------MyCompany-----------------------------------------*/
+#mycompany{
+	padding:10px;
+}
+#mycompany h1{
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #dbdbdb;
+}
+
+#mycompany .introduce .content{
+	padding: 10px 10px 10px 10px;
+	line-height: 20px;
+	margin-bottom: 20px;
+}
+#mycompany ul{
+	list-style:none;
+	height:100%;
+}
+
+#mycompany .cer .cerlist{
+	padding:10px 23px;
+}
+#mycompany .cer .cerlist > li{
+	float: left;
+	margin-right: 5px;
+}
+
+
