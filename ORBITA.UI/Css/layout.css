@@ -10,10 +10,10 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 @import url(forms.css);
 @import url(tables.css);
 
-ul,dl,dd,h1,h2,h3,h4,h5,h6,form,p { 
+/*ul,dl,dd,h1,h2,h3,h4,h5,h6,form,p { 
 	padding:0; 
 	margin:0;
-}
+}*/
 
 body{
 	margin:0;
@@ -682,26 +682,55 @@ border:1px solid #cbcbcb;
 	width:280px;
 	margin:0 0 0 17px;
 	padding:0;
+	line-height:15px;	
 	}
+
+#footer .box2{
+	display:block;
+	float:right;
+	width:200px;
+	margin: 0 0 0 17px;
+	padding:0;
+	line-height:15px;
+}
+
+#footer .box2 .wrap img{
+	width:150px;
+	height:150px;
+	margin:0 0 0 17px;
+}
 
 #footer .box1{
 	display:block;
 	float:left;
-	width:380px;
-	line-height:1.6em;
+	width:250px;
+	line-height:15px;
 	}
 
-#footer .box1 .imgl{border:1px solid #CCCCCC; padding:5px; color:#FFFFFF; background-color:#000000;}
+#footer .box1 ul{
+	list-style:square;
+	margin:0 0 0 17px;
+}
+#footer .box1 ul li a{
+	color: #ffffff;
+}
+
+#footer .box1 ul li a:hover{
+	text-decoration:underline;
+}
+
 
 #footer .contactdetails li{
 	margin:0 0 8px 0;
+}
+
+#footer .box4{
+	display:block;
+	float:left;
+	width:100px;
+	line-height:15px;
+	margin:0 0 0 17px;
 	}
-
-#footer .flickrbox, #footer .flickrbox .wrap{display:block; width:260px;}
-#footer .flickrbox .wrap .fix{clear:both;}
-#footer .flickrbox .wrap .flickr_badge_image{display:block; float:left; margin:0 10px 10px 0; width:80px; height:80px;}
-#footer .flickrbox .wrap #flickr_badge_image3, #footer .flickrbox .wrap #flickr_badge_image6{margin-right:0;}
-
 /* ----------------------------------------------Copyright-------------------------------------*/
 
 #copyright{

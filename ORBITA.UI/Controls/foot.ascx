@@ -1,45 +1,68 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="foot.ascx.cs" Inherits="ORBITA.UI.Controls.foot" %>
 <div class="wrapper col5">
-	<div id="footer">
-    <div class="box1">
-      <h2>A Little Company Information !</h2>
-      <img class="imgl" src="../images/demo/imgl.gif" alt="" />
-      <p>Morbitincidunt maurisque eros molest nunc anteget sed vel lacus mus semper. Anterdumnullam interdum eros dui urna consequam ac nisl nullam ligula vestassa. Condimentumfelis et amet tellent quisquet a leo lacus nec augue</p>
-      <p>Portortornec condimenterdum eget consectetuer condis.</p>
+    <div id="footer">
+        <div class="box1">
+            <h2>Product Categories !</h2>
+            <asp:ListView ID="ListViewProductClass" runat="server"
+                DataSourceID="ObjectDataSourceProductClass">
+                <LayoutTemplate>
+                    <ul runat="server">
+                        <li id="itemPlaceHolder" runat="server"></li>
+                    </ul>
+                </LayoutTemplate>
+
+                <ItemTemplate>
+                    <li runat="server">
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "~/ProductList.aspx?id="  + Eval("pc_id")%>'
+                            Text='<%#Eval("pc_name") %>' CssClass="NodeName"></asp:HyperLink>
+                    </li>
+                </ItemTemplate>
+            </asp:ListView>
+
+            <asp:ObjectDataSource ID="ObjectDataSourceProductClass" runat="server"
+                OldValuesParameterFormatString="original_{0}" SelectMethod="GetListByParentID"
+                TypeName="ORBITA.Bll.ProductClassManage">
+                <SelectParameters>
+                    <asp:Parameter DefaultValue="0" Name="parent_id" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+
+        </div>
+
+        <div class="box4">
+            <h2>Service !</h2>
+            <ul>
+                <li>Contact</li>
+                <li>Download</li>
+            </ul>
+
+        </div>
+
+        <div class="box2">
+            <h2>ORBITA QR !</h2>
+            <div class="wrap">
+                <img src="~/../images/orbita_qr.png" />
+            </div>
+        </div>
+        <div class="box contactdetails">
+            <h2>Our Contact Details !</h2>
+            <ul>
+                <li>ORBITA TECHNOLOGY CO.,LTD</li>
+                <li>Address:</li>
+                <li>5th Floor,Bldg B8,Xiufeng Industrial zone,</li>
+                <li>Buji,Longgang Dist,ShenZhen,China.</li>
+                <li>Tel: 0086-755-83369158-606</li>
+                <li>Fax: 0086-755-83617778</li>
+                <li>Email: joshua@orbitatech.com</li>
+            </ul>
+        </div>
+        <br class="clear" />
     </div>
-    <div class="box contactdetails">
-      <h2>Our Contact Details !</h2>
-      <ul>
-        <li>ORBITA TECHNOLOGY CO.,LTD</li>
-		<li>Address:</li>
-        <li>5th Floor,Bldg B8,Xiufeng Industrial zone,</li>
-        <li>Buji,Longgang Dist,ShenZhen,China.</li>
-        <li>Tel: 0086-755-83369158-606</li>
-        <li>Fax: 0086-755-83617778</li>
-        <li>Email: joshua@orbitatech.com</li>
-        <li class="last">LinkedIn: <a href="#">Company Profile</a></li>
-      </ul>
-    </div>
-    <div class="box flickrbox">
-      <h2>Latest Flickr Images !</h2>
-      <div class="wrap">
-        <div class="fix"></div>
-        <div class="flickr_badge_image" id="flickr_badge_image1"><a href="#"><img src="../images/demo/80x80.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image2"><a href="#"><img src="../images/demo/80x80.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image3"><a href="#"><img src="../images/demo/80x80.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image4"><a href="#"><img src="../images/demo/80x80.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image5"><a href="#"><img src="../images/demo/80x80.gif" alt="" /></a></div>
-        <div class="flickr_badge_image" id="flickr_badge_image6"><a href="#"><img src="../images/demo/80x80.gif" alt="" /></a></div>
-        <div class="fix"></div>
-      </div>
-    </div>
-    <br class="clear" />
-  </div>
 </div>
 <!-- ####################################################################################################### -->
 <div class="wrapper col6">
-  <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
-    <br class="clear" />
-  </div>
+    <div id="copyright">
+        <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
+        <br class="clear" />
+    </div>
 </div>

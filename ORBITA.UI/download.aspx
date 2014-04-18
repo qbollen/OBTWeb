@@ -7,7 +7,8 @@
     <h2>Banner</h2>
         <div class="side_con">
             <ul>
-                <li>Download</li>
+                <li><a href="service.aspx">Support</a></li>
+                <li><a href="download.aspx">Download</a></li>
             </ul>
         </div>
         

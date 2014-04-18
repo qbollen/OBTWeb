@@ -71,13 +71,17 @@
                        Name="maximumRows" Type="Int32" />
                </SelectParameters>
             </asp:ObjectDataSource>
-
-           <webdiyer:AspNetPager ID="AspNetPager1" runat="server" FirstPageText="首页"  
-                            LastPageText="尾页" NextPageText="下一页" PrevPageText="上一页" 
-                            ShowMoreButtons="False" ShowPageIndexBox="Never" PageSize="12" CssClass="anpager" 
-            CurrentPageButtonClass="cpb" CustomInfoHTML="产品共（%RecordCount%）条" 
-            ShowCustomInfoSection="Left"  >
-          </webdiyer:AspNetPager>
         </div>
+        <div class="clear"></div>
+        <div class="paging">
+         <webdiyer:AspNetPager ID="AspNetPager1" runat="server" FirstPageText="First"  
+                            LastPageText="Last" NextPageText="Next" PrevPageText="Prev" 
+                            ShowMoreButtons="False" ShowPageIndexBox="Never" PageSize="12" CssClass="anpager" 
+            CurrentPageButtonClass="cpb" CustomInfoHTML="" 
+            ShowCustomInfoSection="Left" CustomInfoClass=""  >
+          </webdiyer:AspNetPager>
+            <div class="clear"></div>
+        </div>
+        
     </div>
 </asp:Content>

@@ -72,29 +72,11 @@
 							<li><a href="#">Asia and Australia</a></li>
 							<li><a href="#">Europe</a></li>
 						</ul>
-						<ul>
-							<li class="ldd_heading">By Category</li>
-							<li><a href="#">Sun &amp; Beach</a></li>
-							<li><a href="#">Adventure</a></li>
-							<li><a href="#">Science &amp; Education</a></li>
-							<li><a href="#">Extreme Sports</a></li>
-							<li><a href="#">Relaxing</a></li>
-							<li><a href="#">Spa and Wellness</a></li>
-						</ul>
-						<ul>
-							<li class="ldd_heading">By Theme</li>
-							<li><a href="#">Paradise Islands</a></li>
-							<li><a href="#">Cruises &amp; Boat Trips</a></li>
-							<li><a href="#">Wild Animals &amp; Safaris</a></li>
-							<li><a href="#">Nature Pure</a></li>
-							<li><a href="#">Helping others &amp; For Hope</a></li>
-							<li><a href="#">Diving</a></li>
-						</ul>
 						<a class="ldd_subfoot" href="#"> + New Deals</a>
 					</div>
 				</li>
 				<li>
-					<span>PRODUCTS</span>
+					<span class="nosubmenu"><a href="ProductList.aspx">PRODUCTS</a></span>
 					<div class="ldd_submenu">
                         <asp:ListView ID="ListViewProductClass" runat="server"
                              DataSourceID="ObjectDataSourceProductClass"
@@ -122,6 +104,10 @@
                </SelectParameters>
            </asp:ObjectDataSource>
 
+                        	<ul>
+							<li class="ldd_heading">E3010</li>
+							<li class="recommend"><img src="../images/E3010.png"></li>
+						</ul>
 
 						<a class="ldd_subfoot" href="#"> + Product Categories</a>
 					</div>
@@ -132,9 +118,22 @@
 				<li>
 					<span>SERVICE</span>
 					<div class="ldd_submenu">
-					<ul>
-						<li class="ldd_heading">555</li>
-					</ul>
+						<ul>
+							<li class="ldd_heading">Service</li>
+							<li><a href="service.aspx">Support</a></li>
+							<li><a href="download.aspx">Download</a></li>
+
+						</ul>
+						<ul>
+							<li class="ldd_heading">Support</li>
+							<li><a href="#">MSN:&nbsp;orbitaservice@msn.cn</a></li>
+							<li><a href="#">Skype:&nbsp;orbitacustomerservice</a></li>
+							<li><a href="#">Yahoo:&nbsp;orbitaservice</a></li>
+							<li><a href="#">Email:&nbsp;service@orbitatech.com</a></li>
+							<li><a href="#">Tel:&nbsp;+86-18928480199</a></li>
+                            <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+86-755-83369158-625</a></li>
+						</ul>
+                        <a class="ldd_subfoot" href="#"> + Service</a>
 					</div>
 				</li>
 				<li>

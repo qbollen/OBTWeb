@@ -941,6 +941,7 @@
     <Content Include="Images\demo\imgr.gif" />
     <Content Include="Images\download.gif" />
     <Content Include="Images\download_0.gif" />
+    <Content Include="Images\E3010.png" />
     <Content Include="Images\E3031-3061.gif" />
     <Content Include="Images\E3330.gif" />
     <Content Include="Images\E3360.gif" />
@@ -1000,6 +1001,7 @@
     <Content Include="Images\Orbita_logo_1.gif" />
     <Content Include="Images\Orbita_product_patent.gif" />
     <Content Include="Images\Orbita_product_patent_1.gif" />
+    <Content Include="Images\orbita_qr.png" />
     <Content Include="Images\Orbita_soft_certificate.gif" />
     <Content Include="Images\Orbita_soft_certificate_1.gif" />
     <Content Include="Images\pagination.gif" />

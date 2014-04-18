@@ -19,29 +19,34 @@
 }
 
 /* -------------------------------------Service-----------------------------------*/
-.myservice ul li img{
+#myservice .top img{
+	margin: 20px 10px 20px 30px;
 	width: 650px;
 	height: 358px;
 }
 
-.myservice ul{
+#myservice ul{
 	list-style: none;
+	font-size:12px;
+	padding:0 10px;
 }
 
-.myservice ul li h1{
+#myservice h1{
+	border-bottom:1px solid #dbdbdb;
 	margin:0;
+	padding:0 0 5px 0;
 }
 
 
-.myservice ul li ul{
-	margin-top:10px;
-	padding:0;
+#myservice .bottom div.left{
+	padding: 0 10px;
+	line-height: 20px;
 }
 
-.myservice ul li ul li{
+#myservice .bottom div.left ul{
 	margin: 10px 0;
-	font-size: 14px;
 }
+
 
 /*----------------------------------Download--------------------------------------*/
 .mydownload  .title{
@@ -102,11 +107,6 @@ td,th{
 	padding-left:38px;
 }
 
-#productList .list ul li.paging{
-	margin: 20px 0px;
-	float: left;
-}
-
 #productList .list ul li.items{
 	float:left;
 	margin: 15px 20px 0 0;
@@ -151,6 +151,11 @@ td,th{
 
 #productList .LabelStyle{
     line-height: 20px;
+}
+
+#productList .paging{
+	margin:20px 0;
+	padding: 0 10px;
 }
 
 /*----------------------------------------ProductInfo----------------------------------------*/
@@ -234,3 +239,7 @@ td,th{
 	margin-top: 30px;
 }
 
+/**************************AspNetPager Control************************/
+.anpager { margin: 0 0 0 5px;}
+.anpager .cpb {color:#c00; font-weight:bold; margin:5px 5px 0 0; padding:2px 5px;}
+.anpager a{padding:2px;}
