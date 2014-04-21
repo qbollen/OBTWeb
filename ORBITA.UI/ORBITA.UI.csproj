@@ -898,6 +898,7 @@
     <Content Include="ckfinder\translations.txt" />
     <Content Include="contact.aspx" />
     <Content Include="Controls\ArticleClassDDL.ascx" />
+    <Content Include="Controls\ArticleClassLeft.ascx" />
     <Content Include="Controls\foot.ascx" />
     <Content Include="Controls\top.ascx" />
     <Content Include="Css\nav.css" />
@@ -1316,6 +1317,13 @@
     </Compile>
     <Compile Include="Controls\ArticleClassDDL.ascx.designer.cs">
       <DependentUpon>ArticleClassDDL.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ArticleClassLeft.ascx.cs">
+      <DependentUpon>ArticleClassLeft.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ArticleClassLeft.ascx.designer.cs">
+      <DependentUpon>ArticleClassLeft.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\foot.ascx.cs">
       <DependentUpon>foot.ascx</DependentUpon>

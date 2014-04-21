@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="side_box">
-        <h2>Product Category</h2>
+        <h2>Product Categories</h2>
         <asp:ObjectDataSource ID="ObjectDataSourceProductClass" runat="server"
             OldValuesParameterFormatString="original_{0}" SelectMethod="GetTree"
             TypeName="ORBITA.BLL.ProductClassManage"></asp:ObjectDataSource>

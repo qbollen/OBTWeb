@@ -13,6 +13,15 @@ namespace ORBITA.UI {
     public partial class ArticleList {
         
         /// <summary>
+        /// ArticleClassLeft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ORBITA.UI.Controls.ArticleClassLeft ArticleClassLeft;
+        
+        /// <summary>
         /// GridViewArticle control.
         /// </summary>
         /// <remarks>
@@ -29,5 +38,14 @@ namespace ORBITA.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceArticle;
+        
+        /// <summary>
+        /// AspNetPager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Wuqi.Webdiyer.AspNetPager AspNetPager1;
     }
 }
