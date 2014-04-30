@@ -22,13 +22,13 @@ namespace ORBITA.UI {
         protected global::ORBITA.UI.Controls.ArticleClassLeft ArticleClassLeft;
         
         /// <summary>
-        /// GridViewArticle control.
+        /// ListViewArticle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewArticle;
+        protected global::System.Web.UI.WebControls.ListView ListViewArticle;
         
         /// <summary>
         /// ObjectDataSourceArticle control.

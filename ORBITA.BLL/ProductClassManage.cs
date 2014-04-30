@@ -153,6 +153,12 @@ namespace ORBITA.BLL
             return str;
         }
 
+        public static bool IsParentClass(int pc_id)
+        {
+            List<int> list = ProductClassService.GetParentClassList();
+            return list.Contains(pc_id);
+        }
+
         #endregion
     }
 }

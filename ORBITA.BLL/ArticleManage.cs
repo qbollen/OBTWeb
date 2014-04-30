@@ -24,7 +24,7 @@ namespace ORBITA.BLL
         [DataObjectMethod(DataObjectMethodType.Select, true)]
         public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows)
         {
-            return ArticleService.GetList(ac_id, startRowIndex, maximumRows, null);
+            return ArticleService.GetList(ac_id, startRowIndex, maximumRows);
         }
 
         /// <summary>查询分类文章 带分页 所有数据.</summary>
@@ -33,11 +33,11 @@ namespace ORBITA.BLL
         /// <param name="maximumRows">最多记录数</param>
         /// <param name="orderBy">排序标志</param>
         /// <returns>文章 list</returns>
-        [DataObjectMethod(DataObjectMethodType.Select, true)]
-        public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows, string orderBy)
-        {
-            return ArticleService.GetList(ac_id, startRowIndex, maximumRows, orderBy);
-        }
+        //[DataObjectMethod(DataObjectMethodType.Select, true)]
+        //public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows)
+        //{
+        //    return ArticleService.GetList(ac_id, startRowIndex, maximumRows);
+        //}
 
         /// <summary>查询分类文章 无分页 所有数据.</summary>
         /// <param name="ac_id">文章分类ID</param>
@@ -45,7 +45,7 @@ namespace ORBITA.BLL
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static ArticleCollection GetList(int ac_id)
         {
-            return ArticleService.GetList(ac_id, 0, 0, null);
+            return ArticleService.GetList(ac_id, 0, 0);
         }
 
         /// <summary>查询分类文章 无分页 所有数据.</summary>
@@ -56,7 +56,11 @@ namespace ORBITA.BLL
             return ArticleService.GetList(istop, iscommend);
         }
 
-
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public static ArticleCollection GetTop()
+        {
+            return ArticleService.GetTop();         
+        }
 
         /// <summary>查询文章记录.</summary>
         /// <param name="art_id">文章ID</param>

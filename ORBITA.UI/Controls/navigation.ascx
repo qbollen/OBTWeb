@@ -15,9 +15,9 @@
     <div class="parentnav">
         <h3 class="parentnav"><a href="#">文章管理</a></h3>
         <ul>
-            <li class="subnav"><a href="ArticleManage.aspx">文章管理</a></li>
+            <li class="subnav"><a href="ArticleMgmt.aspx">文章管理</a></li>
             <li class="subnav"><a href="ArticleAdd.aspx">文章添加</a></li>
-            <li class="subnav"><a href="ArticleClassManage.aspx">文章分类管理</a></li>
+            <li class="subnav"><a href="ArticleClassMgmt.aspx">文章分类管理</a></li>
             <li class="subnav"><a href="ArticleClassAdd.aspx">文章分类添加</a></li>
         </ul>
     </div>

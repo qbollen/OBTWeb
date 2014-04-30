@@ -95,6 +95,32 @@ namespace ORBITA.DAL
             return tempList;
         }
 
+        public static ProductCollection GetCommend()
+        {
+            ProductCollection list = new ProductCollection();
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_product_get_commend", myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myConnection.Open();
+                    using (MySqlDataReader reader = myCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                list.Add(FillDataRecord(reader));
+                            }
+
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+            return list;
+        }
+
 
         /// <summary>条件查询产品 </summary>
         /// <param name="prod_id">产品ID</param>
@@ -125,7 +151,6 @@ namespace ORBITA.DAL
             }
             return myProduct;
         }
-
 
         /// <summary>删除一条产品记录</summary>
         /// <param name="prod_id">产品ID</param>

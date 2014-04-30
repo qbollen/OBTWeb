@@ -18,7 +18,11 @@ namespace ORBITA.UI.Admin
             if(!IsPostBack)
             {
                 LoadTree();
-                AspNetPager1.RecordCount = ArticleManage.GetList(Convert.ToInt32(this.DropDownListTree.SelectedValue)).Count;
+                if (this.DropDownListTree.SelectedValue != string.Empty)
+                {
+                    AspNetPager1.RecordCount = ArticleManage.GetList(Convert.ToInt32(this.DropDownListTree.SelectedValue)).Count;
+                }
+                
             }
         }
 

@@ -9,14 +9,14 @@
         <h2>Banner</h2>
         <div class="side_con">
             <ul>
-                <li>Contact US</li>
+                <li><a href="contact.aspx">Contact US</a></li>
             </ul>
         </div>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <div class="mycontact_right">
+    <div id="mycontact">
         <ul>
             <li>
                 <h1>ORBITA (China)</h1>

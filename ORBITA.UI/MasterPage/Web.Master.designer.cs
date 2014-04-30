@@ -22,6 +22,42 @@ namespace ORBITA.UI.MasterPage {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// keywords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlMeta keywords;
+        
+        /// <summary>
+        /// description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlMeta description;
+        
+        /// <summary>
+        /// author control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlMeta author;
+        
+        /// <summary>
+        /// Copyright control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlMeta Copyright;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>

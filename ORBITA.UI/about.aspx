@@ -50,6 +50,7 @@
         </div>
         
         <div class="cer">
+            <a name="cer"></a>
             <h1>Certificates</h1>
             <ul class="cerlist">
                 <li>

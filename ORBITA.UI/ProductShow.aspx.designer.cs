@@ -13,22 +13,13 @@ namespace ORBITA.UI {
     public partial class ProductShow {
         
         /// <summary>
-        /// ObjectDataSourceProductClass control.
+        /// ProductClassLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductClass;
-        
-        /// <summary>
-        /// ListViewProductClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewProductClass;
+        protected global::ORBITA.UI.Controls.ProductClassLeft ProductClassLeft;
         
         /// <summary>
         /// imgProd control.

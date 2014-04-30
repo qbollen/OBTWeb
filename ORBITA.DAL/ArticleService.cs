@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ORBITA.Model;
-using System.Data.SqlClient;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace ORBITA.DAL
 {
@@ -23,29 +23,29 @@ namespace ORBITA.DAL
         /// <param name="maximumRows"></param>
         /// <param name="orderBy"></param>
         /// <returns>ArticleCollection include all data</returns>
-        public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows, string orderBy)
+        public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows)
         {
             ArticleCollection tempList = new ArticleCollection();
-            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(SqlCommand myCommand = new SqlCommand("sprocArticleSelectList", myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_select_list", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    myCommand.Parameters.AddWithValue("@ac_id", ac_id);
+                    myCommand.Parameters.AddWithValue("_ac_id", ac_id);
                     if (startRowIndex > 0 && maximumRows > 0)
                     {
-                        myCommand.Parameters.AddWithValue("@startRowIndex", startRowIndex);
-                        myCommand.Parameters.AddWithValue("@maximumRows", maximumRows);
+                        myCommand.Parameters.AddWithValue("_start_row_index", startRowIndex);
+                        myCommand.Parameters.AddWithValue("_maximum_rows", maximumRows);
                     }
-
-                    if (!string.IsNullOrEmpty(orderBy))
+                    else
                     {
-                        myCommand.Parameters.AddWithValue("@orderBy", orderBy);
+                        myCommand.Parameters.AddWithValue("_start_row_index", -1);
+                        myCommand.Parameters.AddWithValue("_maximum_rows", -1);
                     }
 
                     myConnection.Open();
-                    using(SqlDataReader myReader = myCommand.ExecuteReader())
+                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
                         if (myReader.HasRows)
                         {
@@ -74,25 +74,33 @@ namespace ORBITA.DAL
         public static ArticleCollection GetList(bool istop, bool iscommand)
         {
             ArticleCollection tempList = new ArticleCollection();
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleSearchList", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_search_list", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                     if (istop)
                     {
-                        myCommand.Parameters.AddWithValue("@istop", istop);
+                        myCommand.Parameters.AddWithValue("_istop", istop);
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("_istop", DBNull.Value);
                     }
 
                     if (iscommand)
                     {
-                        myCommand.Parameters.AddWithValue("@iscommand", iscommand);
+                        myCommand.Parameters.AddWithValue("_iscommand", iscommand);
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("_iscommand", DBNull.Value);
                     }
 
                     myConnection.Open();
 
-                    using(SqlDataReader myReader = myCommand.ExecuteReader())
+                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
                         if (myReader.HasRows)
                         {
@@ -111,18 +119,43 @@ namespace ORBITA.DAL
             return tempList;
         }
 
+        public static ArticleCollection GetTop()
+        {
+            ArticleCollection list = new ArticleCollection();
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_get_top",myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myConnection.Open();
+                    using(MySqlDataReader reader = myCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while(reader.Read())
+                            {
+                                list.Add(FillDataRecord(reader));
+                            }
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+            return list;
+        }
+
         public static Article GetItem(int art_id)
         {
             Article myArticle = new Article();
-            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(SqlCommand myCommand = new SqlCommand("sprocArticleSelectItem", myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_select_item", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("@art_id", art_id);
+                    myCommand.Parameters.AddWithValue("_art_id", art_id);
                     myConnection.Open();
 
-                    using(SqlDataReader myReader = myCommand.ExecuteReader())
+                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
                         if (myReader.HasRows)
                         {
@@ -141,12 +174,12 @@ namespace ORBITA.DAL
         public static bool Delete(int art_id)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(SqlCommand myCommand = new SqlCommand("sprocArticleDeleteSingleItem", myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_delete_single_item", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("@art_id", art_id);
+                    myCommand.Parameters.AddWithValue("_art_id", art_id);
                     myConnection.Open();
                     result = myCommand.ExecuteNonQuery();
                 }
@@ -158,12 +191,12 @@ namespace ORBITA.DAL
         public static bool Update(int art_id)
         {
             int result = 0;
-            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(SqlCommand myCommand = new SqlCommand("aprocArticleUpdateSingleClick", myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_update_single_click", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("@art_id", art_id);
+                    myCommand.Parameters.AddWithValue("_art_id", art_id);
 
                     myConnection.Open();
 
@@ -177,23 +210,23 @@ namespace ORBITA.DAL
         public static bool Update(Article myArticle)
         {
             int result = 0;
-            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(SqlCommand myCommand = new SqlCommand("sprocArticleUpdateSingleItem", myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_update_single_item", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    myCommand.Parameters.AddWithValue("@art_id", myArticle.art_id);
-                    myCommand.Parameters.AddWithValue("@art_title", myArticle.art_title);
-                    myCommand.Parameters.AddWithValue("@art_author", myArticle.art_author);
-                    myCommand.Parameters.AddWithValue("@art_from", myArticle.art_from);
-                    myCommand.Parameters.AddWithValue("@art_content", myArticle.art_content);
-                    myCommand.Parameters.AddWithValue("@art_description", myArticle.art_description);
-                    myCommand.Parameters.AddWithValue("@art_date", myArticle.art_date);
-                    myCommand.Parameters.AddWithValue("@art_image", myArticle.art_image);
-                    myCommand.Parameters.AddWithValue("@istop", myArticle.istop);
-                    myCommand.Parameters.AddWithValue("@iscommend", myArticle.iscommend);
-                    myCommand.Parameters.AddWithValue("@ac_id", myArticle.ac_id);
+                    myCommand.Parameters.AddWithValue("_art_id", myArticle.art_id);
+                    myCommand.Parameters.AddWithValue("_art_title", myArticle.art_title);
+                    myCommand.Parameters.AddWithValue("_art_author", myArticle.art_author);
+                    myCommand.Parameters.AddWithValue("_art_from", myArticle.art_from);
+                    myCommand.Parameters.AddWithValue("_art_content", myArticle.art_content);
+                    myCommand.Parameters.AddWithValue("_art_description", myArticle.art_description);
+                    myCommand.Parameters.AddWithValue("_art_date", myArticle.art_date);
+                    myCommand.Parameters.AddWithValue("_art_image", myArticle.art_image);
+                    myCommand.Parameters.AddWithValue("_istop", myArticle.istop);
+                    myCommand.Parameters.AddWithValue("_iscommend", myArticle.iscommend);
+                    myCommand.Parameters.AddWithValue("_ac_id", myArticle.ac_id);
 
                     myConnection.Open();
 
@@ -208,23 +241,23 @@ namespace ORBITA.DAL
         {
             int result = 0;
 
-            using(SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(SqlCommand myCommand = new SqlCommand("sprocArticleInsert", myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_insert", myConnection))
                 {
                     myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    myCommand.Parameters.AddWithValue("@art_title", myArticle.art_title);
-                    myCommand.Parameters.AddWithValue("@art_author", myArticle.art_author);
-                    myCommand.Parameters.AddWithValue("@art_from", myArticle.art_from);
-                    myCommand.Parameters.AddWithValue("@art_content", myArticle.art_content);
-                    myCommand.Parameters.AddWithValue("@art_description", myArticle.art_description);
-                    myCommand.Parameters.AddWithValue("@art_date", myArticle.art_date);
-                    myCommand.Parameters.AddWithValue("@art_image", myArticle.art_image);
-                    myCommand.Parameters.AddWithValue("@art_click", myArticle.art_click);
-                    myCommand.Parameters.AddWithValue("@istop", myArticle.istop);
-                    myCommand.Parameters.AddWithValue("@iscommend", myArticle.iscommend);
-                    myCommand.Parameters.AddWithValue("@ac_id", myArticle.ac_id);
+                    myCommand.Parameters.AddWithValue("_art_title", myArticle.art_title);
+                    myCommand.Parameters.AddWithValue("_art_author", myArticle.art_author);
+                    myCommand.Parameters.AddWithValue("_art_from", myArticle.art_from);
+                    myCommand.Parameters.AddWithValue("_art_content", myArticle.art_content);
+                    myCommand.Parameters.AddWithValue("_art_description", myArticle.art_description);
+                    myCommand.Parameters.AddWithValue("_art_date", myArticle.art_date);
+                    myCommand.Parameters.AddWithValue("_art_image", myArticle.art_image);
+                    myCommand.Parameters.AddWithValue("_art_click", myArticle.art_click);
+                    myCommand.Parameters.AddWithValue("_istop", myArticle.istop);
+                    myCommand.Parameters.AddWithValue("_iscommend", myArticle.iscommend);
+                    myCommand.Parameters.AddWithValue("_ac_id", myArticle.ac_id);
 
                     myConnection.Open();
 

@@ -35,19 +35,19 @@ namespace ORBITA.UI
                     myArticle = ArticleManage.GetItem(Convert.ToInt32(artID));
 
                     acnav = ArticleClassManage.ArticleClassNav(myArticle.ac_id, acnav);
-
                     Page.Title = myArticle.art_title;
+                    
                     HtmlMeta keywords = (HtmlMeta)Master.FindControl("keywords");
                     HtmlMeta Description = (HtmlMeta)Master.FindControl("Description");
-
+                  
                     keywords.Attributes["content"] = keywords.Attributes["content"] + "," + myArticle.art_title;
                     Description.Attributes["content"] = Description.Attributes["content"] + "," + myArticle.art_description;
 
-                    this.lblTitle.Text = myArticle.art_title;
+                    this.litTitle.Text = myArticle.art_title;
                     this.lblDate.Text = myArticle.art_date.ToString();
                     this.lblAuthor.Text = myArticle.art_author;
-                    this.lblFrom.Text = myArticle.art_from;
-                    this.lblClick.Text = myArticle.art_click.ToString();
+                    this.lblSource.Text = myArticle.art_from;
+                    this.lblBrowse.Text = myArticle.art_click.ToString();
                     this.lblContent.Text = myArticle.art_content;
 
                 }

@@ -6,6 +6,7 @@ using ORBITA.Model;
 using System.Data;
 using System.Data.OleDb;
 using MySql.Data.MySqlClient;
+using System.Collections;
 
 namespace ORBITA.DAL
 {
@@ -210,6 +211,33 @@ namespace ORBITA.DAL
 
             return result > 0;
 
+        }
+
+        public static List<int> GetParentClassList()
+        {
+            List<int> list = new List<int>();
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_parent_class",myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myConnection.Open();
+                    using(MySqlDataReader reader = myCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                             while(reader.Read())
+                             {
+                                 list.Add(reader.GetInt32("parent_id"));
+                             }
+                        }
+                        reader.Close();
+                       
+                    }
+                }
+            }
+
+            return list;
         }
 
         #endregion

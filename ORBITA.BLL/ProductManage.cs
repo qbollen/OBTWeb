@@ -52,6 +52,26 @@ namespace ORBITA.BLL
             return ProductService.GetList(istop,iscommend);
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select,false)]
+        public static ProductCollection GetCommend()
+        {
+           ProductCollection list = ProductService.GetCommend();
+           int length = list.Count;
+           if (length < 18)
+           {
+               int i = 0;
+               while(i < 18 - length)
+               {
+                   Product product = new Product();
+                   list.Add(product);
+
+                   i++;
+               }
+           }
+
+           return list;
+        }
+
         /// <summary>
         /// 查询产品记录.
         /// </summary>

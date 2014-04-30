@@ -1,20 +1,26 @@
 ﻿/* ---------------------------------------Contact---------------------------------*/
-.mycontact_right ul{
+#mycontact{
+	padding: 10px;
+}
+
+#mycontact ul{
 	margin:0;
 	padding:0;
 	list-style: none;
 }
 
-.mycontact_right ul li{
-	margin:10px 3px 20px 15px;
-}
-
-.mycontact_right ul li h1{
+#mycontact h1{
 	margin: 0;
+	padding: 0 0 5px 0;
+	border-bottom: 1px solid #dbdbdb;
 }
 
-.mycontact_right ul li ul li{
-	margin: 10px 0;
+#mycontact ul li{
+	margin:0px 3px 20px 0px;
+}
+
+#mycontact ul li ul li{
+	margin: 10px;
 	font-size: 14px;
 }
 
@@ -49,32 +55,121 @@
 
 
 /*----------------------------------Download--------------------------------------*/
-.mydownload  .title{
+#mydownload{
+	padding:10px;
+}
+#mydownload h1{
 	margin:0px;
+	padding: 0 0 5px 0;
+	border-bottom: 1px solid #dbdbdb;
 }
 
-.mydownload ul{
+#mydownload ul{
 	list-style:none;
 	margin:0;
 	padding:0;
 }
 
-.mydownload ul li{
-	padding:10px 20px;
+#mydownload ul li{
+	padding:10px 10px;
 	font-size: 14px;
 	border-bottom: 1px dotted #CCCCCC;
 }
 
-.mydownload ul li a{
+#mydownload ul li a{
 	color: #000000;
 }
 
-.mydownload ul li a:hover {
+#mydownload ul li a:hover {
 	color:#FF0000;
 	text-decoration:underline;
 }
 
 /*--------------------------------References----------------------------------------*/
+#myreferences{
+	padding: 10px;
+}
+
+#myreferences h1{
+	margin: 0;
+	padding: 0 0 5px 0;	
+	border-bottom: 1px solid #dbdbdb;
+}
+
+#myreferences ul{
+	list-style:none;
+}    
+
+#myreferences .box{
+       	margin: 15px auto;
+	padding:0px 20px;
+	position:relative; 
+	height:600px;
+}
+
+#myreferences .box li{ 
+	float: left; 
+	width: 200px; 
+	text-align: center; 
+/*	padding-right: 10px;i*/
+ 	margin-right: 15px; 
+	height: 90px; 
+	margin-bottom: 15px; 
+	cursor: pointer; 
+	z-index:0;
+	 position:relative;
+}
+
+#myreferences .box li img{ 
+	height: 90px; 
+	margin: 0 auto;
+}
+
+#myreferences .box li .in{
+	position: absolute; 
+	left: 0; top: 0;
+	width: 200px; 
+}
+
+#myreferences .box li .in p{ 
+	display: none;
+	text-align: left;
+}
+
+#myreferences .box li.on{
+	z-index:99;
+}
+
+#myreferences .box li.on .in{
+	padding: 5px; 
+	border: 1px solid #ccc; 
+	position:absolute;
+	z-index:100; 
+	width:auto; 
+	text-align: center; 
+	top:-40px;  
+	background: #fff;
+}
+
+#myreferences .box li.on .in p{
+	position:relative; 
+	display:block;
+}
+
+#myreferences .box li.on img{
+	height: auto;
+	margin-bottom: 8px;
+}
+
+#myreferences .bsc{
+	background:url(../images/icon01.png) no-repeat;
+	position:absolute; 
+	right:10px; 
+	width: 19px;
+ 	height: 15px;
+ 	font-size: 0;
+ 	float:right;
+}
 
 
 /*--------------------------------ProductList---------------------------------------*/
@@ -112,8 +207,12 @@ td,th{
 	margin: 15px 20px 0 0;
 }
 
+#productList .list ul li.items ul{
+	border: 1px dashed #dbdbdb;
+	padding: 15px 0 0 0;
+}
+
 #productList .list ul li ul li.model{
-	text-align: center;
 	margin: 8px 0 0 0;
 }
 
@@ -150,13 +249,13 @@ td,th{
 }
 
 #productList .LabelStyle{
-    line-height: 20px;
+	padding:5px;
+	color: #5E5E5E;
+	line-height: 25px;
+
 }
 
-#productList .paging{
-	margin:20px 0;
-	padding: 0 10px;
-}
+
 
 /*----------------------------------------ProductInfo----------------------------------------*/
 #ProductInfo h1{
@@ -207,6 +306,101 @@ td,th{
 	line-height: 20px;
 }
 
+/*--------------------------------------articlelist----------------------------------------*/
+#articlelist{
+	padding:10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#articlelist h1{
+  font-size: 14px;
+  padding: 0 0 5px 0;
+  margin: 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#articlelist ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#articlelist ul li{
+	padding: 10px 0;
+	border-bottom: 1px dashed #dbdbdb;
+}
+
+#articlelist .artimg{
+	float: left;
+	height: 80px;
+	width: 140px;
+}
+
+#articlelist .artimg .leftimg{
+	height: 80px;
+}
+
+#articlelist .artdigest{
+	float: left;
+	margin: 0 0 0 15px;
+	height: 80px;
+	width: 530px;
+}
+
+#articlelist .artdigest h1{
+	padding: 0;
+	margin: 0 0 3px 0;
+	font-size: 18px;
+	border: none;
+	color: #333333;
+}
+
+#articlelist .artdigest .title{
+	text-decoration: none;
+	color: #5E5E5E;
+}
+
+#articlelist .artdigest .title:hover{
+	text-decoration: underline;
+}
+
+#articlelist .artdigest .dsc{
+	line-height: 18px;
+	font-size: 12px;
+}
+
+/*--------------------------------------articleinfo----------------------------------------*/
+#articleinfo{
+	padding: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#articleinfo h1{
+	margin: 0;
+	padding: 0 0 5px 0;
+	font-size: 14px;
+	border-bottom: 1px solid #dbdbdb;
+}
+
+#articleinfo h6{
+	text-align: center;
+	line-height: 40px;
+	border: none;
+	padding: 0;
+	margin: 20px 0 10px 0;
+	color: #333333;
+	font-weight: bold;
+}
+
+#articleinfo .smalltitle{
+	text-align: center;
+	font-size: 13px;
+}
+
+#articleinfo .artcontent{
+	margin: 18px 0;
+	padding: 0;
+}
 
 /*---------------------------------------MyCompany-----------------------------------------*/
 #mycompany{
@@ -240,6 +434,10 @@ td,th{
 }
 
 /**************************AspNetPager Control************************/
+.paging{
+	margin:20px 0;
+	padding: 0 10px;
+}
 .anpager { margin: 0 0 0 5px;}
 .anpager .cpb {color:#c00; font-weight:bold; margin:5px 5px 0 0; padding:2px 5px;}
 .anpager a{padding:2px;}

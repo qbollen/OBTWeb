@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using MySql.Data.MySqlClient;
 
 namespace ORBITA.DAL
 {
@@ -17,13 +17,13 @@ namespace ORBITA.DAL
         public static ArticleClassCollection GetList()
         {
             ArticleClassCollection tempList = new ArticleClassCollection();
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleClassSelectList", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_select_list", myConnection))
                 {
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myConnection.Open();
-                    using (SqlDataReader myReader = myCommand.ExecuteReader())
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
                         if (myReader.HasRows)
                         {
@@ -47,18 +47,22 @@ namespace ORBITA.DAL
         public static ArticleClassCollection GetListByParentID(int parent_id)
         {
             ArticleClassCollection tempList = new ArticleClassCollection();
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleClassSelectListByParentID", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_select_list_by_parentid", myConnection))
                 {
                     myCommand.CommandType = CommandType.StoredProcedure;
 
                     if (parent_id > 0)
                     {
-                        myCommand.Parameters.AddWithValue("@parent_id", parent_id);
+                        myCommand.Parameters.AddWithValue("_parent_id", parent_id);
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("_parent_id", DBNull.Value);
                     }
                     myConnection.Open();
-                    using (SqlDataReader myReader = myCommand.ExecuteReader())
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
                         if (myReader.HasRows)
                         {
@@ -82,15 +86,15 @@ namespace ORBITA.DAL
         public static ArticleClass GetItem(int ac_id)
         {
             ArticleClass myArticleClass = new ArticleClass();
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleClassSelectItem", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_select_item", myConnection))
                 {
                     myCommand.CommandType = CommandType.StoredProcedure;
 
-                    myCommand.Parameters.AddWithValue("@ac_id", ac_id);
+                    myCommand.Parameters.AddWithValue("_ac_id", ac_id);
                     myConnection.Open();
-                    using (SqlDataReader myReader = myCommand.ExecuteReader())
+                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
                     {
                         if (myReader.HasRows)
                         {
@@ -111,11 +115,11 @@ namespace ORBITA.DAL
         public static DataSet GetTree()
         {
             DataSet ds = new DataSet();
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlDataAdapter myAdapter = new SqlDataAdapter())
+                using (MySqlDataAdapter myAdapter = new MySqlDataAdapter())
                 {
-                    SqlCommand myCommand = new SqlCommand("sprocArticleClassGetTree", myConnection);
+                    MySqlCommand myCommand = new MySqlCommand("sproc_article_class_get_tree", myConnection);
                     myCommand.CommandType = CommandType.StoredProcedure;
                     myAdapter.SelectCommand = myCommand;
 
@@ -136,12 +140,12 @@ namespace ORBITA.DAL
         public static bool Delete(int ac_id)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleClassDeleteSingleItem", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_delete_single_item", myConnection))
                 {
                     myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("@ac_id", ac_id);
+                    myCommand.Parameters.AddWithValue("_ac_id", ac_id);
                     myConnection.Open();
                     result = myCommand.ExecuteNonQuery();
                 }
@@ -156,13 +160,13 @@ namespace ORBITA.DAL
         public static bool Update(ArticleClass myArticleClass)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleClassUpdateSingleItem", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_update_single_item", myConnection))
                 {
                     myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("@ac_id", myArticleClass.ac_id);
-                    myCommand.Parameters.AddWithValue("@ac_name", myArticleClass.ac_name);
+                    myCommand.Parameters.AddWithValue("_ac_id", myArticleClass.ac_id);
+                    myCommand.Parameters.AddWithValue("_ac_name", myArticleClass.ac_name);
 
                     myConnection.Open();
                     result = myCommand.ExecuteNonQuery();
@@ -178,16 +182,20 @@ namespace ORBITA.DAL
         public static bool Insert(ArticleClass myArticleClass)
         {
             int result = 0;
-            using (SqlConnection myConnection = new SqlConnection(DbHelper.Connection))
+            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using (SqlCommand myCommand = new SqlCommand("sprocArticleClassInsert", myConnection))
+                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_insert", myConnection))
                 {
                     myCommand.CommandType = CommandType.StoredProcedure;
 
-                    myCommand.Parameters.AddWithValue("@ac_name", myArticleClass.ac_name);
+                    myCommand.Parameters.AddWithValue("_ac_name", myArticleClass.ac_name);
                     if (myArticleClass.parent_id > 0)
                     {
-                        myCommand.Parameters.AddWithValue("@parent_id", myArticleClass.parent_id);
+                        myCommand.Parameters.AddWithValue("_parent_id", myArticleClass.parent_id);
+                    }
+                    else
+                    {
+                        myCommand.Parameters.AddWithValue("_parent_id", DBNull.Value);
                     }
 
                     myConnection.Open();
@@ -195,6 +203,33 @@ namespace ORBITA.DAL
                 }
             }
             return result > 0;
+        }
+
+
+        public static List<int> GetParentClassList()
+        {
+            List<int> list = new List<int>();
+            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            {
+                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_class_parent_class",myConnection))
+                {
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myConnection.Open();
+                    using(MySqlDataReader reader = myCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while(reader.Read())
+                            {
+                                list.Add(reader.GetInt32("parent_id"));
+                            }
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+
+            return list;
         }
 
         #endregion
@@ -221,6 +256,8 @@ namespace ORBITA.DAL
 
             return myArticleClass;
         }
+
+        
 
         #endregion
     }

@@ -31,9 +31,6 @@ namespace ORBITA.UI
                 acnav = ArticleClassManage.ArticleClassNav(Convert.ToInt32(parentID),acnav);
                 if (!IsPostBack)
                 {
-                    //this.ObjectDataSourceArticleClass.SelectParameters["parent_id"].DefaultValue = parentID;
-                    //this.repeaterArticleClass.databind();
-
                     this.ObjectDataSourceArticle.SelectParameters["ac_id"].DefaultValue = parentID;
                     AspNetPager1.RecordCount = ArticleManage.GetList(Convert.ToInt32(parentID)).Count;
 
@@ -41,8 +38,8 @@ namespace ORBITA.UI
             }
             else
             {
-                acnav = ArticleClassManage.ArticleClassNav(2, acnav);
-                AspNetPager1.RecordCount = ArticleManage.GetList(2).Count;
+                acnav = ArticleClassManage.ArticleClassNav(0, acnav);
+                AspNetPager1.RecordCount = ArticleManage.GetList(0).Count;
             }
         }
 
@@ -52,6 +49,44 @@ namespace ORBITA.UI
             {
                 e.Arguments.StartRowIndex = this.AspNetPager1.StartRecordIndex;
                 e.Arguments.MaximumRows = this.AspNetPager1.PageSize;
+            }
+        }
+
+        protected void ListViewArticle_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                HyperLink imagelink = (HyperLink)e.Item.FindControl("HyperLinkImage");
+                Image image = (Image)e.Item.FindControl("artimg");
+                HyperLink titlelink = (HyperLink)e.Item.FindControl("HyperLinkTitle");
+                Literal title = (Literal)e.Item.FindControl("litTitle");
+                Label content = (Label)e.Item.FindControl("lbldscription");
+                Article article = (Article)((ListViewDataItem)e.Item).DataItem;
+                if (!string.IsNullOrEmpty(article.art_title))
+                {
+                    if (!string.IsNullOrEmpty(article.art_image))
+                    {
+                        image.ImageUrl = article.art_image;
+                        imagelink.NavigateUrl = "ArticleShow.aspx?id=" + article.art_id.ToString();
+                    }
+                    else
+                    {
+                        image.Visible = false;
+                    }
+                                     
+                    title.Text = article.art_title;
+                    titlelink.NavigateUrl = "ArticleShow.aspx?id=" + article.art_id.ToString();
+
+                    string desc = article.art_description;
+
+                    if (desc.Length > 230)
+                    {
+                        desc = desc.Substring(0, desc.Substring(0, 230).LastIndexOf(" ")) + " ...";
+                    }
+
+                    content.Text = desc;
+
+                }
             }
         }
     }

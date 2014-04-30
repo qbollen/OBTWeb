@@ -15,22 +15,22 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <div class="mydownload">
-        <h1 class="title">Download</h1>
+    <div id="mydownload">
+        <h1>Download</h1>
         <ul>
-            <li>【Software】&nbsp; <a href="#">card locking system</a></li>
-            <li>【Software】&nbsp; RF card locking system</li>
-            <li>【Software】&nbsp; Mifare card locking system</li>
-            <li>【Software】&nbsp; Mifare card locking system(russian edition)</li>
-            <li>【Software】&nbsp; Magnetic card locking system</li>
-            <li>【Manual】&nbsp; Product file</li>
-            <li>【软件】&nbsp; One card system</li>
-            <li>【Video】&nbsp; Locking system video manual</li>
-            <li>【软件】&nbsp; Doorlock user's handbook</li>
-            <li>【软件】&nbsp; IC locking assembly</li>
-            <li>【Video】&nbsp; How to program a lock</li>
-            <li>【软件】&nbsp; Orbita products range</li>
-            <li>【软件】&nbsp; Office lock system</li>
+            <li>【Software】&nbsp; <a href="down/ic%20card%20lock%203.1.rar">IC card locking system v3.1 (usb port)</a></li>
+            <li>【Software】&nbsp; <a href="down/orbita_rf_locking_3.4.2.rar">RF card locking system v3.4.2 (usb port)</a></li>
+            <li>【Software】&nbsp; <a href="down/mifare.card.lock.3.1.rar">Mifare card locking system v3.1 (usb port)</a></li>
+            <li>【Software】&nbsp; <a href="down/mifare.card.lock.3.1.russian.rar">Mifare card locking system(russian edition) v3.1 (usb port)</a></li>
+            <li>【Software】&nbsp; <a href="down/orbita%20magnetic%20card%20locking.rar">Magnetic card locking system v3.1 (com port)</a></li>
+            <li>【Software】&nbsp; <a href="down/orbita%20office%20lock.rar">Office lock system</a></li>
+            <li>【Manual】&nbsp; <a href="down/profile.pps">Product file</a></li>
+            <li>【Other】&nbsp; <a href="down/onecard.pps">One card system</a></li>
+            <li>【Video】&nbsp; <a href="down/locking%20system%20video%20manual%20.rar">Locking system video manual</a></li>
+            <li>【Manual】&nbsp; <a href="down/doorlock%20user%20handbook.pdf">Doorlock user's handbook</a></li>
+            <li>【Other】&nbsp; <a href="product/images/ic%20assembly.jpg">IC locking assembly</a></li>
+            <li>【Video】&nbsp; <a href="down/how%20to%20program%20a%20lock.rar">How to program a lock</a></li>
+            <li>【Other】&nbsp; <a href="down/orbita%20products%20range.rar">Orbita products range</a></li>
         </ul>
     </div>
 </asp:Content>

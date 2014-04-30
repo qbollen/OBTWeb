@@ -23,7 +23,7 @@ namespace ORBITA.UI.Admin
 
                     if (string.IsNullOrEmpty(myArticle.art_title))
                     {
-                        Response.Write("<script type='text/javascript'>alert('错误的链接!');document.location.href='ArticleManage.aspx'</script>");
+                        Response.Write("<script type='text/javascript'>alert('错误的链接!');document.location.href='ArticleMgmt.aspx'</script>");
                     }
                     else
                     {
@@ -43,7 +43,7 @@ namespace ORBITA.UI.Admin
                 }
                 else
                 {
-                    Response.Write("<script language=JavaScript>alert('错误的链接!');document.location.href='ArticleMng.aspx'</script>");
+                    Response.Write("<script language=JavaScript>alert('错误的链接!');document.location.href='ArticleMgmt.aspx'</script>");
                 }
             }
         }
@@ -66,7 +66,8 @@ namespace ORBITA.UI.Admin
                 myArticle.istop = this.cbxTop.Checked;
                 myArticle.iscommend = this.cbxCommend.Checked;
                 myArticle.ac_id = Convert.ToInt32(SelectedValue);
-                if (string.IsNullOrEmpty(this.tbxImage.Text) || this.tbxImage.Text == " ")
+                myArticle.art_image = this.tbxImage.Text;
+                if (string.IsNullOrEmpty(myArticle.art_image) || myArticle.art_image == " ")
                 {
                     string fckStr = CKEditor1.Text;
                     MatchCollection matchs = Regex.Matches(fckStr, @"<img[^src]*src=""[^http\://]*(?<src>[^""]*?)""", RegexOptions.IgnoreCase);
@@ -77,7 +78,7 @@ namespace ORBITA.UI.Admin
                     }
                     if (string.IsNullOrEmpty(myArticle.art_image))
                     {
-                        myArticle.art_image = " ";
+                        myArticle.art_image = "";
                     }
                 }
                 else
@@ -87,7 +88,7 @@ namespace ORBITA.UI.Admin
 
                 if (ArticleManage.Update(myArticle))
                 {
-                    Response.Write("<script language=JavaScript>alert('文章修改成功!!!');window.location.href='ArticleMng.aspx';</script>");
+                    Response.Write("<script language=JavaScript>alert('文章修改成功!!!');window.location.href='ArticleMgmt.aspx';</script>");
 
                 }
                 else

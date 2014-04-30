@@ -14,16 +14,5 @@ namespace ORBITA.UI.Controls
 
         }
 
-        protected void ListViewProductClass_ItemDataBound(object sender, ListViewItemEventArgs e)
-        {
-            //if (ListViewProductClass.Items.Count == 0)
-            //{
-            //    this.ListViewProductClass.Visible = false;
-            //}
-            //else
-            //{
-            //    this.ListViewProductClass.Visible = true;
-            //}
-        }
     }
 }

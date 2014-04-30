@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td class="noborder">
-                            文章分类在名称：
+                            文章分类名称：
                         </td>
                         <td class="noborder" colspan="2">
                             <asp:TextBox ID="tbxAcname" runat="server" TabIndex="2"></asp:TextBox>

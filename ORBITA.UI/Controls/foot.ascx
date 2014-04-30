@@ -32,8 +32,8 @@
         <div class="box4">
             <h2>Service !</h2>
             <ul>
-                <li>Contact</li>
-                <li>Download</li>
+                <li><a href="Contact.aspx">Contact</a></li>
+                <li><a href="download.aspx">Download</a></li>
             </ul>
 
         </div>

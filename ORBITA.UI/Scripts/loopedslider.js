@@ -43,7 +43,7 @@
 		container: '.container',
 		slides: '.slides',
 		pagination: '.pagination',
-		containerClick: true, // Click container for next slide
+		containerClick: false, // Click container for next slide
 		autoStart: 0, // Set to positive number for auto interval and interval time
 		slidespeed: 300, // Speed of slide animation
 		fadespeed: 300, // Speed of fade animation
@@ -93,6 +93,7 @@
 				if(o.autoStart){clearInterval(sliderIntervalID);}
 			} return false;
 		});
+		
 
 		if (o.containerClick) {
 			$(o.container ,obj).click(function(){

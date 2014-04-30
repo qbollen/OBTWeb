@@ -27,7 +27,7 @@
             <tr>
                 <td>文章标题:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="tbxTitle" runat="server" TabIndex="2"></asp:TextBox>
+                    <asp:TextBox ID="tbxTitle" runat="server" TabIndex="2" MaxLength="45"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
                         runat="server" ControlToValidate="tbxTitle"
                          ErrorMessage="文章标题不能为空."
@@ -37,23 +37,22 @@
             <tr>
                 <td>文章作者:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="tbxAuthor" runat="server" TabIndex="3"></asp:TextBox>
+                    <asp:TextBox ID="tbxAuthor" runat="server" TabIndex="3" MaxLength="20"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>文章来源:</td>
                 <td colspan="2">
-                    <asp:TextBox id="tbxFrom" runat="server" TabIndex="4"></asp:TextBox>
+                    <asp:TextBox id="tbxFrom" runat="server" TabIndex="4" MaxLength="50"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>文章图片:</td>
                 <td>
-                    <asp:TextBox ID="tbxImage" runat="server" TabIndex="5"></asp:TextBox>
+                    <asp:TextBox ID="tbxImage" runat="server" TabIndex="5" MaxLength="100"></asp:TextBox>
                 </td>
                 <td>
-                    注:请输入图片URL，留空系统会使用您上传的第一张图片作为文章图片.
-                </td>
+                    注:请输入图片URL,如果为空，将从内容中提取。</td>
             </tr>
             <tr>
                 <td>文章推荐:</td>

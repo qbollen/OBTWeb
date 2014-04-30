@@ -1,33 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Web.Master" AutoEventWireup="true"
     CodeBehind="ProductShow.aspx.cs" Inherits="ORBITA.UI.ProductShow" %>
 
+<%@ Register Src="~/Controls/ProductClassLeft.ascx" TagPrefix="uc1" TagName="ProductClassLeft" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Css/web.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="side_box">
-        <h2>Product Category</h2>
-        <asp:ObjectDataSource ID="ObjectDataSourceProductClass" runat="server"
-            OldValuesParameterFormatString="original_{0}" SelectMethod="GetTree"
-            TypeName="ORBITA.BLL.ProductClassManage"></asp:ObjectDataSource>
-        <div class="side_con">
-            <asp:ListView runat="server" ID="ListViewProductClass"
-                DataSourceID="ObjectDataSourceProductClass">
-                <LayoutTemplate>
-                    <ul runat="server">
-                        <li id="itemPlaceHolder" runat="server"></li>
-                    </ul>
-                </LayoutTemplate>
-
-                <ItemTemplate>
-                    <li runat="server">
-                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# "ProductList.aspx?id=" + Eval("pc_id") %>'
-                            Text='<%# Eval("pc_name") %>'></asp:HyperLink>
-                    </li>
-                </ItemTemplate>
-            </asp:ListView>
-        </div>
-    </div>
+    <uc1:ProductClassLeft runat="server" ID="ProductClassLeft" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="ProductInfo">

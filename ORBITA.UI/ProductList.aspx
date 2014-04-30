@@ -1,36 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Web.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ORBITA.UI.ProductList" %>
 <%@ Register assembly="AspNetPager" namespace="Wuqi.Webdiyer" tagprefix="webdiyer" %>
+<%@ Register Src="~/Controls/ProductClassLeft.ascx" TagPrefix="uc1" TagName="ProductClassLeft" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Css/web.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="side_box">
-        <h2>Product Categories</h2>
-        <asp:ObjectDataSource ID="ObjectDataSourceProductClass" runat="server"
-            OldValuesParameterFormatString="original_{0}" SelectMethod="GetTree"
-            TypeName="ORBITA.BLL.ProductClassManage"></asp:ObjectDataSource>
-        <div class="side_con">
-            <asp:ListView runat="server" ID="ListViewProductClass"
-                DataSourceID="ObjectDataSourceProductClass">
-                <LayoutTemplate>
-                    <ul runat="server">
-                        <li id="itemPlaceHolder" runat="server"></li>
-                    </ul>
-                </LayoutTemplate>
-
-                <ItemTemplate>
-                    <li runat="server">
-                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# "ProductList.aspx?id=" + Eval("pc_id") %>'
-                            Text='<%# Eval("pc_name") %>'></asp:HyperLink>
-                    </li>
-                </ItemTemplate>
-            </asp:ListView>
-        </div>
-    </div>
+    <uc1:ProductClassLeft runat="server" id="ProductClassLeft" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="productList">
-        <h1><a href="ProductList.aspx">Product List</a> <%=pcnav%></h1>
+        <h1>Product List<%=pcnav%></h1>
         <div class="list">
             <asp:ListView ID="ListViewProduct" runat="server" DataKeyNames="prod_id" DataSourceID="ObjectDataSourceProduct" GroupItemCount="3">
                 <LayoutTemplate>
@@ -51,9 +31,9 @@
                                     <asp:Image ID="imgProd" runat="server" ImageUrl='<%# Eval("prod_image") %>'
                                         AlternateText='<%# Eval("prod_name") %>' CssClass="imgProduct" /></a>
                             </li>
-                            <li class="model">Model:
+                            <li class="model">
                                 <asp:Label ID="prod_numberLabel" runat="server"
-                                    Text='<%# Eval("prod_number") %>' CssClass="LabelStyle" />
+                                    Text='<%# "Model:&nbsp;" + Eval("prod_number") %>' CssClass="LabelStyle" />
                             </li>
                         </ul>
                     </li>

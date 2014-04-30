@@ -32,23 +32,23 @@ namespace ORBITA.UI.Controls
 
             DataSet ds = ProductClassManage.GetTree();
 
-            if (ds.Tables["T_ProductClass"].Rows.Count == 0)
+            if (ds.Tables["ProductClass"].Rows.Count == 0)
             {
                 Response.Write("<script type='text/javascript'>alert('请先填加产品分类!');document.location.href='ProductClassAdd.aspx'</script>");
             }
 
             string strName = null;
 
-            for (int i = 0; i < ds.Tables["T_ProductClass"].Rows.Count; i++)
+            for (int i = 0; i < ds.Tables["ProductClass"].Rows.Count; i++)
             {
                 strName = null;
-                for (int j = 0; j < Convert.ToInt32(ds.Tables["T_ProductClass"].Rows[i]["depth"]); j++)
+                for (int j = 0; j < Convert.ToInt32(ds.Tables["ProductClass"].Rows[i]["depth"]); j++)
                 {
                     strName = strName + (char)0xa0 + (char)0xa0 + (char)0xa0;
                 }
-                strName = strName + ">" + ds.Tables["T_ProductClass"].Rows[i]["pc_name"].ToString();
+                strName = strName + ">" + ds.Tables["ProductClass"].Rows[i]["pc_name"].ToString();
 
-                ListItem li = new ListItem(strName, ds.Tables["T_ProductClass"].Rows[i]["pc_id"].ToString());
+                ListItem li = new ListItem(strName, ds.Tables["ProductClass"].Rows[i]["pc_id"].ToString());
 
                 this.DropDownListTree.Items.Insert(i, li);
             }

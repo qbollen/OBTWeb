@@ -136,11 +136,16 @@ namespace ORBITA.BLL
 
             if (myArticleClass.ac_id > 0)
             {
-                str = " >> " + string.Format("<a href='ArticleList.aspx?id={0}'>{1}</a>", myArticleClass.ac_id, myArticleClass.ac_name)
+                str = " > " + string.Format("<a href='ArticleList.aspx?id={0}'>{1}</a>", myArticleClass.ac_id, myArticleClass.ac_name)
                     + str;
                 str = ArticleClassNav(myArticleClass.parent_id, str);
             }
             return str;
+        }
+
+        public static bool IsParentClass(int ac_id)
+        {
+            return ArticleClassService.GetParentClassList().Contains(ac_id);
         }
 
         #endregion

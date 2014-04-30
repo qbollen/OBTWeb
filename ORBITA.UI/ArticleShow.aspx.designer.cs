@@ -13,22 +13,31 @@ namespace ORBITA.UI {
     public partial class ArticleShow {
         
         /// <summary>
-        /// lblTitle control.
+        /// ArticleClassLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
+        protected global::ORBITA.UI.Controls.ArticleClassLeft ArticleClassLeft;
         
         /// <summary>
-        /// lblDate control.
+        /// litTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDate;
+        protected global::System.Web.UI.WebControls.Literal litTitle;
+        
+        /// <summary>
+        /// lblSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSource;
         
         /// <summary>
         /// lblAuthor control.
@@ -40,22 +49,22 @@ namespace ORBITA.UI {
         protected global::System.Web.UI.WebControls.Label lblAuthor;
         
         /// <summary>
-        /// lblFrom control.
+        /// lblDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFrom;
+        protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
-        /// lblClick control.
+        /// lblBrowse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClick;
+        protected global::System.Web.UI.WebControls.Label lblBrowse;
         
         /// <summary>
         /// lblContent control.

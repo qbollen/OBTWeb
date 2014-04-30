@@ -21,7 +21,7 @@ namespace ORBITA.UI.Admin
         {
             if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                LinkButton lb = (LinkButton)e.Item.FindControl("lbtDelte");
+                LinkButton lb = (LinkButton)e.Item.FindControl("lbtDelete");
                 Label lbl = (Label)e.Item.FindControl("lblBlank");
 
                 DataRow row = (DataRow)((DataRowView)e.Item.DataItem).Row;
@@ -33,8 +33,8 @@ namespace ORBITA.UI.Admin
                         lbl.Text = lbl.Text + "&nbsp;&nbsp;&nbsp;&nbsp;";
                     }
                 }
-                lb.OnClientClick = string.Format("return confirm('你确认要删除 \"{0}\" 这个分类吗？');"
-                    ,row["ac_name"].ToString().Replace("'",@"\'"));
+                lb.OnClientClick =
+                    string.Format("return confirm('你确认要删除 \"{0}\" 这个分类吗？');", row["ac_name"].ToString().Replace("'", @"\'"));
 
             }
         }
