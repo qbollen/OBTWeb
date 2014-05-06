@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using ORBITA.BLL;
+
 using ORBITA.Model;
 
 namespace UnitTestProject
@@ -12,7 +12,7 @@ namespace UnitTestProject
         [TestMethod]
         public void TestMethod1()
         {
-            ArticleCollection list = ArticleManage.GetList(0);
+            
         }
     }
 }

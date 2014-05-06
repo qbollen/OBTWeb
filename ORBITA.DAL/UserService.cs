@@ -48,11 +48,12 @@ namespace ORBITA.DAL
         public static UserCollection GetList()
         {
             UserCollection list = new UserCollection();
+            string sql = "SELECT * FROM t_users";
             using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_user_select_list",myConnection))
+                using(MySqlCommand myCommand = new MySqlCommand(sql,myConnection))
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandType = CommandType.Text;
                     myConnection.Open();
                     using(MySqlDataReader myReader = myCommand.ExecuteReader())
                     {

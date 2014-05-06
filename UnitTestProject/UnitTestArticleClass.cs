@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using ORBITA.BLL;
+
 using ORBITA.Model;
+using ORBITA.DAL;
 
 namespace UnitTestProject
 {
@@ -12,7 +13,9 @@ namespace UnitTestProject
         [TestMethod]
         public void TestGetList()
         {
-            ProductCollection list = ProductManage.GetCommend();
+            User user = new User();
+            user.UID = 1;
+            User myuser = UserService.GetItem(user);
         }
        
 

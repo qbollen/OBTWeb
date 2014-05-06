@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ORBITA.BLL\ORBITA.BLL.csproj">
-      <Project>{a4daf1a8-3c73-4084-8920-3b343497a371}</Project>
-      <Name>ORBITA.BLL</Name>
+    <ProjectReference Include="..\ORBITA.DAL\ORBITA.DAL.csproj">
+      <Project>{23310e2b-88a0-4807-a749-fb67cb0d69a4}</Project>
+      <Name>ORBITA.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ORBITA.Model\ORBITA.Model.csproj">
       <Project>{ae641b9f-1c94-4e4e-9bf1-ffbcc3860fba}</Project>

@@ -39,8 +39,9 @@
 				 * for each list element,
 				 * we show the submenu when hovering and
 				 * expand the span element (title) to 510px
-				 */
-                $menu.children('li').each(function () {
+				 * with animate
+                 */
+                /*$menu.children('li').each(function () {
                     var $this = $(this);
                     var $span = $this.children('span');
                     $span.data('width', $span.width());
@@ -54,16 +55,28 @@
                         $this.find('.ldd_submenu').stop(true, true).hide();
                         $span.stop().animate({ 'color': '#000000' }, 200);
                     });
+                });*/
+
+                $menu.children('li').each(function () {
+                var $this = $(this);
+                var $span = $this.children('span');
+                $span.data('width', $span.width());
+                $this.bind('mouseenter', function () {                
+                    $this.find('.ldd_submenu').slideDown(200);        
+                }).bind('mouseleave', function () {
+                    $this.find('.ldd_submenu').hide();
                 });
+            });
+                
             });
         </script>
     
     <div id="topnav">
 			<ul id="ldd_menu" class="ldd_menu">
-				<li>
+				<li class="title">
 					<span class="nosubmenu"><a href="index.aspx">HOME</a></span><!-- Increases to 510px in width-->
 				</li>
-				<li>
+				<li class="title">
 					<span class="nosubmenu"><a href="ArticleList.aspx">NEWS</a></span>
 					<div class="ldd_submenu">
 
@@ -97,7 +110,7 @@
                         </asp:ObjectDataSource>
 					</div>
 				</li>
-				<li>
+				<li class="title">
 					<span class="nosubmenu"><a href="ProductList.aspx?id=49">PRODUCTS</a></span>
 					<div class="ldd_submenu">
                         <asp:ListView ID="ListViewProductClass" runat="server"
@@ -120,10 +133,10 @@
                               
 
 
-                        	<ul>
+<%--                        	<ul>
 							<li class="ldd_heading">E3010</li>
 							<li class="recommend"><img src="../images/E3010.png"></li>
-						</ul>
+						</ul>--%>
 
 						<a class="ldd_subfoot" href="#"> + Product List</a>
 
@@ -137,10 +150,10 @@
 
 					</div>
 				</li>
-				<li>
+				<li class="title">
 					<span class="nosubmenu"><a href="case.aspx">REFERENCE</a></span>
 				</li>
-				<li>
+				<li class="title">
 					<span>SERVICE</span>
 					<div class="ldd_submenu">
 						<ul>
@@ -161,7 +174,7 @@
                         <a class="ldd_subfoot" href="#"> + Service</a>
 					</div>
 				</li>
-				<li>
+				<li class="title">
 					<span class="nosubmenu"><a href="contact.aspx">CONTACT US</a></span>
 				</li>
 			</ul>

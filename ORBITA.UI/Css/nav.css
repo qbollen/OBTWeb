@@ -27,11 +27,11 @@
 #topnav ul.ldd_menu a{
 	text-decoration:none;
 }
-#topnav ul.ldd_menu > li{
+#topnav ul.ldd_menu li.title{
 	float:left;
 	position:relative;
 }
-#topnav ul.ldd_menu > li > span{
+#topnav ul.ldd_menu li.title span{
 	float:left;
 	color:#fff;
 	background-color:#D04528;
@@ -44,14 +44,14 @@
 	border-left:1px solid #C44D37;*/
 }
 
-#topnav ul.ldd_menu > li > span.nosubmenu a{
+#topnav ul.ldd_menu li.title span.nosubmenu a{
 	color:#fff;
 }
 
 #topnav ul.ldd_menu .ldd_submenu{
 	position:absolute;
 	top:40px;
-	width:460px;
+	width:350px;
 	display:none;
 	opacity:0.95;
 	left:0px;

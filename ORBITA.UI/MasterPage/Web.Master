@@ -17,6 +17,7 @@
 <body>
     <form id="form1" runat="server">
         <uc1:top ID="top1" runat="server" />
+        <div class="clear"></div>
         <div class="wrapper col8">
 
             <div id="web">

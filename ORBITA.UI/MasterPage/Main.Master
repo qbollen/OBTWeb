@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="ORBITA.UI.MasterPage.Main" %>
 <%@ Register Src="~/Controls/top.ascx" TagPrefix="uc1" TagName="top" %>
 <%@ Register Src="~/Controls/foot.ascx" TagPrefix="uc1" TagName="foot" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>

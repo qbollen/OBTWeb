@@ -290,9 +290,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 #homecontent #news .imgcontainer{
 	float: left;
-	width:80px;
+	width: 80px;
 	height: 80px;
-	margin: 0 15px 0 0 ;
+	margin: 0 15px 0 0;
 }
 
 #homecontent #news .imgcontainer .image{
@@ -300,8 +300,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 }
 
 #homecontent #news .centcontainer{
-	float: left;
-	width: 290px;
+	float: left
+	width: 280px;
 }
 
 #homecontent #news .centcontainer h1{
@@ -390,7 +390,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
     .prodbox #loopedSlider ul.list {margin:0; padding:0;}
     .prodbox #loopedSlider ul.list li {display:block; float:left; width:140px; margin:0 5px;}
     /*.prodbox #loopedSlider ul.list li*/
-    .imgcommend {display:block; width:140px; height:140px; }
+    .imgcommend {display:block; width:130px; height:130px; }
     .prodbox #loopedSlider .previous {position:absolute; top:58px; left:0;}
     .prodbox #loopedSlider .next {position:absolute; top:58px; right:0;}
     .prodbox #loopedSlider .pagination {position:absolute; bottom:0; left:425px;}
