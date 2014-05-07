@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ORBITA.Model;
 using System.Data;
+
 using MySql.Data.MySqlClient;
 
 namespace ORBITA.DAL
@@ -48,28 +49,17 @@ namespace ORBITA.DAL
         public static UserCollection GetList()
         {
             UserCollection list = new UserCollection();
-            string sql = "SELECT * FROM t_users";
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql = "select * from T_Users";
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql);
+            if (reader.HasRows)
             {
-                using(MySqlCommand myCommand = new MySqlCommand(sql,myConnection))
+                list = new UserCollection();
+                while (reader.Read())
                 {
-                    myCommand.CommandType = CommandType.Text;
-                    myConnection.Open();
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            list = new UserCollection();
-                            while(myReader.Read())
-                            {
-                                list.Add(FillDataRecord(myReader));
-                            }
-                        }
-
-                        myReader.Close();
-                    }
+                    list.Add(FillDataRecord(reader));
                 }
             }
+            reader.Close();
 
             return list;
         }
@@ -81,46 +71,48 @@ namespace ORBITA.DAL
         /// <returns>User模型 包含一条用户记录.</returns>
         public static User GetItem(User myUser)
         {
-            User tempUser = new User();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql;
+
+            MySqlParameter[] parms = null;
+
+            if (myUser.UID > 0)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_user_select_item", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    if (myUser.UID > 0)
-                    {
-                        myCommand.Parameters.AddWithValue("_uid", myUser.UID);
-                        myCommand.Parameters.AddWithValue("_username", DBNull.Value);
-                        myCommand.Parameters.AddWithValue("_password", DBNull.Value);
-                    }
-                    else if(!string.IsNullOrEmpty(myUser.UserName) && !string.IsNullOrEmpty(myUser.Pwd))
-                    {
-                        myCommand.Parameters.AddWithValue("_uid", 0);
-                        myCommand.Parameters.AddWithValue("_username", myUser.UserName);
-                        myCommand.Parameters.AddWithValue("_password", myUser.Pwd);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_uid", 0);
-                        myCommand.Parameters.AddWithValue("_username", myUser.UserName);
-                        myCommand.Parameters.AddWithValue("_password", DBNull.Value);
-                    }
-                    myConnection.Open();
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            if (myReader.Read())
-                            {
-                                tempUser = FillDataRecord(myReader);
-                            }
-                        }
-                        myReader.Close();
-                    }
-                }
+                sql = "select * from T_Users where uid=?uid";
+                parms = new MySqlParameter[] { new MySqlParameter("?uid", MySqlDbType.Int32) };
+                parms[0].Value = myUser.UID;
+            }
+            else if(!string.IsNullOrEmpty(myUser.UserName) && !string.IsNullOrEmpty(myUser.Pwd))
+            {
+                sql = "select * from T_Users where username=?username and password=?pwd";
+                parms = new MySqlParameter[] { 
+                                                new MySqlParameter("?username",MySqlDbType.VarChar),
+                                                new MySqlParameter("?pwd",MySqlDbType.VarChar)
+                                             };
+                parms[0].Value = myUser.UserName;
+                parms[1].Value = myUser.Pwd;
+            }
+            else
+            {
+                sql = "select * from T_Users where username=?username";
+                parms = new MySqlParameter[] { new MySqlParameter("?username", MySqlDbType.VarChar) };
+                parms[0].Value = myUser.UserName;
             }
 
-            return tempUser;
+            User user = new User();
+
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
+
+            if (reader.HasRows)
+            {
+                if (reader.Read())
+                {
+                    user = FillDataRecord(reader);
+                }
+            }
+            reader.Close();
+
+            return user;
+
         }
 
         /// <summary>
@@ -131,16 +123,11 @@ namespace ORBITA.DAL
         public static bool Delete(int uid)
         {
             int result = 0;
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_user_delete_single_item", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_uid", uid);
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
-            }
+            string sql = "delete from T_Users where uid=?uid";
+            MySqlParameter[] parms = { new MySqlParameter("?uid", MySqlDbType.Int32) };
+            parms[0].Value = uid;
+            result = DbHelper.ExecuteNonQuery(sql, parms);
+
             return result > 0;
         }
 
@@ -152,30 +139,33 @@ namespace ORBITA.DAL
         public static bool Update(User myUser)
         {
             int result = 0;
-            
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_user_update_single_item", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_uid", myUser.UID);
-                    if (!string.IsNullOrEmpty(myUser.Pwd))
-                    {
-                        myCommand.Parameters.AddWithValue("_password", myUser.Pwd);
-                        myCommand.Parameters.AddWithValue("_login_ip", DBNull.Value);
-                        myCommand.Parameters.AddWithValue("_login_date", DBNull.Value);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_password", DBNull.Value);
-                        myCommand.Parameters.AddWithValue("_login_ip", myUser.Login_IP);
-                        myCommand.Parameters.AddWithValue("_login_date", myUser.Login_Date);
-                    }
+            string sql;
 
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
+            MySqlParameter[] parms = null;
+
+            if (!string.IsNullOrEmpty(myUser.Pwd))
+            {
+                sql = "update T_Users set password=?pwd where uid=?uid";
+                parms = new MySqlParameter[]{   
+                                                 new MySqlParameter("?pwd",MySqlDbType.VarChar),
+                                                 new MySqlParameter("?uid",MySqlDbType.Int32)
+                                            };
+                parms[0].Value = myUser.Pwd;
+                parms[1].Value = myUser.UID;
             }
+            else
+            {
+                sql = "update T_Users set login_ip=?login_ip, login_date=?login_date where uid=?uid";
+                parms = new MySqlParameter[] { 
+                                                 new MySqlParameter("?login_ip",MySqlDbType.VarChar),
+                                                 new MySqlParameter("?login_date",MySqlDbType.Date),
+                                                 new MySqlParameter("?uid",MySqlDbType.Int32)
+                                              };
+                parms[0].Value = myUser.Login_IP;
+                parms[1].Value = myUser.Login_Date;
+                parms[2].Value = myUser.UID;   
+            }
+            result = DbHelper.ExecuteNonQuery(sql, parms);
 
             return result > 0;
         }
@@ -188,25 +178,36 @@ namespace ORBITA.DAL
         public static bool Insert(User myUser)
         {
             int result = 0;
-            
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_user_insert", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
+            string sql = @"	INSERT INTO T_Users
+		                                (
+			                                username, 
+			                                password, 
+			                                joindate, 
+			                                login_ip, 
+			                                login_date	
+		                                )
+	                                VALUES
+		                                (
+			                                ?username, 
+			                                ?pwd, 
+			                                ?joindate, 
+			                                ?login_ip, 
+			                                ?login_date
+		                                )";
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?username",MySqlDbType.VarChar),
+                                        new MySqlParameter("?pwd",MySqlDbType.VarChar),
+                                        new MySqlParameter("?joindate",MySqlDbType.Date),
+                                        new MySqlParameter("?login_ip",MySqlDbType.VarChar),
+                                        new MySqlParameter("?login_date",MySqlDbType.Date)                                        
+                                     };
+            parms[0].Value = myUser.UserName;
+            parms[1].Value = myUser.Pwd;
+            parms[2].Value = myUser.JoinDate;
+            parms[3].Value = myUser.Login_IP;
+            parms[4].Value = myUser.Login_Date;
 
-                    myCommand.Parameters.AddWithValue("_username", myUser.UserName);
-                    myCommand.Parameters.AddWithValue("_password", myUser.Pwd);
-                    myCommand.Parameters.AddWithValue("_joindate", myUser.JoinDate);
-                    myCommand.Parameters.AddWithValue("_login_ip", myUser.Login_IP);
-                    myCommand.Parameters.AddWithValue("_login_date", myUser.Login_Date);
-
-                    myConnection.Open();
-
-                    result = myCommand.ExecuteNonQuery();
-
-                }
-            }
+            result = DbHelper.ExecuteNonQuery(sql,parms);
 
             return result > 0;
         }
@@ -224,18 +225,18 @@ namespace ORBITA.DAL
         {
             User myUser = new User();
 
-            myUser.UID = myDataRecord.GetInt32(myDataRecord.GetOrdinal("UID"));
-            myUser.UserName = myDataRecord.GetString(myDataRecord.GetOrdinal("UserName"));
+            myUser.UID = myDataRecord.GetInt32(myDataRecord.GetOrdinal("uid"));
+            myUser.UserName = myDataRecord.GetString(myDataRecord.GetOrdinal("username"));
             myUser.Pwd = myDataRecord.GetString(myDataRecord.GetOrdinal("password"));
-            myUser.JoinDate = myDataRecord.GetDateTime(myDataRecord.GetOrdinal("JoinDate"));
+            myUser.JoinDate = myDataRecord.GetDateTime(myDataRecord.GetOrdinal("joindate"));
 
-            if(!myDataRecord.IsDBNull(myDataRecord.GetOrdinal("Login_IP")))
+            if(!myDataRecord.IsDBNull(myDataRecord.GetOrdinal("login_ip")))
             {
-                myUser.Login_IP = myDataRecord.GetString(myDataRecord.GetOrdinal("Login_IP"));
+                myUser.Login_IP = myDataRecord.GetString(myDataRecord.GetOrdinal("login_ip"));
             }
-            if (!myDataRecord.IsDBNull(myDataRecord.GetOrdinal("Login_Date")))
+            if (!myDataRecord.IsDBNull(myDataRecord.GetOrdinal("login_date")))
             {
-                myUser.Login_Date = myDataRecord.GetDateTime(myDataRecord.GetOrdinal("Login_Date"));
+                myUser.Login_Date = myDataRecord.GetDateTime(myDataRecord.GetOrdinal("login_date"));
             }
 
             return myUser;

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Common;
-using System.Data.OleDb;
 using System.Data;
+
+using MySql.Data.MySqlClient;
 
 namespace ORBITA.DAL
 {
     public sealed class DbHelper
-    {
-        private static string _connection;
+    {       
 
         public static string Connection
         {
@@ -31,12 +31,12 @@ namespace ORBITA.DAL
         /// <param name="sql">sql 语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>受影响的行数.</returns>
-        public static int ExecuteNonQuery(string sql, params OleDbParameter[] parameters)
+        public static int ExecuteNonQuery(string sql, params MySqlParameter[] parameters)
         {
-            using (OleDbConnection conn = new OleDbConnection(Connection))
+            using (MySqlConnection conn = new MySqlConnection(Connection))
             {
                 conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
+                MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.CommandText = sql;
                 if ((parameters != null) && (parameters.Length > 0))
@@ -56,11 +56,11 @@ namespace ORBITA.DAL
         /// <param name="tablename">指定DataSet中的表，不指定传null</param>
         /// <param name="parameters">参数</param>
         /// <returns>返回DataSet</returns>
-        public static DataSet ExecuteDataSet(string sql, string tablename, params OleDbParameter[] parameters)
+        public static DataSet ExecuteDataSet(string sql, string tablename, params MySqlParameter[] parameters)
         {
-            using (OleDbConnection conn = new OleDbConnection(Connection))
+            using (MySqlConnection conn = new MySqlConnection(Connection))
             {
-                OleDbCommand cmd = new OleDbCommand(sql, conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 conn.Open();
                 if ((parameters != null) && (parameters.Length > 0))
                 {
@@ -69,7 +69,7 @@ namespace ORBITA.DAL
                 }
 
                 DataSet ds = new DataSet();
-                OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 if (tablename != null)
                 {
                     adapter.Fill(ds, tablename);
@@ -89,10 +89,10 @@ namespace ORBITA.DAL
         /// <param name="sql">sql语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>返回OleDbDataReader</returns>
-        public static OleDbDataReader ExecuteDataReader(string sql, params OleDbParameter[] parameters)
+        public static MySqlDataReader ExecuteDataReader(string sql, params MySqlParameter[] parameters)
         {
-            OleDbConnection conn = new OleDbConnection(Connection);
-            OleDbCommand cmd = new OleDbCommand(sql, conn);
+            MySqlConnection conn = new MySqlConnection(Connection);
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
             conn.Open();
             if ((parameters != null) && (parameters.Length > 0))
             {
@@ -109,11 +109,11 @@ namespace ORBITA.DAL
         /// <param name="sql">sql语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>返回object类型单值</returns>
-        public static object ExecuteScalar(string sql, params OleDbParameter[] parameters)
+        public static object ExecuteScalar(string sql, params MySqlParameter[] parameters)
         {
-            using (OleDbConnection conn = new OleDbConnection(Connection))
+            using (MySqlConnection conn = new MySqlConnection(Connection))
             {
-                OleDbCommand cmd = new OleDbCommand(sql, conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 conn.Open();
                 if ((parameters != null) && (parameters.Length > 0))
                 {

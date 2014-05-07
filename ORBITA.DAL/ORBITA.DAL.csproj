@@ -47,7 +47,9 @@
     <Compile Include="ArticleClassService.cs" />
     <Compile Include="ArticleService.cs" />
     <Compile Include="DbHelper.cs" />
-    <Compile Include="ProductClassService.cs" />
+    <Compile Include="ProductClassService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PubConstant.cs" />

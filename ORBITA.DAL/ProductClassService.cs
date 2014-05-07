@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using ORBITA.Model;
 using System.Data;
-using System.Data.OleDb;
+
 using MySql.Data.MySqlClient;
-using System.Collections;
 
 namespace ORBITA.DAL
 {
@@ -19,29 +18,21 @@ namespace ORBITA.DAL
 
         ///<summary>查询产品分类 所有数据</summary>
         ///<returns>ProductClassCollection 包含所有记录.</returns>
-        public static ProductClassCollection GetList()
+        public static ProductClassCollection GetList
+            ()
         {
-            ProductClassCollection list = new ProductClassCollection();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            ProductClassCollection list = null;
+            string sql = "SELECT * FROM T_ProductClass";
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql);
+            if (reader.HasRows)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_select_list", myConnection))
+                list = new ProductClassCollection();
+                while (reader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myConnection.Open();
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            list = new ProductClassCollection();
-                            while(myReader.Read())
-                            {
-                                list.Add(FillDataRecord(myReader));
-                            }
-                        }
-                        myReader.Close();
-                    }
+                    list.Add(FillDataRecord(reader));
                 }
             }
+            reader.Close();
 
             return list;
         }
@@ -51,37 +42,33 @@ namespace ORBITA.DAL
         ///<returns>ProductClassCollection包含条件查询的记录</returns>
         public static ProductClassCollection GetListByParentId(int parent_id)
         {
+            string sql;
             ProductClassCollection list = new ProductClassCollection();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+
+            MySqlParameter[] parms = null;
+
+            if (parent_id > 0)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_select_list_by_parentid", myConnection))
+                sql = "SELECT * FROM T_ProductClass WHERE Parent_Id=?Parent_Id ORDER BY PC_Order, PC_Id";
+                parms = new MySqlParameter[] { new MySqlParameter("?Parent_Id", MySqlDbType.Int32) };
+                parms[0].Value = parent_id;
+                
+            }
+            else
+            {
+                sql = "SELECT * FROM T_ProductClass WHERE Parent_Id IS NULL ORDER BY PC_Order, PC_Id";
+            }
+
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
+            if (reader.HasRows)
+            {
+                while (reader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-
-                    if (parent_id > 0)
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", parent_id);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", DBNull.Value);
-                    }
-
-                    myConnection.Open();
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            list = new ProductClassCollection();
-                            while(myReader.Read())
-                            {
-                                list.Add(FillDataRecord(myReader));
-                            }
-                        }
-                        myReader.Close();
-                    }
+                    list.Add(FillDataRecord(reader));
                 }
             }
+            reader.Close();
+
             return list;
 
         }
@@ -92,28 +79,20 @@ namespace ORBITA.DAL
         public static ProductClass GetItem(int pc_id)
         {
             ProductClass myProductClass = new ProductClass();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql = "SELECT * FROM T_ProductClass WHERE PC_Id=?PC_Id";
+            MySqlParameter[] parms = { new MySqlParameter("?PC_Id", MySqlDbType.Int32)};
+            parms[0].Value = pc_id;
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
+            if (reader.HasRows)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_select_item",myConnection))
+                if (reader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-
-                    myCommand.Parameters.AddWithValue("_pc_id", pc_id);
-                    myConnection.Open();
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            if (myReader.Read())
-                            {
-                                myProductClass = FillDataRecord(myReader);
-                            }
-                        }
-
-                        myReader.Close();
-                    }
+                    myProductClass = FillDataRecord(reader);
                 }
             }
+
+            reader.Close();
+
             return myProductClass;
 
         }
@@ -122,20 +101,17 @@ namespace ORBITA.DAL
         ///<returns>DataSet 包含产品分类树记录.</returns>
         public static DataSet GetTree()
         {
-            DataSet ds = new DataSet();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlDataAdapter myAdapter = new MySqlDataAdapter())
-                {
-                    MySqlCommand myCommand = new MySqlCommand("sproc_product_class_get_tree", myConnection);
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myAdapter.SelectCommand = myCommand;
+            string sql = @"select pc_id, pc_name, parent_id, 0 as depth,right(concat('0000' , cast(pc_order as char(50))),4) as sort 
+	                        from t_productclass 
+	                        where parent_Id is null 
+	                        union all 
+	                        select p.pc_id,p.pc_name,p.parent_id,depth+1,concat(sort , ', ' , right(concat('0000' , cast(p.pc_order as char(50))),4)) 
+	                        from T_ProductClass p 
+	                        inner join (select pc_id, pc_name, parent_id, 0 as depth,right(concat('0000' , cast(pc_order as char(50))),4) as sort 
+	                        from T_ProductClass where Parent_Id is null) t on p.Parent_Id = t.pc_id 
+	                        order by sort;";
+            return DbHelper.ExecuteDataSet(sql,"ProductClass");
 
-                    myAdapter.Fill(ds, "ProductClass");
-                }
-            }
-
-            return ds;
         }
 
         ///<summary>删除一条产品分类记录</summary>
@@ -144,16 +120,56 @@ namespace ORBITA.DAL
         public static bool Delete(int pc_id)
         {
             int result = 0;
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            int? parent_id = null;
+            int order = 0;
+            int pcid, pcorder;
+            string sql = "select parent_id from T_ProductClass where pc_id=?pc_id";
+            MySqlParameter[] parms = { new MySqlParameter("?pc_id", MySqlDbType.Int32) };
+            parms[0].Value = pc_id;
+            parent_id = DbHelper.ExecuteScalar(sql, parms) as int?;
+
+            sql = "delete from T_ProductClass where pc_id=?pc_id";
+            MySqlParameter[] parms2 = { new MySqlParameter("?pc_id",MySqlDbType.Int32) };
+            parms2[0].Value = pc_id;
+            result = DbHelper.ExecuteNonQuery(sql, parms2);
+
+            if (result != 0)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_delete_single_item", myConnection))
+                //重置pc_order
+                MySqlParameter[] parms3 = null;
+                if (parent_id == null)
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_pc_id", pc_id);
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
+                    sql = "select pc_id,pc_order from T_ProductClass where parent_id is null order by pc_order";
                 }
+                else
+                {
+                    sql = "select pc_id,pc_order from T_ProductClass where parent_id=?parent_id order by pc_order";
+                    parms3 = new MySqlParameter[] { new MySqlParameter("?parent_id", MySqlDbType.Int32) };
+                    parms3[0].Value = parent_id;
+                }
+
+                order = 0;
+
+                MySqlDataReader reader = DbHelper.ExecuteDataReader(sql, parms3);
+                while (reader.Read())
+                {
+                    pcid = reader.GetInt32(reader.GetOrdinal("pc_id"));
+                    pcorder = reader.GetInt32(reader.GetOrdinal("pc_order"));
+
+                    order = order + 1;
+
+                    sql = "update T_ProductClass set pc_order = ?pc_order where pc_id = ?pc_id";
+                    MySqlParameter[] params3 = { new MySqlParameter("?pc_order",MySqlDbType.Int32),
+                                                 new MySqlParameter("?pc_id",MySqlDbType.Int32)
+                                               };
+                    params3[0].Value = order;
+                    params3[1].Value = pcid;
+                    DbHelper.ExecuteNonQuery(sql, params3);
+                }
+
+                reader.Close();
             }
+
             return result > 0;
         }
 
@@ -165,18 +181,14 @@ namespace ORBITA.DAL
         public static bool Update(ProductClass myProductClass)
         {
             int result = 0;
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_update_single_item"))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_pc_id", myProductClass.PC_Id);
-                    myCommand.Parameters.AddWithValue("_pc_name", myProductClass.PC_Name);
-
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
-            }
+            string sql = "update T_ProductClass set pc_name = ?pc_name where pc_id = ?pc_id";
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?pc_name",MySqlDbType.VarChar),
+                                        new MySqlParameter("?pc_id",MySqlDbType.Int32)
+                                     };
+            parms[0].Value = myProductClass.PC_Name;
+            parms[1].Value = myProductClass.PC_Id;
+            result = DbHelper.ExecuteNonQuery(sql, parms);
 
             return result > 0;
 
@@ -190,24 +202,58 @@ namespace ORBITA.DAL
         public static bool Insert(ProductClass myProductClass)
         {
             int result = 0;
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            int? parent_id = null;
+            int pc_order;
+            string sql1,sql2;
+
+            if (myProductClass.Parent_Id > 0)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_insert", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_pc_name", myProductClass.PC_Name);
-                    if (myProductClass.Parent_Id > 0)
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", myProductClass.Parent_Id);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", DBNull.Value);
-                    }
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
+                parent_id = myProductClass.Parent_Id;
             }
+
+            MySqlParameter[] parms = null;
+            if (parent_id == null)
+            {
+                sql1 = "select count(*) from T_ProductClass where parent_id is null";
+            }
+            else
+            {
+                sql1 = "select count(*) from T_ProductClass where parent_id = ?Parent_id";
+                parms = new MySqlParameter[] { 
+                    new MySqlParameter("?Parent_id",MySqlDbType.Int32),
+                };
+                parms[0].Value = parent_id;
+            }
+
+            pc_order = Convert.ToInt32(DbHelper.ExecuteScalar(sql1, parms));
+
+
+            MySqlParameter[] params2 = null;
+            if (parent_id == null)
+            {
+                sql2 = "insert into T_ProductClass(pc_name,pc_order) values (?pc_name,?pc_order)";
+                params2 = new MySqlParameter[]{ 
+                                          new MySqlParameter("?pc_name",MySqlDbType.VarChar),
+                                          new MySqlParameter("?pc_order",MySqlDbType.Int32)
+                                       };
+                params2[0].Value = myProductClass.PC_Name;
+                params2[1].Value = pc_order + 1;
+            }
+            else
+            {
+                sql2 = "insert into T_ProductClass(pc_name,parent_id,pc_order) values (?pc_name,?parent_id,?pc_order)";
+                params2 = new MySqlParameter[]{ 
+                                          new MySqlParameter("?pc_name",MySqlDbType.VarChar),
+                                          new MySqlParameter("?parent_id",MySqlDbType.Int32),
+                                          new MySqlParameter("?pc_order",MySqlDbType.Int32)
+                                       };
+                params2[0].Value = myProductClass.PC_Name;
+                params2[1].Value = parent_id;
+                params2[2].Value = pc_order + 1;
+
+            }
+
+            result = DbHelper.ExecuteNonQuery(sql2, params2);
 
             return result > 0;
 
@@ -216,27 +262,19 @@ namespace ORBITA.DAL
         public static List<int> GetParentClassList()
         {
             List<int> list = new List<int>();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql = "SELECT parent_id FROM t_productclass WHERE parent_id IS NOT NULL GROUP BY parent_id ORDER BY parent_id";
+
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql);
+                    
+            if (reader.HasRows)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_product_class_parent_class",myConnection))
+                while(reader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myConnection.Open();
-                    using(MySqlDataReader reader = myCommand.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                             while(reader.Read())
-                             {
-                                 list.Add(reader.GetInt32("parent_id"));
-                             }
-                        }
-                        reader.Close();
-                       
-                    }
+                    list.Add(reader.GetInt32("parent_id"));
                 }
             }
-
+            reader.Close();
+                                       
             return list;
         }
 

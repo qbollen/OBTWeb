@@ -25,42 +25,66 @@ namespace ORBITA.DAL
         /// <returns>ArticleCollection include all data</returns>
         public static ArticleCollection GetList(int ac_id, int startRowIndex, int maximumRows)
         {
-            ArticleCollection tempList = new ArticleCollection();
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            int iStartRowIndex = -1;
+            int iMaximumRows = -1;
+
+            if (startRowIndex > 0 && maximumRows > 0)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_select_list", myConnection))
+                iStartRowIndex = startRowIndex;
+                iMaximumRows = maximumRows;
+            }
+
+            ArticleCollection tempList = new ArticleCollection();
+            string sql = @"SELECT
+							*
+	                        FROM 
+                            (
+                                select 
+                                   *, (select ifnull(sum(1) + 1, 1) 
+                                        from t_article 
+                                        where (?ac_id=0 or ac_id=?ac_id) and art_id > a.art_id) as row_rank
+                                from t_article a 
+                                where 
+                                ?ac_id=0
+                                or
+                                ac_id in (select ac_id from (select ac_id from t_articleclass where ac_id=?ac_id
+                                                         union all
+                                                         select p.ac_id 
+                                                         from t_articleclass p 
+                                                         inner join
+                                                         (select ac_id
+                                                         from t_articleclass
+                                                         where ac_id=?ac_id) t on p.parent_id = t.ac_id) as temp) 
+                                order by art_id desc
+                            ) 
+                            as ArticleWithRowNumbers
+                            where 
+                            ((row_rank between ?start_row_index AND ?start_row_index + ?maximum_rows - 1)
+			                            OR ?start_row_index = -1 OR ?maximum_rows = -1)";
+
+            MySqlParameter[] parms = {
+                                         new MySqlParameter("?ac_id",MySqlDbType.Int32),
+                                         new MySqlParameter("?start_row_index",MySqlDbType.Int32),
+                                         new MySqlParameter("?maximum_rows",MySqlDbType.Int32)
+                                     };
+            parms[0].Value = ac_id;
+            parms[1].Value = iStartRowIndex;
+            parms[2].Value = iMaximumRows;
+
+            
+            MySqlDataReader myReader = DbHelper.ExecuteDataReader(sql, parms);
+                 
+            if (myReader.HasRows)
+            {
+                tempList = new ArticleCollection();
+                while(myReader.Read())
                 {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    myCommand.Parameters.AddWithValue("_ac_id", ac_id);
-                    if (startRowIndex > 0 && maximumRows > 0)
-                    {
-                        myCommand.Parameters.AddWithValue("_start_row_index", startRowIndex);
-                        myCommand.Parameters.AddWithValue("_maximum_rows", maximumRows);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_start_row_index", -1);
-                        myCommand.Parameters.AddWithValue("_maximum_rows", -1);
-                    }
-
-                    myConnection.Open();
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            tempList = new ArticleCollection();
-                            while(myReader.Read())
-                            {
-                                tempList.Add(FillDataRecord(myReader));
-                            }
-                        }
-
-                        myReader.Close();
-                    }
+                    tempList.Add(FillDataRecord(myReader));
                 }
             }
 
+             myReader.Close();
+                   
             return tempList;
         }
 
@@ -71,138 +95,117 @@ namespace ORBITA.DAL
         /// <param name="iscommand"></param>
         /// <returns></returns>
 
-        public static ArticleCollection GetList(bool istop, bool iscommand)
+        public static ArticleCollection GetList(bool istop, bool iscommend)
         {
-            ArticleCollection tempList = new ArticleCollection();
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            bool bIsTop = false;
+            bool bIsCommend = false;
+
+            if (istop)
             {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_search_list", myConnection))
+                bIsTop = istop;
+            }
+            if (iscommend)
+            {
+                bIsCommend = iscommend;
+            }
+
+            ArticleCollection tempList = new ArticleCollection();
+
+            string sql = "select * from T_Article where IsTop=?IsTop and IsCommend=?IsCommend";
+
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?IsTop", MySqlDbType.Bit),
+                                        new MySqlParameter("?IsCommend", MySqlDbType.Bit)
+                                     };
+
+            parms[0].Value = bIsTop;
+            parms[0].Value = bIsCommend;
+
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql, parms);
+
+            if (reader.HasRows)
+            {
+                tempList = new ArticleCollection();
+                while (reader.Read())
                 {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    if (istop)
-                    {
-                        myCommand.Parameters.AddWithValue("_istop", istop);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_istop", DBNull.Value);
-                    }
-
-                    if (iscommand)
-                    {
-                        myCommand.Parameters.AddWithValue("_iscommand", iscommand);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_iscommand", DBNull.Value);
-                    }
-
-                    myConnection.Open();
-
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            tempList = new ArticleCollection();
-                            while (myReader.Read())
-                            {
-                                tempList.Add(FillDataRecord(myReader));
-                            }
-                        }
-
-                        myReader.Close();
-                    }
+                    tempList.Add(FillDataRecord(reader));
                 }
             }
 
+            reader.Close();
+                    
             return tempList;
         }
 
         public static ArticleCollection GetTop()
         {
             ArticleCollection list = new ArticleCollection();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql = @"SELECT * FROM t_article ORDER BY art_id DESC LIMIT 4;";
+
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql);
+                
+            if (reader.HasRows)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_get_top",myConnection))
+                while(reader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myConnection.Open();
-                    using(MySqlDataReader reader = myCommand.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while(reader.Read())
-                            {
-                                list.Add(FillDataRecord(reader));
-                            }
-                        }
-                        reader.Close();
-                    }
+                    list.Add(FillDataRecord(reader));
                 }
             }
+            reader.Close();            
+             
             return list;
         }
 
         public static Article GetItem(int art_id)
         {
             Article myArticle = new Article();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_select_item", myConnection))
-                {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_art_id", art_id);
-                    myConnection.Open();
+            string sql = @"SELECT * FROM t_article WHERE art_id = ?art_id;";	                 
+            
+            MySqlParameter[] parms = {
+                                        new MySqlParameter("?art_id", MySqlDbType.Int32)
+                                     };
 
-                    using(MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            if (myReader.Read())
-                            {
-                                myArticle = FillDataRecord(myReader);
-                            }
-                        }
-                    }
+            parms[0].Value = art_id;
+    
+            MySqlDataReader myReader = DbHelper.ExecuteDataReader(sql,parms);
+                    
+            if (myReader.HasRows)
+            {
+                if (myReader.Read())
+                {
+                    myArticle = FillDataRecord(myReader);
                 }
             }
 
+            myReader.Close();
+                                       
             return myArticle;
         }
 
         public static bool Delete(int art_id)
         {
             int result = 0;
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_delete_single_item", myConnection))
-                {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_art_id", art_id);
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
-            }
+            string sql = "DELETE FROM t_article WHERE art_id = ?art_id;";
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?art_id", MySqlDbType.Int32)
+                                     };
+            parms[0].Value = art_id;
 
+            result = DbHelper.ExecuteNonQuery(sql, parms);
+         
             return result > 0;
         }
 
         public static bool Update(int art_id)
         {
             int result = 0;
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_update_single_click", myConnection))
-                {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_art_id", art_id);
+            string sql = "UPDATE t_article SET art_click = art_click + 1 WHERE art_id = ?art_id";
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?art_id", MySqlDbType.Int32)
+                                     };
+            parms[0].Value = art_id;
 
-                    myConnection.Open();
-
-                    result = myCommand.ExecuteNonQuery();
-                }          
-            }
+            result = DbHelper.ExecuteNonQuery(sql, parms);
 
             return result > 0;
         }
@@ -210,61 +213,115 @@ namespace ORBITA.DAL
         public static bool Update(Article myArticle)
         {
             int result = 0;
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_update_single_item", myConnection))
-                {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            string sql = @"UPDATE 
+		                    t_article
+	                        SET
+		                        art_title = ?art_title, 
+		                        art_author = ?art_author, 
+		                        art_from = ?art_from, 
+		                        art_content = ?art_content, 
+		                        art_description = ?art_description, 
+		                        art_image = ?art_image, 
+		                        art_date = ?art_date, 
+		                        istop = ?istop, 
+		                        iscommend = ?iscommend, 
+		                        ac_id = ?ac_id
+	                        WHERE
+		                        art_id = ?art_id;";
 
-                    myCommand.Parameters.AddWithValue("_art_id", myArticle.art_id);
-                    myCommand.Parameters.AddWithValue("_art_title", myArticle.art_title);
-                    myCommand.Parameters.AddWithValue("_art_author", myArticle.art_author);
-                    myCommand.Parameters.AddWithValue("_art_from", myArticle.art_from);
-                    myCommand.Parameters.AddWithValue("_art_content", myArticle.art_content);
-                    myCommand.Parameters.AddWithValue("_art_description", myArticle.art_description);
-                    myCommand.Parameters.AddWithValue("_art_date", myArticle.art_date);
-                    myCommand.Parameters.AddWithValue("_art_image", myArticle.art_image);
-                    myCommand.Parameters.AddWithValue("_istop", myArticle.istop);
-                    myCommand.Parameters.AddWithValue("_iscommend", myArticle.iscommend);
-                    myCommand.Parameters.AddWithValue("_ac_id", myArticle.ac_id);
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?art_title",MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_author",MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_from",MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_content",MySqlDbType.Text),
+                                        new MySqlParameter("?art_description",MySqlDbType.Text),
+                                        new MySqlParameter("?art_image",MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_date",MySqlDbType.DateTime),
+                                        new MySqlParameter("?istop", MySqlDbType.Bit),
+                                        new MySqlParameter("?iscommend", MySqlDbType.Bit),
+                                        new MySqlParameter("?ac_id", MySqlDbType.Int32),
+                                        new MySqlParameter("?art_id", MySqlDbType.Int32)
+            };
 
-                    myConnection.Open();
+                    
+            parms[0].Value = myArticle.art_title;
+            parms[1].Value = myArticle.art_author;
+            parms[2].Value = myArticle.art_from;
+            parms[3].Value = myArticle.art_content;
+            parms[4].Value = myArticle.art_description;
+            parms[5].Value = myArticle.art_image;
+            parms[6].Value = myArticle.art_date;                 
+            parms[7].Value = myArticle.istop;
+            parms[8].Value = myArticle.iscommend;
+            parms[9].Value = myArticle.ac_id;
+            parms[10].Value = myArticle.art_id;
 
-                    result = myCommand.ExecuteNonQuery();
-                }
-            }
-
+            result = DbHelper.ExecuteNonQuery(sql, parms);
+         
             return result > 0;
         }
 
         public static bool Insert(Article myArticle)
         {
             int result = 0;
+            string sql = @"INSERT INTO
+		                    t_article
+		                    (
+			                    art_title, 
+			                    art_author, 
+			                    art_from, 
+			                    art_content, 
+			                    art_description, 
+			                    art_image, 
+			                    art_date,
+			                    art_click,
+			                    istop, 
+			                    iscommend, 
+			                    ac_id
+		                    )
+	                    VALUES
+		                    (
+			                    ?art_title, 
+			                    ?art_author, 
+			                    ?art_from, 
+			                    ?art_content, 
+			                    ?art_description, 
+			                    ?art_image, 
+			                    ?art_date,
+			                    ?art_click,
+			                    ?istop, 
+			                    ?iscommend, 
+			                    ?ac_id
+		                    )";
 
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_insert", myConnection))
-                {
-                    myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?art_title", MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_author", MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_from", MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_content", MySqlDbType.Text),
+                                        new MySqlParameter("?art_description", MySqlDbType.Text),
+                                        new MySqlParameter("?art_image", MySqlDbType.VarChar),
+                                        new MySqlParameter("?art_date", MySqlDbType.DateTime),
+                                        new MySqlParameter("?art_click", MySqlDbType.Int32),
+                                        new MySqlParameter("?istop", MySqlDbType.Bit),
+                                        new MySqlParameter("?iscommend", MySqlDbType.Bit),
+                                        new MySqlParameter("?ac_id", MySqlDbType.Int32)
+                                     };
 
-                    myCommand.Parameters.AddWithValue("_art_title", myArticle.art_title);
-                    myCommand.Parameters.AddWithValue("_art_author", myArticle.art_author);
-                    myCommand.Parameters.AddWithValue("_art_from", myArticle.art_from);
-                    myCommand.Parameters.AddWithValue("_art_content", myArticle.art_content);
-                    myCommand.Parameters.AddWithValue("_art_description", myArticle.art_description);
-                    myCommand.Parameters.AddWithValue("_art_date", myArticle.art_date);
-                    myCommand.Parameters.AddWithValue("_art_image", myArticle.art_image);
-                    myCommand.Parameters.AddWithValue("_art_click", myArticle.art_click);
-                    myCommand.Parameters.AddWithValue("_istop", myArticle.istop);
-                    myCommand.Parameters.AddWithValue("_iscommend", myArticle.iscommend);
-                    myCommand.Parameters.AddWithValue("_ac_id", myArticle.ac_id);
-
-                    myConnection.Open();
-
-                    result = myCommand.ExecuteNonQuery();
-                }
-            }
-
+            parms[0].Value = myArticle.art_title;
+            parms[1].Value = myArticle.art_author;
+            parms[2].Value = myArticle.art_from;
+            parms[3].Value = myArticle.art_content;
+            parms[4].Value = myArticle.art_description;
+            parms[5].Value = myArticle.art_image;
+            parms[6].Value = myArticle.art_date;                   
+            parms[7].Value = myArticle.art_click;
+            parms[8].Value = myArticle.istop;
+            parms[9].Value = myArticle.iscommend;
+            parms[10].Value = myArticle.ac_id;
+               
+            result = DbHelper.ExecuteNonQuery(sql, parms);
+           
             return result > 0;
         }
 

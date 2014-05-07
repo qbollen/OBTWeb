@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="box">
-        <h3>文章分类管理</h3>
+        <h3>新闻分类管理</h3>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -42,7 +42,7 @@
                     <table>
                         <tr>
                             <td colspan="2" class="noborder">
-                                <asp:Label ID="lblError" runat="server" Text="文章分类名称不能为空。" ForeColor="Red"
+                                <asp:Label ID="lblError" runat="server" Text="新闻分类名称不能为空。" ForeColor="Red"
                                      Visible="false"></asp:Label>
                             </td>
                         </tr>

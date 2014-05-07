@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="box">
-        <h3>文章分类添加</h3>
+        <h3>新闻分类添加</h3>
 
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -18,7 +18,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td width="15%" class="noborder">文章分类：</td>
+                        <td width="15%" class="noborder">新闻分类：</td>
                         <td width="30%" class="noborder">
                             <asp:DropDownList ID="DropDownListTree" runat="server" Width="200px"
                                  TabIndex="1"></asp:DropDownList>
@@ -27,12 +27,12 @@
                     </tr>
                     <tr>
                         <td class="noborder">
-                            文章分类名称：
+                            新闻分类名称：
                         </td>
                         <td class="noborder" colspan="2">
                             <asp:TextBox ID="tbxAcname" runat="server" TabIndex="2"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                 ErrorMessage="文章分类名称不能为空." ControlToValidate="tbxAcname"
+                                 ErrorMessage="新闻分类名称不能为空." ControlToValidate="tbxAcname"
                                  Display="None"></asp:RequiredFieldValidator>
                         </td>
                     </tr>

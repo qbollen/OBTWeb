@@ -4,14 +4,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="box">
-        <h3>文章管理</h3>
+        <h3>新闻管理</h3>
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <table>
                     <tr>
-                        <td width="20%">文章分类:</td>
+                        <td width="20%">新闻分类:</td>
                         <td>
                             <asp:DropDownList ID="DropDownListTree" runat="server" Width="200px"
                              AppendDataBoundItems="true" AutoPostBack="true"
@@ -71,7 +71,7 @@
                 <webdiyer:AspNetPager ID="AspNetPager1" runat="server" FirstPageText="首页"  
                                 LastPageText="尾页" NextPageText="下一页" PrevPageText="上一页" ShowFirstLast="False" 
                                 ShowMoreButtons="False" ShowPageIndexBox="Never" PageSize="3" CssClass="anpager" 
-                CurrentPageButtonClass="cpb" CustomInfoHTML="文章共（%RecordCount%）篇" 
+                CurrentPageButtonClass="cpb" CustomInfoHTML="新闻共（%RecordCount%）篇" 
                 ShowCustomInfoSection="Left" CustomInfoStyle="" >
               </webdiyer:AspNetPager>
 

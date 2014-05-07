@@ -17,26 +17,20 @@ namespace ORBITA.DAL
         public static ArticleClassCollection GetList()
         {
             ArticleClassCollection tempList = new ArticleClassCollection();
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql = "SELECT * FROM t_articleclass";
+
+            MySqlDataReader myReader = DbHelper.ExecuteDataReader(sql);
+                  
+            if (myReader.HasRows)
             {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_select_list", myConnection))
+                tempList = new ArticleClassCollection();
+                while (myReader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myConnection.Open();
-                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            tempList = new ArticleClassCollection();
-                            while (myReader.Read())
-                            {
-                                tempList.Add(FillDataRecord(myReader));
-                            }
-                        }
-                        myReader.Close();
-                    }
+                    tempList.Add(FillDataRecord(myReader));
                 }
             }
+            myReader.Close();
+      
             return tempList;
         }
 
@@ -47,35 +41,33 @@ namespace ORBITA.DAL
         public static ArticleClassCollection GetListByParentID(int parent_id)
         {
             ArticleClassCollection tempList = new ArticleClassCollection();
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_select_list_by_parentid", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
+            string sql;
 
-                    if (parent_id > 0)
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", parent_id);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", DBNull.Value);
-                    }
-                    myConnection.Open();
-                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            tempList = new ArticleClassCollection();
-                            while (myReader.Read())
-                            {
-                                tempList.Add(FillDataRecord(myReader));
-                            }
-                        }
-                        myReader.Close();
-                    }
+            MySqlParameter[] parms = null;
+
+            if(parent_id > 0)
+            {
+                sql = "SELECT * FROM t_articleclass WHERE parent_id = ?parent_id ORDER BY ac_order, ac_id";
+                parms = new MySqlParameter[] { new MySqlParameter("?parent_id", MySqlDbType.Int32)};
+                parms[0].Value = parent_id;
+            }
+            else
+            {
+                sql = "SELECT * FROM t_articleclass WHERE parent_id IS NULL ORDER BY ac_order, ac_id";
+            }
+
+            MySqlDataReader myReader = DbHelper.ExecuteDataReader(sql, parms);
+            
+            if (myReader.HasRows)
+            {
+                tempList = new ArticleClassCollection();
+                while (myReader.Read())
+                {
+                    tempList.Add(FillDataRecord(myReader));
                 }
             }
+            myReader.Close();
+
             return tempList;
         }
 
@@ -86,26 +78,22 @@ namespace ORBITA.DAL
         public static ArticleClass GetItem(int ac_id)
         {
             ArticleClass myArticleClass = new ArticleClass();
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_select_item", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
+            string sql = "SELECT * FROM t_articleclass WHERE ac_id = ?ac_id";
+            MySqlParameter[] parms = { new MySqlParameter("?ac_id", MySqlDbType.Int32) };
+            parms[0].Value = ac_id;
 
-                    myCommand.Parameters.AddWithValue("_ac_id", ac_id);
-                    myConnection.Open();
-                    using (MySqlDataReader myReader = myCommand.ExecuteReader())
-                    {
-                        if (myReader.HasRows)
-                        {
-                            if (myReader.Read())
-                            {
-                                myArticleClass = FillDataRecord(myReader);
-                            }
-                        }
-                    }
+            MySqlDataReader myReader = DbHelper.ExecuteDataReader(sql, parms);
+              
+            if (myReader.HasRows)
+            {
+                if (myReader.Read())
+                {
+                    myArticleClass = FillDataRecord(myReader);
                 }
             }
+
+            myReader.Close();
+                                     
             return myArticleClass;
         }
 
@@ -114,25 +102,22 @@ namespace ORBITA.DAL
         /// <returns>DataSet 包含文章分类树记录.</returns>
         public static DataSet GetTree()
         {
-            DataSet ds = new DataSet();
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using (MySqlDataAdapter myAdapter = new MySqlDataAdapter())
-                {
-                    MySqlCommand myCommand = new MySqlCommand("sproc_article_class_get_tree", myConnection);
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myAdapter.SelectCommand = myCommand;
-
-                    myAdapter.Fill(ds, "ArticleClass");
-                }
-            }
-            return ds;
-        }
-
-
-
-
-
+            string sql = @"SELECT ac_id, ac_name, parent_id, 0 as depth, 
+				right('0000' + cast(ac_order as char(255)), 4) as sort
+		        FROM t_articleclass
+		        WHERE parent_id is null 
+		        UNION ALL
+		        SELECT a.ac_id, a.ac_name, a.parent_id, depth + 1, 
+				concat(sort, ', ', right(concat('0000', cast(a.ac_order as char(255))), 4)) as sort
+		        FROM t_articleclass a
+			    INNER JOIN (SELECT ac_id, ac_name, parent_id, 0 as depth, 
+				right('0000' + cast(ac_order as char(255)), 4) as sort
+				FROM t_articleclass
+				WHERE parent_id is null) t
+		 	    ON a.parent_id = t.ac_id 
+		        ORDER BY sort";
+            return DbHelper.ExecuteDataSet(sql, "ArticleClass");
+        }   
 
         /// <summary>删除一条文章分类记录</summary>
         /// <param name="ac_id">文章分类ID</param>
@@ -140,16 +125,56 @@ namespace ORBITA.DAL
         public static bool Delete(int ac_id)
         {
             int result = 0;
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            int? parent_id = null;
+            int order = 0;
+            int acid, acorder;
+            string sql = "SELECT parent_id FROM t_articleclass WHERE ac_id = ?ac_id";
+            MySqlParameter[] parms = { new MySqlParameter("?ac_id", MySqlDbType.Int32)};
+            parms[0].Value = ac_id;
+            parent_id = DbHelper.ExecuteScalar(sql, parms) as int?;
+
+            sql = "DELETE FROM t_articleclass WHERE ac_id = ?ac_id";
+            MySqlParameter[] parms2 = { new MySqlParameter("?ac_id", MySqlDbType.Int32)};
+            parms2[0].Value = ac_id;
+            result = DbHelper.ExecuteNonQuery(sql, parms2);
+
+            if (result != 0)
             {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_delete_single_item", myConnection))
+                //重置pc_order
+                MySqlParameter[] parms3 = null;
+                if (parent_id == null)
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_ac_id", ac_id);
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
+                    sql = "select ac_id,ac_order from T_ArticleClass where parent_id is null order by ac_order";
                 }
+                else
+                {
+                    sql = "select ac_id,ac_order from T_ArticleClass where parent_id=?parent_id order by ac_order";
+                    parms3 = new MySqlParameter[] { new MySqlParameter("?parent_id", MySqlDbType.Int32) };
+                    parms3[0].Value = parent_id;
+                }
+
+                order = 0;
+
+                MySqlDataReader reader = DbHelper.ExecuteDataReader(sql, parms3);
+                while (reader.Read())
+                {
+                    acid = reader.GetInt32(reader.GetOrdinal("ac_id"));
+                    acorder = reader.GetInt32(reader.GetOrdinal("ac_order"));
+
+                    order = order + 1;
+
+                    sql = "update T_ArticleClass set ac_order = ?ac_order where ac_id = ?ac_id";
+                    MySqlParameter[] params3 = { new MySqlParameter("?ac_order",MySqlDbType.Int32),
+                                                 new MySqlParameter("?ac_id",MySqlDbType.Int32)
+                                               };
+                    params3[0].Value = order;
+                    params3[1].Value = acid;
+                    DbHelper.ExecuteNonQuery(sql, params3);
+                }
+
+                reader.Close();
             }
+
             return result > 0;
         }
 
@@ -160,18 +185,17 @@ namespace ORBITA.DAL
         public static bool Update(ArticleClass myArticleClass)
         {
             int result = 0;
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
-            {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_update_single_item", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myCommand.Parameters.AddWithValue("_ac_id", myArticleClass.ac_id);
-                    myCommand.Parameters.AddWithValue("_ac_name", myArticleClass.ac_name);
+            string sql = "	UPDATE t_articleclass SET ac_name = ?ac_name WHERE ac_id = ?ac_id";
+            MySqlParameter[] parms = { 
+                                        new MySqlParameter("?ac_name", MySqlDbType.VarChar),
+                                        new MySqlParameter("?ac_id", MySqlDbType.Int32)
+                                     };
 
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
-            }
+            parms[0].Value = myArticleClass.ac_name;
+            parms[1].Value = myArticleClass.ac_id;
+
+            result = DbHelper.ExecuteNonQuery(sql, parms);
+
             return result > 0;
         }
 
@@ -182,26 +206,59 @@ namespace ORBITA.DAL
         public static bool Insert(ArticleClass myArticleClass)
         {
             int result = 0;
-            using (MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            int? parent_id = null;
+            int ac_order;
+            string sql1, sql2;
+
+            if (myArticleClass.parent_id > 0)
             {
-                using (MySqlCommand myCommand = new MySqlCommand("sproc_article_class_insert", myConnection))
-                {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-
-                    myCommand.Parameters.AddWithValue("_ac_name", myArticleClass.ac_name);
-                    if (myArticleClass.parent_id > 0)
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", myArticleClass.parent_id);
-                    }
-                    else
-                    {
-                        myCommand.Parameters.AddWithValue("_parent_id", DBNull.Value);
-                    }
-
-                    myConnection.Open();
-                    result = myCommand.ExecuteNonQuery();
-                }
+                parent_id = myArticleClass.parent_id;
             }
+
+            MySqlParameter[] parms = null;
+            if (parent_id == null)
+            {
+                sql1 = "select count(*) from T_ArticleClass where parent_id is null";
+            }
+            else
+            {
+                sql1 = "select count(*) from T_ArticleClass where parent_id = ?Parent_id";
+                parms = new MySqlParameter[] { 
+                    new MySqlParameter("?Parent_id",MySqlDbType.Int32),
+                };
+                parms[0].Value = parent_id;
+            }
+
+            ac_order = Convert.ToInt32(DbHelper.ExecuteScalar(sql1, parms));
+
+
+            MySqlParameter[] params2 = null;
+            if (parent_id == null)
+            {
+                sql2 = "insert into T_ArticleClass(ac_name,ac_order) values (?ac_name,?ac_order)";
+                params2 = new MySqlParameter[]{ 
+                                          new MySqlParameter("?ac_name",MySqlDbType.VarChar),
+                                          new MySqlParameter("?ac_order",MySqlDbType.Int32)
+                                       };
+                params2[0].Value = myArticleClass.ac_name;
+                params2[1].Value = ac_order + 1;
+            }
+            else
+            {
+                sql2 = "insert into T_ArticleClass(ac_name,parent_id,ac_order) values (?ac_name,?parent_id,?ac_order)";
+                params2 = new MySqlParameter[]{ 
+                                          new MySqlParameter("?ac_name",MySqlDbType.VarChar),
+                                          new MySqlParameter("?parent_id",MySqlDbType.Int32),
+                                          new MySqlParameter("?ac_order",MySqlDbType.Int32)
+                                       };
+                params2[0].Value = myArticleClass.ac_name;
+                params2[1].Value = parent_id;
+                params2[2].Value = ac_order + 1;
+
+            }
+
+            result = DbHelper.ExecuteNonQuery(sql2, params2);
+
             return result > 0;
         }
 
@@ -209,26 +266,19 @@ namespace ORBITA.DAL
         public static List<int> GetParentClassList()
         {
             List<int> list = new List<int>();
-            using(MySqlConnection myConnection = new MySqlConnection(DbHelper.Connection))
+            string sql = "SELECT parent_id FROM t_articleclass WHERE parent_id IS NOT NULL GROUP BY parent_id ORDER BY parent_id";
+
+            MySqlDataReader reader = DbHelper.ExecuteDataReader(sql);
+                    
+            if (reader.HasRows)
             {
-                using(MySqlCommand myCommand = new MySqlCommand("sproc_article_class_parent_class",myConnection))
+                while(reader.Read())
                 {
-                    myCommand.CommandType = CommandType.StoredProcedure;
-                    myConnection.Open();
-                    using(MySqlDataReader reader = myCommand.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while(reader.Read())
-                            {
-                                list.Add(reader.GetInt32("parent_id"));
-                            }
-                        }
-                        reader.Close();
-                    }
+                    list.Add(reader.GetInt32("parent_id"));
                 }
             }
-
+            reader.Close();
+                                       
             return list;
         }
 
