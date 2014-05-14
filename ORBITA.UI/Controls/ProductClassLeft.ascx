@@ -3,30 +3,47 @@
 <script src="../Scripts/mycookie.js"></script>
 <script type="text/javascript">
     $(function () {
-        var menu = $(".side_box [menu]");
-        var val = menu.attr("menu");
-        var submenu = $(".side_box [submenu=" + val + "]");
-        var name = "menu" + val
+        $(".side_box [menu]").each(function () {
+            var val = $(this).attr("menu");
+            var name = "orbita_product_class_menu_" + val;
+            var flag = false;
+            var submenus = $(".side_box [submenu=" + val + "]");
 
-        if (getCookie(name) == "expended") {
-            submenu.css({ display: "block" });
-        }
-        else {
-            submenu.css({ display: "none" });
-            setCookie(name, "collapsed");
-        }
-
-        menu.bind("click", function () {
             if (getCookie(name) == "expended")
             {
-                submenu.css({ display: "none" });
-                setCookie(name, "collapsed")
+                flag = true;
             }
             else
             {
-                submenu.css({ display: "block" });
-                setCookie(name, "expended");
+                flag = false;
+                setCookie(name, "collapsed");
             }
+
+            submenus.each(function () {
+                 
+                if (flag) {
+                    $(this).css({ display: "block" });
+                }
+                else {
+                    $(this).css({ display: "none" });
+                }
+            });
+
+
+            $(this).bind("click", function () {
+                if (getCookie(name) == "expended") {
+                    submenus.each(function(){
+                        $(this).css({ display: "none" });
+                    });
+                    setCookie(name, "collapsed")
+                }
+                else {
+                    submenus.each(function(){
+                        $(this).css({ display: "block" });
+                    });
+                    setCookie(name, "expended");
+                }
+            });
         });
     });
 

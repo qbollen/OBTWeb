@@ -44,7 +44,6 @@ namespace ORBITA.UI
                    // Description.Attributes["content"] = Description.Attributes["content"] + "," + myProduct.Prod_Name;
 
                     this.lblTitle.Text = myProduct.Prod_Name;
-                    this.lblDate.Text = myProduct.Prod_Date.ToString();
                     this.lblNumber.Text = myProduct.Prod_Number;
                     this.lblClick.Text = myProduct.Prod_Click.ToString();
                     this.lblContent.Text = myProduct.Prod_Content;

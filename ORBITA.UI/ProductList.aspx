@@ -12,7 +12,7 @@
     <div id="productList">
         <h1>Product List<%=pcnav%></h1>
         <div class="list">
-            <asp:ListView ID="ListViewProduct" runat="server" DataKeyNames="prod_id" DataSourceID="ObjectDataSourceProduct" GroupItemCount="3">
+            <asp:ListView ID="ListViewProduct" runat="server" DataKeyNames="prod_id" DataSourceID="ObjectDataSourceProduct" GroupItemCount="4">
                 <LayoutTemplate>
                     <ul class="container">
                         <asp:PlaceHolder ID="groupPlaceHolder" runat="server"></asp:PlaceHolder>

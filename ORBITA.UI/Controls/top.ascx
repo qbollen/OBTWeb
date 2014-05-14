@@ -61,10 +61,12 @@
                 var $this = $(this);
                 var $span = $this.children('span');
                 $span.data('width', $span.width());
-                $this.bind('mouseenter', function () {                
-                    $this.find('.ldd_submenu').slideDown(200);        
-                }).bind('mouseleave', function () {
-                    $this.find('.ldd_submenu').hide();
+                    $this.bind('mouseenter', function () {
+                        $menu.find('.ldd_submenu').stop(true, true).hide();
+                        $this.find('.ldd_submenu').slideDown(200);        
+                    }).bind('mouseleave', function () {
+                        $this.find('.ldd_submenu').stop(true, true).hide();
+                        $this.find('.ldd_submenu').hide();
                 });
             });
                 
@@ -167,9 +169,8 @@
 							<li><a href="#">MSN:&nbsp;orbitaservice@msn.cn</a></li>
 							<li><a href="#">Skype:&nbsp;orbitacustomerservice</a></li>
 							<li><a href="#">Yahoo:&nbsp;orbitaservice</a></li>
-							<li><a href="#">Email:&nbsp;service@orbitatech.com</a></li>
-							<li><a href="#">Tel:&nbsp;+86-18928480199</a></li>
-                            <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+86-755-83369158-625</a></li>
+							<li><a href="#">Email:&nbsp;service@orbitatech.com</a></li>							
+                            <li><a href="#">Tel:&nbsp;+86-755-83369158-625</a></li>
 						</ul>
                         <a class="ldd_subfoot" href="#"> + Service</a>
 					</div>

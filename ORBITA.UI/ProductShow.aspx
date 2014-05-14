@@ -20,8 +20,7 @@
             <div class="prod_info">
                 <ul>
                     <li class="tl"><asp:Label ID="lblTitle" runat="server"></asp:Label></li>
-                    <li>Model: &nbsp;<asp:Label ID="lblNumber" runat="server"></asp:Label></li>
-                    <li>Issue Date: &nbsp;<asp:Label ID="lblDate" runat="server"></asp:Label></li>
+                    <li>Model: &nbsp;<asp:Label ID="lblNumber" runat="server"></asp:Label></li>                 
                     <li>Browse: &nbsp;<asp:Label ID="lblClick" runat="server"></asp:Label></li>
                 </ul>
             </div>

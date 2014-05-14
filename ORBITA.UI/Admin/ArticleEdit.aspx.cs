@@ -67,7 +67,7 @@ namespace ORBITA.UI.Admin
                 myArticle.iscommend = this.cbxCommend.Checked;
                 myArticle.ac_id = Convert.ToInt32(SelectedValue);
                 myArticle.art_image = this.tbxImage.Text;
-                if (string.IsNullOrEmpty(myArticle.art_image) || myArticle.art_image == " ")
+                if (string.IsNullOrEmpty(this.tbxImage.Text) || this.tbxImage.Text == " ")
                 {
                     string fckStr = CKEditor1.Text;
                     MatchCollection matchs = Regex.Matches(fckStr, @"<img[^src]*src=""[^http\://]*(?<src>[^""]*?)""", RegexOptions.IgnoreCase);

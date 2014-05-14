@@ -198,7 +198,7 @@ td,th{
 }
 
 #productList .list ul.container{
-	padding-left:38px;
+	padding-left:20px;
 }
 
 #productList .list ul li.items{
@@ -243,8 +243,8 @@ td,th{
 
 #productList .imgProduct
 {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 #productList .LabelStyle{
@@ -277,12 +277,11 @@ td,th{
 }
 
 #ProductInfo .title .prod_image .p_image{
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 300px;
 }
 
 #ProductInfo .title .prod_info{
-    margin-left: 30px;
 	width: 300px;
 	height: 200px;
 }

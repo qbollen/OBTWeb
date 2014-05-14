@@ -39,7 +39,7 @@
         </div>
 
         <div class="box2">
-            <h2>ORBITA QR !</h2>
+            <%--<h2>ORBITA QR !</h2>--%>
             <div class="wrap">
                 <img src="~/../images/orbita_qr.png" />
             </div>

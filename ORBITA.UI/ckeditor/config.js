@@ -19,9 +19,9 @@ CKEDITOR.editorConfig = function( config )
 
 //-------------------- 上传路径 --------------------//
     config.filebrowserBrowseUrl = "/ckfinder/ckfinder.html";                  //上传文件的查看路径
-    config.filebrowserImageBrowseUrl = "/ckfinder/ckfinder.html？Type=Images"; //上传图片的查看路径
-    config.filebrowserFlashBrowseUrl = "/ckfinder/ckfinder.html？Type=Flash";  //上传Flash的查看路径
-    config.filebrowserUploadUrl = "/ckfinder/core/connector/aspx/connector.aspx？command=QuickUpload&type=Files";        //上传文件的保存路径
-    config.filebrowserImageUploadUrl = "/ckfinder/core/connector/aspx/connector.aspx？command=QuickUpload&type=Images"; //上传图片的保存路径
-    config.filebrowserFlashUploadUrl = "/ckfinder/core/connector/aspx/connector.aspx？command=QuickUpload&type=Flash";  //上传Flash的保存路径
+    config.filebrowserImageBrowseUrl = "/ckfinder/ckfinder.html?Type=Images"; //上传图片的查看路径
+    config.filebrowserFlashBrowseUrl = "/ckfinder/ckfinder.html?Type=Flash";  //上传Flash的查看路径
+    config.filebrowserUploadUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files";        //上传文件的保存路径
+    config.filebrowserImageUploadUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images"; //上传图片的保存路径
+    config.filebrowserFlashUploadUrl = "/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash";  //上传Flash的保存路径
 };

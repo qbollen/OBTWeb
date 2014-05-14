@@ -25,8 +25,8 @@
                         <a href="About.aspx">
                             <img src="images/company.jpg" alt="" /></a>
                     </div>
-                    <p>orbita is one of the reputable card operated &nbsp; lock and hotel &nbsp; locking systems &nbsp; manufactuers &nbsp; for &nbsp; the hospitality &nbsp; industry &nbsp; in &nbsp; china, established to offer the best quality products &nbsp; with &nbsp; professional and effective service to our customers.</p>
-                    <p>orbita series of product is a product of years of experience integrated with the advanced technology from siemens, dallas, atmel, philip etc. the cooperation with fidelio and other popular pms ...</p>
+                    <p>orbita is one of the reputable card operated lock and hotel locking systems manufactuers for &nbsp; the hospitality industry in china,&nbsp; established to offer the best quality products with &nbsp; professional and effective service to our customers.</p>
+                    <p>orbita series of product is a product of &nbsp; years of experience integrated with the advanced technology from siemens,&nbsp; dallas,&nbsp; atmel, philip etc. the cooperation with fidelio and other &nbsp; popular &nbsp; pms &nbsp; system &nbsp; has just enabled our locking system to a wide range of compatibility. </p>
                     <p class="more"><a href="About.aspx">Continue Reading &raquo;</a></p>
 
                     <div class="clear"></div>

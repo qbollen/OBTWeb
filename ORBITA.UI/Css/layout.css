@@ -24,7 +24,7 @@ body{
 	background-color:#FFFFFF;
 	}
 
-img{display:block; margin:0; padding:0; border:none;}
+img{ margin:0; padding:0; border:none;}
 .justify{text-align:justify;}
 .bold{font-weight:bold;}
 .center{text-align:center;}
@@ -661,7 +661,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #footer .box{
 	display:block;
 	float:right;
-	width:280px;
+	width:250px;
 	margin:0 0 0 17px;
 	padding:0;
 	line-height:15px;	
@@ -670,16 +670,17 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #footer .box2{
 	display:block;
 	float:right;
-	width:200px;
+	width:150px;
 	margin: 0 0 0 17px;
 	padding:0;
 	line-height:15px;
 }
 
 #footer .box2 .wrap img{
-	width:150px;
-	height:150px;
-	margin:0 0 0 17px;
+	width:140px;
+	height:140px;
+	margin:40px 0 0 0;
+	border: 5px solid #FFFFFF;
 }
 
 #footer .box1{
@@ -702,9 +703,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #footer .box4{
 	display:block;
 	float:left;
-	width:100px;
+	width:250px;
 	line-height:15px;
-	margin:0 0 0 17px;
+	margin:0 0 0 22px;
 }
 
 /* ----------------------------------------------Copyright-------------------------------------*/

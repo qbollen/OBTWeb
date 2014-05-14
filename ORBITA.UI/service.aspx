@@ -28,7 +28,7 @@
                     <li>Skype: &nbsp;orbitacustomerservice</li>
                     <li>Yahoo: &nbsp;orbitaservice</li>
                     <li>Email: &nbsp;service@orbitatech.com</li>
-                    <li>Tel: &nbsp;+86-18928480199 &nbsp;+86-755-83369158-625</li>
+                    <li>Tel: &nbsp;+86-755-83369158-625</li>
                 </ul>
             </div>
 
