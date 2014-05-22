@@ -10,7 +10,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="articleinfo">
 
-        <h1><a href="ArticleList.aspx">All Categories</a> <%=acnav%> </h1>
+        <h1><span>News<%=acnav%> </span></h1>
 
         <div class="info">
 

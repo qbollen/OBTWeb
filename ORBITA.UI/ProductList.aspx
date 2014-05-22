@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="productList">
-        <h1>Product List<%=pcnav%></h1>
+        <h1><span>Product List<%=pcnav%></span></h1>
         <div class="list">
             <asp:ListView ID="ListViewProduct" runat="server" DataKeyNames="prod_id" DataSourceID="ObjectDataSourceProduct" GroupItemCount="4">
                 <LayoutTemplate>

@@ -11,41 +11,5 @@ namespace ORBITA.UI.Controls {
     
     
     public partial class top {
-        
-        /// <summary>
-        /// ListViewArticleClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewArticleClass;
-        
-        /// <summary>
-        /// ObjectDataSourceArticleClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceArticleClass;
-        
-        /// <summary>
-        /// ListViewProductClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewProductClass;
-        
-        /// <summary>
-        /// ObjectDataSourceProductClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductClass;
     }
 }

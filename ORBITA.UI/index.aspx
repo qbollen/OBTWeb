@@ -1,58 +1,58 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Main.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ORBITA.UI.index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Css/featured_slide.css" rel="stylesheet" />
+    <script type="text/javascript" src="Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.jcarousel.pack.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.jcarousel.setup.js"></script>
+  <script src="Scripts/loopedslider.js" type="text/javascript"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <script src="Scripts/loopedslider.js" type="text/javascript" charset="utf-8"></script>
-
-    <div class="wrapper col3">
+    
+    <!-- ####################################################################################################### -->
+<%--    <div class="wrapper col3">
         <div id="intro">
         </div>
+    </div>--%>
+
+  <div class="wrapper col3">
+  <div id="featured_slide">
+    <div id="featured_content">
+      <ul>
+        <li><img src="images/e3041.jpg" alt="E3041" />
+          <div class="floater">
+            <h2>Model: E3041</h2>
+            <p>Waterproof idea for outdoor use, 
+               Replace your old mechanical lock with our electronic lock, 
+               Keep your mortise and carpentry, save your door & money&hellip;</p>
+            <p class="readmore"><a href="ProductShow.aspx?id=298">Continue Reading &raquo;</a></p>
+          </div>
+        </li>
+        <li><img src="images/obt2045mb.jpg" alt="OBT-2045MB" />
+          <div class="floater">
+            <h2>Model: OBT-2045MB</h2>
+            <p>Enhanced LED Display, Audio/Visual Operating Signals, Event audit trail(Optaional), Easy Access Battery Panel, Emergency Battery Jumper Box, Secure Pedestal Mounting, Mechanical Fail-Safe Override key, Tamper-Proof Installation Hardware, Inner carpet, Spring loaded door, Fixing holes at bottom and back with screws, Auto secure mode(3 times wrong input of code gets frozen for 15mins)&hellip;</p>
+            <p class="readmore"><a href="ProductShow.aspx?id=187">Continue Reading &raquo;</a></p>
+          </div>
+        </li>
+        <li><img src="images/MB-40GA.jpg" alt="MB-40GA" />
+          <div class="floater">
+            <h2>Model: MB-40GA</h2>
+            <p>High performance with superior absorption new technology, cooling by ammonia, no moving part, no vibration, noiseless, maintenance-free operation.&hellip;</p>
+            <p class="readmore"><a href="ProductShow.aspx?id=312">Continue Reading &raquo;</a></p>
+          </div>
+        </li>
+      </ul>
     </div>
+    <a href="javascript:void(0);" id="featured-item-prev"><img src="images/prev.png" alt="" /></a> <a href="javascript:void(0);" id="featured-item-next"><img src="images/next.png" alt="" /></a> </div>
+</div>
+
     <!-- ####################################################################################################### -->
     <div class="wrapper col4">
         <div id="homecontent">
-
-            <div id="colwrap">
-
-                <h2>About ORBITA</h2>
-
-                <div class="about">
-
-
-                    <div class="companypic">
-                        <a href="About.aspx">
-                            <img src="images/company.jpg" alt="" /></a>
-                    </div>
-                    <p>orbita is one of the reputable card operated lock and hotel locking systems manufactuers for &nbsp; the hospitality industry in china,&nbsp; established to offer the best quality products with &nbsp; professional and effective service to our customers.</p>
-                    <p>orbita series of product is a product of &nbsp; years of experience integrated with the advanced technology from siemens,&nbsp; dallas,&nbsp; atmel, philip etc. the cooperation with fidelio and other &nbsp; popular &nbsp; pms &nbsp; system &nbsp; has just enabled our locking system to a wide range of compatibility. </p>
-                    <p class="more"><a href="About.aspx">Continue Reading &raquo;</a></p>
-
-                    <div class="clear"></div>
-                </div>
-                <div class="cert">
-                    <h2>Certificates</h2>
-                    <ul>
-                        <li>
-                            <a href="images/orbita_iso_1.gif" target="_blank">
-                                <img class="ce" src="images/orbita_iso.gif" alt="" /></a>
-                        </li>
-
-                        <li><a href="images/orbita_ce_1.gif" target="_blank">
-                            <img class="ce" src="images/orbita_ce.gif" alt="" /></a>
-                        </li>
-
-                        <li>
-                            <a href="images/orbita_fidelio.gif" target="_blank">
-                                <img class="ce" src="images/orbita_fidelio_0.gif" alt="" /></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="news">
-                <h2>News</h2>
+            <div id="news">          
                 <asp:ListView ID="ListViewArticleTop" runat="server"
                      DataSourceID="ObjectDataSourceArticleTop" OnItemDataBound="ListViewArticleTop_ItemDataBound">
                     <LayoutTemplate>
@@ -62,21 +62,27 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <li runat="server">
-                            <div class="imgcontainer">
-                                <asp:Image ID="image" CssClass="image" runat="server" />
-                            </div>
-                            <div class="centcontainer">
-                                <h1>
-                                    <asp:Literal ID="litTitle" runat="server"></asp:Literal>
-                                </h1>
+                             <h2>
+                                <div class="imgcontainer">
+                                    <asp:Image ID="image" CssClass="image" runat="server" />
+                                 </div> 
+                                 <div class="title">
+                                     <asp:Literal ID="litTitle" runat="server"></asp:Literal>
+                                 </div>   
+                                 <div class="clear"></div>                                                                                                                  
+                             </h2>
+
+                             <div class="content">
                                 <asp:Label ID="lblDesc" runat="server"></asp:Label>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="continue">
+                             </div> 
+                                                         
+                             <div class="more">
                                 <asp:HyperLink ID="HyperLinkMore" runat="server">
                                     Continue Reading &raquo;
                                 </asp:HyperLink>
-                            </div>
+                             </div>
+                            
+                            
                         </li>
                     </ItemTemplate>
                 </asp:ListView>
@@ -96,7 +102,7 @@
     <div class="wrapper col7">
         <div id="productSlider">
             <div class="prodbox box">
-                <h2>Recommend Products</h2>
+                <h2><span>Recommend Products</span></h2>
                 <!-- Slider -->
                 <div id="loopedSlider" class="box">
                     <asp:ListView ID="ListViewProductCommend" runat="server"

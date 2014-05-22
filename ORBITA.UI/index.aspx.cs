@@ -56,9 +56,9 @@ namespace ORBITA.UI
 
                     string description = article.art_description;
 
-                    if (description.Length > 170)
+                    if (description.Length > 250)
                     {
-                        description = description.Substring(0, description.Substring(0, 170).LastIndexOf(" ")) + " ...";
+                        description = description.Substring(0, description.Substring(0, 250).LastIndexOf(" ")) + " ...";
                     }
 
                     desc.Text = description;

@@ -3,10 +3,12 @@
     <link rel="Stylesheet" href="css/web.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <input id="mynav" type="hidden" value="Service" />
     <div class="side_box">
-    <h2>Banner</h2>
+   <%-- <h2>Banner</h2>--%>
         <div class="side_con">
             <ul>
+                <li><a href="contact.aspx">Contact us</a></li>
                 <li><a href="service.aspx">Support</a></li>
                 <li><a href="download.aspx">Download</a></li>
             </ul>
@@ -16,7 +18,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="mydownload">
-        <h1>Download</h1>
+        <h1><span>Download</span></h1>
         <ul>
             <li>【Software】&nbsp; <a href="down/ic%20card%20lock%203.1.rar">IC card locking system v3.1 (usb port)</a></li>
             <li>【Software】&nbsp; <a href="down/orbita_rf_locking_3.4.2.rar">RF card locking system v3.4.2 (usb port)</a></li>

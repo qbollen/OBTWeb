@@ -140,7 +140,7 @@ namespace ORBITA.DAL
         public static ArticleCollection GetTop()
         {
             ArticleCollection list = new ArticleCollection();
-            string sql = @"SELECT * FROM t_article ORDER BY art_id DESC LIMIT 4;";
+            string sql = @"SELECT * FROM t_article ORDER BY art_id DESC LIMIT 3;";
 
             MySqlDataReader reader = DbHelper.ExecuteDataReader(sql);
                 

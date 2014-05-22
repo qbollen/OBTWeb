@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ArticleClassLeft.ascx.cs" Inherits="ORBITA.UI.Controls.ArticleClassLeft" %>
+<input id="mynav" type="hidden" value="News" />
 <script src="../Scripts/jquery-1.4.1.min.js"></script>
 <script src="../Scripts/mycookie.js"></script>
 <script type="text/javascript">
@@ -46,7 +47,7 @@
     });
 </script>
 <div class="side_box">
-    <h2>Article Categories</h2>
+ <%--   <h2>Article Categories</h2>--%>
     <div class="side_con">
         <asp:ListView ID="ListViewArticleClass" runat="server"
             DataSourceID="ObjectDataSourceArticleClass" OnItemDataBound="ListViewArticleClass_ItemDataBound">

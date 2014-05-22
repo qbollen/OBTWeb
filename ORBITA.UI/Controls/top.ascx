@@ -1,15 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="top.ascx.cs" Inherits="ORBITA.UI.Controls.top" %>
+<div class="wrapper col11"></div>
+<div class="wrapper col10"></div>
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
-	  <img src="../images/log.png" alt="ORBITA" />     
+	  <a href="index.aspx"><img src="../images/orbita.png" alt="ORBITA" /> </a>    
     </div>
 	  
     <div id="title">
         Professional.Powerful
     </div>
 
-    <div id="search">
+<%--    <div id="search">
       <form action="#" method="post">
         <fieldset>
           <legend>Site Search</legend>
@@ -17,45 +19,31 @@
           <input type="text" value="Search the product;"  onfocus="this.value=(this.value=='Search the product;')? '' : this.value ;" />
         </fieldset>
       </form>
+    </div>--%>
+
+    <div id="menu">
+        <ul>
+            <li><a href="index.aspx">HOME</a></li>
+            <li><a href="ArticleList.aspx">NEWS</a></li>
+            <li><a href="ProductList.aspx?id=49">PRODUCTS</a></li>
+            <li><a href="case.aspx">REFERENCES</a></li>
+            <li class="last"><a href="service.aspx">SERVICE</a></li>
+        </ul> 
     </div>
 	
-    <br class="clear" />
+    <div class="clear" ></div>
   </div>
 </div>
 <!-- ####################################################################################################### -->
-<div class="wrapper col2">
+<%--<div class="wrapper col2">
   <div id="topbar">
   
-    	<!-- The JavaScript -->
+    	
         <script type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
         <script type="text/javascript">
             $(function () {
-                /**
-				 * the menu
-				 */
-                var $menu = $('#ldd_menu');
 
-                /**
-				 * for each list element,
-				 * we show the submenu when hovering and
-				 * expand the span element (title) to 510px
-				 * with animate
-                 */
-                /*$menu.children('li').each(function () {
-                    var $this = $(this);
-                    var $span = $this.children('span');
-                    $span.data('width', $span.width());
-
-                    $this.bind('mouseenter', function () {
-                        $menu.find('.ldd_submenu').stop(true, true).hide();
-                        $span.stop().animate({ 'color': '#fff000' }, 200, function () {
-                            $this.find('.ldd_submenu').slideDown(200);
-                        });
-                    }).bind('mouseleave', function () {
-                        $this.find('.ldd_submenu').stop(true, true).hide();
-                        $span.stop().animate({ 'color': '#000000' }, 200);
-                    });
-                });*/
+                var $menu = $('#ldd_menu');   
 
                 $menu.children('li').each(function () {
                 var $this = $(this);
@@ -132,13 +120,7 @@
                             </li>
                         </ItemTemplate>
                         </asp:ListView>
-                              
-
-
-<%--                        	<ul>
-							<li class="ldd_heading">E3010</li>
-							<li class="recommend"><img src="../images/E3010.png"></li>
-						</ul>--%>
+                             
 
 						<a class="ldd_subfoot" href="#"> + Product List</a>
 
@@ -183,5 +165,5 @@
 
     <br class="clear" />
   </div>
-</div>
+</div>--%>
 <div class="clear"></div>

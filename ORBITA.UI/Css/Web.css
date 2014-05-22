@@ -11,8 +11,14 @@
 
 #mycontact h1{
 	margin: 0;
-	padding: 0 0 5px 0;
-	border-bottom: 1px solid #dbdbdb;
+	padding: 0;
+	border-bottom: 1px solid #37639A;
+}
+
+#mycontact h1 span{
+	padding: 5px 10px 0 10px;
+	color: #FFFFFF;
+	background-color: #37639A;
 }
 
 #mycontact ul li{
@@ -38,9 +44,16 @@
 }
 
 #myservice h1{
-	border-bottom:1px solid #dbdbdb;
+	border-bottom:1px solid #37639A;
 	margin:0;
-	padding:0 0 5px 0;
+	padding:0;
+}
+
+#myservice h1 span{
+	padding: 5px 10px 0 10px;
+	color: #FFFFFF;
+	background-color: #37639A;
+
 }
 
 
@@ -60,8 +73,15 @@
 }
 #mydownload h1{
 	margin:0px;
-	padding: 0 0 5px 0;
-	border-bottom: 1px solid #dbdbdb;
+	padding: 0;
+	border-bottom: 1px solid #37639A;
+}
+
+#mydownload h1 span{
+	padding: 5px 10px 0 10px;
+	color: #FFFFFF;
+	background-color: #37639A;
+
 }
 
 #mydownload ul{
@@ -92,8 +112,14 @@
 
 #myreferences h1{
 	margin: 0;
-	padding: 0 0 5px 0;	
-	border-bottom: 1px solid #dbdbdb;
+	padding: 0;	
+	border-bottom: 1px solid #37639A;
+}
+
+#myreferences h1 span{
+	padding: 5px 10px 0 10px;
+	color: #FFFFFF;
+	background-color: #37639A;
 }
 
 #myreferences ul{
@@ -102,7 +128,7 @@
 
 #myreferences .box{
        	margin: 15px auto;
-	padding:0px 20px;
+	padding:0px 15px;
 	position:relative; 
 }
 
@@ -186,9 +212,19 @@ td,th{
 }*/
 #productList h1{
   font-size: 14px;
-  padding: 10px 0 5px 0;
+  padding: 10px 0 0 0;
   margin: 0 10px;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #37639A;
+}
+
+#productList h1 span{
+  background-color: #37639A;
+  padding: 5px 10px 0 10px;
+  color: #FFFFFF;
+}
+
+#productList h1 a{
+	color: #FFFFFF;
 }
 
 #productList .list ul {
@@ -203,7 +239,11 @@ td,th{
 
 #productList .list ul li.items{
 	float:left;
-	margin: 15px 20px 0 0;
+	margin: 15px 15px 0 0;
+}
+
+#productList .list ul.container li:hover ul{
+	border: 1px solid #37639A;
 }
 
 #productList .list ul li.items ul{
@@ -259,9 +299,19 @@ td,th{
 /*----------------------------------------ProductInfo----------------------------------------*/
 #ProductInfo h1{
   font-size: 14px;
-  padding: 10px 0 5px 0;
+  padding: 10px 0 0 0;
   margin: 0 10px;
-  border-bottom: 1px solid #dbdbdb;
+  color: #FFFFFF;
+  border-bottom: 1px solid #37639A;
+}
+
+#ProductInfo h1 span{
+	padding: 5px 10px 0 10px;
+	background-color: #37639A;
+}
+
+#ProductInfo h1 span a{
+	color: #FFFFFF;
 }
 
 #ProductInfo .title{
@@ -312,9 +362,19 @@ td,th{
 
 #articlelist h1{
   font-size: 14px;
-  padding: 0 0 5px 0;
-  margin: 0;
-  border-bottom: 1px solid #dbdbdb;
+  padding: 0 0 0 0;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #37639A;
+}
+
+#articlelist h1 span{
+	padding: 5px 10px 0 10px;
+	color: #FFFFFF;
+	background-color: #37639A;
+}
+
+#articlelist h1 span a{
+	color: #FFFFFF;
 }
 
 #articlelist ul{
@@ -342,7 +402,7 @@ td,th{
 	float: left;
 	margin: 0 0 0 15px;
 	height: 80px;
-	width: 530px;
+	width: 520px;
 }
 
 #articlelist .artdigest h1{
@@ -375,9 +435,20 @@ td,th{
 
 #articleinfo h1{
 	margin: 0;
-	padding: 0 0 5px 0;
+	padding: 0;
 	font-size: 14px;
-	border-bottom: 1px solid #dbdbdb;
+	border-bottom: 1px solid #37639A;
+}
+
+#articleinfo h1 span{
+	color: #FFFFFF;
+	background-color: #37639A;
+	padding: 5px 10px 0 10px;
+}
+
+#articleinfo h1 span a{
+	color: #FFFFFF;
+
 }
 
 #articleinfo h6{
@@ -407,7 +478,7 @@ td,th{
 #mycompany h1{
 	margin:0;
 	padding:0;
-	border-bottom:1px solid #dbdbdb;
+	border-bottom:1px solid #37639A;
 }
 
 #mycompany .introduce .content{

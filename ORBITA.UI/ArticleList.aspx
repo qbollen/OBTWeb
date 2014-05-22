@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="articlelist">
-        <h1>Article List<%=acnav %></h1>
+        <h1><span>News List<%=acnav %></span></h1>
         <div class="list">
             <asp:ListView ID="ListViewArticle" runat="server"
                DataSourceID="ObjectDataSourceArticle" OnItemDataBound="ListViewArticle_ItemDataBound">

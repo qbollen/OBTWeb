@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <input id="mynav" type="hidden" value="About ORBITA" />
     <div class="side_box">
-        <h2>Banner</h2>
         <div class="side_con">
             <ul>
                 <li><a href="about.aspx">About ORBITA</a> </li>

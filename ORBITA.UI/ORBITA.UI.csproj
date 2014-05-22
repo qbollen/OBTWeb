@@ -902,6 +902,7 @@
     <Content Include="Controls\foot.ascx" />
     <Content Include="Controls\ProductClassLeft.ascx" />
     <Content Include="Controls\top.ascx" />
+    <Content Include="Css\featured_slide.css" />
     <Content Include="Css\layout.css" />
     <Content Include="Css\nav.css" />
     <Content Include="Css\web.css" />
@@ -929,6 +930,7 @@
     <Content Include="Images\CE.gif" />
     <Content Include="Images\company.jpg" />
     <Content Include="Images\download_0.gif" />
+    <Content Include="Images\E3041.jpg" />
     <Content Include="Images\email.gif" />
     <Content Include="Images\footer_bj.jpg" />
     <Content Include="Images\hengfu.jpg" />
@@ -939,12 +941,16 @@
     <Content Include="Images\line2.jpg" />
     <Content Include="Images\line3.jpg" />
     <Content Include="Images\log.png" />
+    <Content Include="Images\MB-40GA.jpg" />
     <Content Include="Images\msn.gif" />
     <Content Include="Images\nav.jpg" />
     <Content Include="Images\nav_bj.jpg" />
     <Content Include="Images\nerong.jpg" />
+    <Content Include="Images\next.png" />
+    <Content Include="Images\obt2045mb.jpg" />
     <Content Include="Images\online-msn1.gif" />
     <Content Include="Images\online-skype1.gif" />
+    <Content Include="Images\orbita.png" />
     <Content Include="Images\Orbita_CE.gif" />
     <Content Include="Images\Orbita_CE_1.gif" />
     <Content Include="Images\Orbita_FC.gif" />
@@ -962,6 +968,7 @@
     <Content Include="Images\Orbita_soft_certificate.gif" />
     <Content Include="Images\Orbita_soft_certificate_1.gif" />
     <Content Include="Images\pagination.gif" />
+    <Content Include="Images\prev.png" />
     <Content Include="Images\service.gif" />
     <Content Include="Images\shengdan.jpg" />
     <Content Include="Images\side_bg.jpg" />
@@ -1069,6 +1076,8 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.jcarousel.pack.js" />
+    <Content Include="Scripts\jquery.jcarousel.setup.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.montage.min.js" />
     <Content Include="Scripts\jquery.VMiddleImg.js" />

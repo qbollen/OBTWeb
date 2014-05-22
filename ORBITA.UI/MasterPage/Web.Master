@@ -13,10 +13,23 @@
     <meta name="author" content="" id="author" runat="server" />
     <meta name="Copyright" content="" id="Copyright" runat="server" />
     <link href="../Css/Layout.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var nav = $("#mynav").val();
+            $("#navtool").html(nav);
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
         <uc1:top ID="top1" runat="server" />
+        <div class="clear"></div>
+        <div class="wrapper col3">
+            <div id="navtool">
+                <span></span>
+            </div>
+        </div>
         <div class="clear"></div>
         <div class="wrapper col8">
 
