@@ -5,12 +5,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using ORBITA.Model;
 
 namespace ORBITA.UI
 {
     public partial class index : System.Web.UI.Page
     {
+        private int articleCnt = 0;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            articleCnt = 0;
+        }
         protected void ListViewProductCommend_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if(e.Item.ItemType == ListViewItemType.DataItem)
@@ -37,6 +43,7 @@ namespace ORBITA.UI
         {
             if(e.Item.ItemType == ListViewItemType.DataItem)
             {
+                HtmlGenericControl li = (HtmlGenericControl)e.Item.FindControl("artitem");
                 Image image = (Image)e.Item.FindControl("image");
                 Literal title = (Literal)e.Item.FindControl("litTitle");
                 Label desc = (Label)e.Item.FindControl("lblDesc");
@@ -44,6 +51,12 @@ namespace ORBITA.UI
                 Article article = (Article)((ListViewDataItem)e.Item).DataItem;
                 if (!string.IsNullOrEmpty(article.art_title))
                 {
+                    articleCnt++;
+                    if(articleCnt == 3)
+                    {
+                        li.Attributes.Add("class", "last");
+                    }
+
                     if (!string.IsNullOrEmpty(article.art_image))
                     {
                         image.ImageUrl = article.art_image;

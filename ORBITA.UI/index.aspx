@@ -61,7 +61,7 @@
                         </ul>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <li runat="server">
+                        <li runat="server" id="artitem">
                              <h2>
                                 <div class="imgcontainer">
                                     <asp:Image ID="image" CssClass="image" runat="server" />
