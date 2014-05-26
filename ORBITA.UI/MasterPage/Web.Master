@@ -25,7 +25,7 @@
     <form id="form1" runat="server">
         <uc1:top ID="top1" runat="server" />
         <div class="clear"></div>
-        <div class="wrapper col3">
+        <div class="wrapper col12">
             <div id="navtool">
                 <span></span>
             </div>

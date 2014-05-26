@@ -946,6 +946,7 @@
     <Content Include="Images\nav.jpg" />
     <Content Include="Images\nav_bj.jpg" />
     <Content Include="Images\nerong.jpg" />
+    <Content Include="Images\next.jpg" />
     <Content Include="Images\next.png" />
     <Content Include="Images\obt2045mb.jpg" />
     <Content Include="Images\online-msn1.gif" />
@@ -968,6 +969,7 @@
     <Content Include="Images\Orbita_soft_certificate.gif" />
     <Content Include="Images\Orbita_soft_certificate_1.gif" />
     <Content Include="Images\pagination.gif" />
+    <Content Include="Images\prev.jpg" />
     <Content Include="Images\prev.png" />
     <Content Include="Images\service.gif" />
     <Content Include="Images\shengdan.jpg" />
