@@ -238,8 +238,7 @@ namespace ORBITA.DAL
 		                        prod_price = ?prod_price, 
 		                        prod_image = ?Prod_image, 
 		                        prod_content = ?prod_content, 
-		                        prod_date = ?prod_date, 
-		                        prod_click = ?prod_click, 
+		                        prod_date = ?prod_date, 	                      
 		                        istop = ?istop, 
 		                        iscommend = ?iscommend, 
 		                        pc_id = ?pc_id
@@ -252,7 +251,6 @@ namespace ORBITA.DAL
                                         new MySqlParameter("@prod_image",MySqlDbType.VarChar),
                                         new MySqlParameter("@prod_content",MySqlDbType.Text),
                                         new MySqlParameter("@prod_date",MySqlDbType.Date),
-                                        new MySqlParameter("@prod_click",MySqlDbType.Int32),
                                         new MySqlParameter("@istop",MySqlDbType.Bit),
                                         new MySqlParameter("@iscommend",MySqlDbType.Bit),
                                         new MySqlParameter("@pc_id",MySqlDbType.Int32),
@@ -265,11 +263,10 @@ namespace ORBITA.DAL
             parms[3].Value = myProduct.Prod_Image;
             parms[4].Value = myProduct.Prod_Content;
             parms[5].Value = myProduct.Prod_Date;
-            parms[6].Value = myProduct.Prod_Click;
-            parms[7].Value = myProduct.IsTop;
-            parms[8].Value = myProduct.IsCommend;
-            parms[9].Value = myProduct.Pc_Id;
-            parms[10].Value = myProduct.Prod_Id;
+            parms[6].Value = myProduct.IsTop;
+            parms[7].Value = myProduct.IsCommend;
+            parms[8].Value = myProduct.Pc_Id;
+            parms[9].Value = myProduct.Prod_Id;
 
             result = DbHelper.ExecuteNonQuery(sql, parms);
 

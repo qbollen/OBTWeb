@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Web.Master" AutoEventWireup="true" CodeBehind="case.aspx.cs" Inherits="ORBITA.UI._case" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/jquery.montage.min.js"></script>
+   <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="Scripts/jquery.montage.min.js"></script>--%>
     <script type="text/javascript">
             $(function () {
                 $('#myreferences .box li').hover(function () {
@@ -28,8 +28,7 @@
     
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <input id="mynav" type="hidden" value="References" />
-    <div class="side_box">
-       <%-- <h2>Banner</h2>--%>
+    <div class="side_box">    
         <div class="side_con">
             <ul>
                 <li><a href="case.aspx">References</a></li>
@@ -41,6 +40,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div id="myreferences">
         <h1><span>References</span></h1>
+<%--        <ul class="cases">
+            <li><img src="images/case1.jpg" /></li>
+            <li><img src="images/case2.jpg" /></li>
+            <li><img src="images/case3.jpg" /></li>
+            <li><img src="images/case4.jpg" /></li>
+        </ul>--%>
         <ul class="box">
             <li>
                 <div class="in">

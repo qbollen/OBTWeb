@@ -196,6 +196,11 @@
  	float:right;
 }
 
+#myreferences ul.cases, #myreferences ul.cases li{
+	margin: 0;
+	padding: 0;
+}
+
 
 /*--------------------------------ProductList---------------------------------------*/
 

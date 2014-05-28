@@ -925,6 +925,10 @@
     <Content Include="Images\box-03-bottom.gif" />
     <Content Include="Images\box-03-top.gif" />
     <Content Include="Images\box-03.gif" />
+    <Content Include="Images\case1.jpg" />
+    <Content Include="Images\case2.jpg" />
+    <Content Include="Images\case3.jpg" />
+    <Content Include="Images\case4.jpg" />
     <Content Include="Images\CE-OF-MA-MB-OBT1.gif" />
     <Content Include="Images\CE-OF-MA-MB-OBT2.gif" />
     <Content Include="Images\CE.gif" />
