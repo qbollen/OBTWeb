@@ -20,6 +20,7 @@
     <div id="mydownload">
         <h1><span>Download</span></h1>
         <ul>
+            <li>【Software】&nbsp; <a href="down/LockingSystem5.0.rar">Locking System 5.0 (c mifare usb port)</a></li>
             <li>【Software】&nbsp; <a href="down/ic%20card%20lock%203.1.rar">IC card locking system v3.1 (usb port)</a></li>
             <li>【Software】&nbsp; <a href="down/orbita_rf_locking_3.4.2.rar">RF card locking system v3.4.2 (usb port)</a></li>
             <li>【Software】&nbsp; <a href="down/mifare.card.lock.3.1.rar">Mifare card locking system v3.1 (usb port)</a></li>

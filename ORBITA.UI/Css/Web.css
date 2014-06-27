@@ -399,9 +399,7 @@ td,th{
 	width: 140px;
 }
 
-#articlelist .artimg .leftimg{
-	height: 80px;
-}
+
 
 #articlelist .artdigest{
 	float: left;
@@ -431,6 +429,7 @@ td,th{
 	line-height: 18px;
 	font-size: 12px;
 }
+
 
 /*--------------------------------------articleinfo----------------------------------------*/
 #articleinfo{

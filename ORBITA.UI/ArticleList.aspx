@@ -5,6 +5,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <link href="Css/web.css" rel="stylesheet" />
+        <script type="text/javascript" src="Scripts/common.js"></script>
+        <script type="text/javascript">            
+            $(function () {
+                $(".artimg img").each(function () {
+                    AutoResizeImage(140, 80, this);
+                });
+            });
+
+        </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <uc1:ArticleClassLeft runat="server" ID="ArticleClassLeft" />
@@ -24,7 +33,7 @@
                     <li runat="server">
                         <div class="artimg">
                             <asp:HyperLink ID="HyperLinkImage" runat="server" >
-                                <asp:Image id="artimg" runat="server" CssClass="leftimg"/>
+                                <asp:Image id="artimg" runat="server" />
                             </asp:HyperLink>
                         </div>
                         <div class="artdigest">

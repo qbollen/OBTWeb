@@ -43,7 +43,7 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper col6">
     <div id="copyright">
-        <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved </p>
+        <p class="fl_left">Copyright &copy; ORBITA 2014 All Rights Reserved. </p>
         <br class="clear" />
     </div>
 </div>

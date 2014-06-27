@@ -44,6 +44,7 @@ namespace ORBITA.UI
             if(e.Item.ItemType == ListViewItemType.DataItem)
             {
                 HtmlGenericControl li = (HtmlGenericControl)e.Item.FindControl("artitem");
+                HtmlGenericControl div = (HtmlGenericControl)e.Item.FindControl("imgcontainer");
                 Image image = (Image)e.Item.FindControl("image");
                 Literal title = (Literal)e.Item.FindControl("litTitle");
                 Label desc = (Label)e.Item.FindControl("lblDesc");
@@ -63,6 +64,7 @@ namespace ORBITA.UI
                     }
                     else
                     {
+                        //div.Visible = false;
                         image.Visible = false;
                     }
                     title.Text = article.art_title;

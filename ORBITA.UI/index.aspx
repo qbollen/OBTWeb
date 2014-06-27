@@ -5,8 +5,23 @@
     <script type="text/javascript" src="Scripts/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery.jcarousel.pack.js"></script>
     <script type="text/javascript" src="Scripts/jquery.jcarousel.setup.js"></script>
-  <script src="Scripts/loopedslider.js" type="text/javascript"></script>
+    <script src="Scripts/loopedslider.js" type="text/javascript"></script>
+    <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".imgcontainer img").each(function () {
+                AutoResizeImage(100, 80, this);
+            });
 
+            $(".imgcontainer").each(function () {                         
+                if (!$(this).children().is("img"))
+                {
+                    $(this).css("width", "1px");
+                    $(this).next(".title").css("width", "250px");
+                }
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -63,8 +78,8 @@
                     <ItemTemplate>
                         <li runat="server" id="artitem">
                              <h2>
-                                <div class="imgcontainer">
-                                    <asp:Image ID="image" CssClass="image" runat="server" />
+                                <div id="imgcontainer" class="imgcontainer" runat="server">
+                                    <asp:Image ID="image" runat="server" />
                                  </div> 
                                  <div class="title">
                                      <asp:Literal ID="litTitle" runat="server"></asp:Literal>

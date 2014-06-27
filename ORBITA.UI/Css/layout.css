@@ -82,7 +82,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
        	background-color:#2C589F; 
 }
 /*.col3 a{color:#99CC00; background-color:#244672;}*/
-.col4{color:#5E5E5E; background-color:#FFFFFF; }
+.col4{color:#5E5E5E;/*#5E5E5E;*/ background-color:#FFFFFF; }
 /*.col4 a{color:#366298; background-color:#FFFFFF;}*/
 .col5{color:#FFFFFF;  /*background-image:url("../images/footer_bj.jpg");*/ background-color:#1F3D63;}
 /*.col5 a{color:#FFFFFF; background-color:#2C589F;}*/
@@ -317,7 +317,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #homecontent #news h2{
 	margin: 0;
 	padding: 0 0 10px 0;
-	border-bottom: 1px dotted #dbdbdb;
+	border-bottom: 1px solid #D6D6D6;
 	font-size: 16px;
 
 }
@@ -329,7 +329,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	_margin: 0 20px 0 0;
 	padding: 10px;
 	background-color: #F7F7F7;
-	border: 1px solid #dbdbdb;
+	border: 1px solid #EBEBEB;
 
 }
 
@@ -339,7 +339,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 #homecontent #news ul li:hover{
 	color: #666666;
-	background-color: #E5E5E5;
+	background-color: #EDEDED;
 
 }
 
@@ -347,20 +347,26 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	background-color: #2C589F;
 }
 
+#homecontent #news ul li:hover h2{
+	margin: 0;
+	padding: 0 0 10px 0;
+	border-bottom: 1px solid #2C589F;
+	font-size: 16px;
+}
+
 #homecontent #news .imgcontainer{
 	float: left;
 	width: 100px;
 	height: 80px;
 	margin-right: 10px;
-	overflow: hidden;
 }
 
 #homecontent #news .imgcontainer img{
-	height: 80px;
+	align: center;
 }
 
 #homecontent #news .title{
-	float: right;
+	float: left;
 	width: 160px;
 	height: 60px;
 	padding: 0 5px;
@@ -387,6 +393,14 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	color: #FFFFFF;
 	background-color: #E8E8E8;
 
+}
+
+.newsImgWidth{
+	width:100px;
+}
+
+.newsImgHeight{
+	height:80px;
 }
 /*---------------------------------------productSlider-------------------------------------*/
 #productSlider h2{

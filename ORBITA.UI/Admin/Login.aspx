@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="div7">
-            Copyright(C) 2012 ORBITA TECHNOLOGY CO.,LTD.
+            Copyright © ORBITA 2014 All Rights Reserved.
         </div>
         </div>
         </form>

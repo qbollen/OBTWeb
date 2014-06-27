@@ -1077,6 +1077,7 @@
     <Content Include="References\44.jpg" />
     <Content Include="References\45.jpg" />
     <Content Include="Scripts\Admin.js" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
